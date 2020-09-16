@@ -8,9 +8,7 @@
     <title>Gabbler</title>
 </head>
 <body>
-/*
-    The navigation menu is used for the 'production mode'. Delete later !
-*/
+<!-- The navigation menu is used for the 'production mode'. Delete later ! -->
 <header>
     <ul>
         <li><a href="./">Home.user</a></li>
@@ -22,6 +20,6 @@
         <li><a href="?p=404">Page.404</a></li>
     </ul>
 </header>
-    <?= $AD_content ?>
+    <?= $content ?>
 </body>
 </html>
