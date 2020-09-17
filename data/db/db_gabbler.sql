@@ -28,34 +28,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `gabbler`.`status`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gabbler`.`status` (
-  `id_status` INT NOT NULL AUTO_INCREMENT,
-  `name_status` VARCHAR(25) NOT NULL,
-  PRIMARY KEY (`id_status`),
-  UNIQUE INDEX `name_status_UNIQUE` (`name_status` ASC) VISIBLE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `gabbler`.`user_right`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gabbler`.`user_right` (
-  `id_user_right` INT NOT NULL AUTO_INCREMENT,
-  `date_authorized_use_right` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `fkey_status_id` INT NOT NULL,
-  INDEX `fk_user_right_status1_idx` (`fkey_status_id` ASC) VISIBLE,
-  PRIMARY KEY (`id_user_right`),
-  CONSTRAINT `fk_user_right_status1`
-    FOREIGN KEY (`fkey_status_id`)
-    REFERENCES `gabbler`.`status` (`id_status`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `gabbler`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gabbler`.`user` (
@@ -67,18 +39,11 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`user` (
   `color_user` VARCHAR(45) NOT NULL,
   `confirmation_key_user` VARCHAR(60) NOT NULL,
   `validation_status_user` TINYINT NULL,
-  `fkey_user_right_id` INT NOT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE INDEX `nickname_user_UNIQUE` (`nickname_user` ASC) VISIBLE,
   UNIQUE INDEX `mail_user_UNIQUE` (`mail_user` ASC) VISIBLE,
   UNIQUE INDEX `confirmation_key_user_UNIQUE` (`confirmation_key_user` ASC) VISIBLE,
-  UNIQUE INDEX `pwd_user_UNIQUE` (`pwd_user` ASC) VISIBLE,
-  INDEX `fk_user_user_right1_idx` (`fkey_user_right_id` ASC) VISIBLE,
-  CONSTRAINT `fk_user_user_right1`
-    FOREIGN KEY (`fkey_user_right_id`)
-    REFERENCES `gabbler`.`user_right` (`id_user_right`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `pwd_user_UNIQUE` (`pwd_user` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -151,6 +116,41 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `gabbler`.`status`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gabbler`.`status` (
+  `id_status` INT NOT NULL AUTO_INCREMENT,
+  `name_status` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`id_status`),
+  UNIQUE INDEX `name_status_UNIQUE` (`name_status` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gabbler`.`user_right`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gabbler`.`user_right` (
+  `id_user_right` INT NOT NULL AUTO_INCREMENT,
+  `date_authorized_use_right` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fkey_status_id` INT NOT NULL,
+  `fkey_user_id` INT NOT NULL,
+  INDEX `fk_user_right_status1_idx` (`fkey_status_id` ASC) VISIBLE,
+  PRIMARY KEY (`id_user_right`),
+  INDEX `fk_user_right_user1_idx` (`fkey_user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_user_right_status1`
+    FOREIGN KEY (`fkey_status_id`)
+    REFERENCES `gabbler`.`status` (`id_status`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_right_user1`
+    FOREIGN KEY (`fkey_user_id`)
+    REFERENCES `gabbler`.`user` (`id_user`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `gabbler`.`help`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gabbler`.`help` (
@@ -195,7 +195,6 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `gabbler`.`reported` (
   `id_reported` INT NOT NULL AUTO_INCREMENT,
   `inquiry_reported` TINYTEXT NULL,
-  `counter_reported` INT NOT NULL,
   `fkey_category_id` INT NOT NULL,
   `fkey_message_id` INT NOT NULL,
   PRIMARY KEY (`id_reported`),
@@ -229,18 +228,18 @@ ENGINE = InnoDB;
 -- Table `gabbler`.`user_has_img`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gabbler`.`user_has_img` (
-  `user_id_user` INT NOT NULL,
-  `img_id_img` INT NOT NULL,
-  PRIMARY KEY (`user_id_user`, `img_id_img`),
-  INDEX `fk_user_has_img_img1_idx` (`img_id_img` ASC) VISIBLE,
-  INDEX `fk_user_has_img_user1_idx` (`user_id_user` ASC) VISIBLE,
+  `user_has_img_id_user` INT NOT NULL,
+  `user_has_img_id_img` INT NOT NULL,
+  PRIMARY KEY (`user_has_img_id_user`, `user_has_img_id_img`),
+  INDEX `fk_user_has_img_img1_idx` (`user_has_img_id_img` ASC) VISIBLE,
+  INDEX `fk_user_has_img_user1_idx` (`user_has_img_id_user` ASC) VISIBLE,
   CONSTRAINT `fk_user_has_img_user1`
-    FOREIGN KEY (`user_id_user`)
+    FOREIGN KEY (`user_has_img_id_user`)
     REFERENCES `gabbler`.`user` (`id_user`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_has_img_img1`
-    FOREIGN KEY (`img_id_img`)
+    FOREIGN KEY (`user_has_img_id_img`)
     REFERENCES `gabbler`.`img` (`id_img`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -251,18 +250,18 @@ ENGINE = InnoDB;
 -- Table `gabbler`.`role_has_user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gabbler`.`role_has_user` (
-  `role_id_role` INT NOT NULL,
-  `user_id_user` INT NOT NULL,
-  PRIMARY KEY (`role_id_role`, `user_id_user`),
-  INDEX `fk_role_has_user_user1_idx` (`user_id_user` ASC) VISIBLE,
-  INDEX `fk_role_has_user_role1_idx` (`role_id_role` ASC) VISIBLE,
+  `role_has_user_id_role` INT NOT NULL,
+  `role_has_user_id_user` INT NOT NULL,
+  PRIMARY KEY (`role_has_user_id_role`, `role_has_user_id_user`),
+  INDEX `fk_role_has_user_user1_idx` (`role_has_user_id_user` ASC) VISIBLE,
+  INDEX `fk_role_has_user_role1_idx` (`role_has_user_id_role` ASC) VISIBLE,
   CONSTRAINT `fk_role_has_user_role1`
-    FOREIGN KEY (`role_id_role`)
+    FOREIGN KEY (`role_has_user_id_role`)
     REFERENCES `gabbler`.`role` (`id_role`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_role_has_user_user1`
-    FOREIGN KEY (`user_id_user`)
+    FOREIGN KEY (`role_has_user_id_user`)
     REFERENCES `gabbler`.`user` (`id_user`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
