@@ -1,6 +1,6 @@
 # Gabbler
-######CF2m Team Gabbler.
-Gabbler is a community chat project created by the students of the CF2M web develloper class.
+#### CF2m Team Gabbler.
+Gabbler is a community chat project created by the students of the CF2M web developer class.
 
 ## Instruction 
 
@@ -30,6 +30,7 @@ __Database__ :
     - `cl_ / cl.` : Clovis
     - `ma_ / ma.` : Marjorie
     - `br_ / br.` : Bryan
+    - `mi_ / mi.` : Michaël
     
 - Writing code in `procedural language`
 
