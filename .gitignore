@@ -1,3 +1,11 @@
+# PHPStorm
 .idea
+
+# Netbeans
+/nbproject
+
+# Config
 bin/config.php
+
+# Workbench backup
 data/db/db_gabbler.mwb.bak
