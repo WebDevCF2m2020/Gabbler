@@ -1,6 +1,4 @@
 <?php
-// SESSION START
-session_start();
 
 // IF THE USER IS ALREADY CONNECTED
 if(isset($_SESSION['session_id'])&&$_SESSION['session_id'] === session_id()){
@@ -29,7 +27,7 @@ if (isset($_POST['sign_in'])){
 
         $au_signInQuery = au_signInSelect($au_signInNickname, $db);
         $au_resultInArray = mysqli_fetch_assoc($au_signInQuery);
-        $au_checkedPwd = password_verify($au_signInPwd, $au_resultInArray['pwd_user']);
+        $au_checkedPwd = mysqli_num_rows($au_signInQuery) > 0 ? password_verify($au_signInPwd, $au_resultInArray['pwd_user']) : false ;
 
         // IF THE NICKNAME DOESN'T MATCH ONE IN THE DB
         if (mysqli_num_rows($au_signInQuery) === 0){
