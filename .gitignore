@@ -9,3 +9,9 @@ bin/config.php
 
 # Workbench backup
 data/db/db_gabbler.mwb.bak
+
+# public .htaccess
+public/.htaccess
+
+# public server info (delete this file at the end of work)
+public/phpinfo.php
