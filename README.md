@@ -3,6 +3,11 @@
 
 Gabbler is a community chat project created by the students of the CF2M web developer class.
 
+## Development address
+Updated after each sprint:
+
+https://glabberdev.webdev-cf2m.be/
+
 ## Instruction 
 
 - copy and rename the file config.php.local to config.php
