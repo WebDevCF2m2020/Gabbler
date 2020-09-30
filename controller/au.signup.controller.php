@@ -71,6 +71,7 @@ if (isset($_POST['sign_up'])){
             // PASSWORD_HASH
             $au_signUpRealPwd = password_hash($au_signUpPwd, PASSWORD_DEFAULT);
 
+            // INSERT QUERY TO INITIALISE USER
             $au_queryInsertResult = au_signUpUserInsertInto($au_signUpNickname, $au_signUpRealPwd, $au_signUpEmail, $db);
 
             // IF THE INSERT INTO WORKED
