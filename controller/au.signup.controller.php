@@ -78,6 +78,11 @@ if (isset($_POST['sign_up'])){
 
                 // WARNING / SOMETHING WENT RIGHT
                 $au_warningSignIn = "Welcome ". $au_signUpNickname. " ! Please confirm your email before signing in";
+                $au_signInNickname = $au_signUpNickname;
+                $au_signUpNickname = "";
+                $au_signUpEmail = "";
+                $au_signUpPwd = "";
+                $au_signUpCheckPwd = "";
 
 
                 // IF THE INSERT INTO FAILED
@@ -85,6 +90,10 @@ if (isset($_POST['sign_up'])){
 
                 // WARNING / SOMETHING WENT WRONG
                 $au_warningSignUp = "Sorry, an error has occurred, please retry";
+                $au_signUpNickname = "";
+                $au_signUpEmail = "";
+                $au_signUpPwd = "";
+                $au_signUpCheckPwd = "";
 
             }
         }
