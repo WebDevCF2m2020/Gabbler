@@ -2,6 +2,9 @@
 
 // REQUIRE SIGN IN CONTROLLER
 require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'au.signin.controller.php';
+
+// REQUIRE SIGN UP CONTROLLER
+require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'au.signup.controller.php';
 ?>
 
 <div>
