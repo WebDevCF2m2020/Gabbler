@@ -19,7 +19,7 @@ require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'controller' . DI
             ?>
             <input type="text" placeholder="Nickname" name="sign_in_nickname" value="<?=$au_signInNickname?>" maxlength="30" required/>
             <input type="password" placeholder="Password" name="sign_in_pwd" value="<?=$au_signInPwd?>" maxlength="30" required/>
-            <a href="#">Forgot your password?</a>
+            <a href="?p=lost-pass.user">Forgot your password?</a>
             <button type="submit" name="sign_in">Sign In</button>
         </form>
     </div>
