@@ -6,7 +6,7 @@
         recover your Gabbler account</p>
     <label>
         <input type="email" placeholder="email" name="email" id="email"
-               value="clovis.reuss@yahoo.com" maxlength="80" required/>
+               value="" maxlength="80" required/>
     </label>
     <button type="submit" name="sign_in">Send</button>
 </form>
