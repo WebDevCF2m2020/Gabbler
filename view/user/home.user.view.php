@@ -1,9 +1,3 @@
-<?php
-
-// REQUIRE SIGN IN CONTROLLER
-require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'au.signin.controller.php';
-?>
-
 <div>
     <div>
         <!--SIGN UP SECTION-->
