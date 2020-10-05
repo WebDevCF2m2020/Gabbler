@@ -123,7 +123,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `user_right` (
   `id_user_right` INT NOT NULL AUTO_INCREMENT,
-  `date_authorized_use_right` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_authorized_user_right` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `fkey_status_id` INT NOT NULL,
   `fkey_user_id` INT NOT NULL,
   INDEX `fk_user_right_status1_idx` (`fkey_status_id` ASC) ,
