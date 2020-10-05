@@ -3,39 +3,37 @@
 // SESSION START
 session_start();
 
-require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'connectToDB.model.php';
+// THE_ROOT's project
+define('THE_ROOT', dirname(__DIR__));
+
+// Common's dependencies
+require_once THE_ROOT . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'config.php';
+require_once THE_ROOT . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'connectToDB.model.php';
+
 
 ob_start();
 
-if (!isset($_GET['p'])) {
+// DB Connection
+$db = connectToDB();
 
-    include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'user' . DIRECTORY_SEPARATOR . 'home.user.view.php';
+// IF THE USER IS CONNECTED
+if(isset($_SESSION['session_id'])&&$_SESSION['session_id'] === session_id()){
 
-} else {
+    // IF HE IS AN ADMIN
+    if(isset($_SESSION['role'])&&$_SESSION['role']==3){
+        require_once THE_ROOT . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'admin.controller.php';
 
-    switch ($_GET['p']) {
-
-        case 'profil.user':
-            include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'user' . DIRECTORY_SEPARATOR . 'profil.user.view.php';
-            break;
-        case 'room.user':
-            include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'user' . DIRECTORY_SEPARATOR . 'room.user.view.php';
-            break;
-        case 'history.user':
-            include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'user' . DIRECTORY_SEPARATOR . 'history.user.view.php';
-            break;
-        case 'contact.user':
-            include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'user' . DIRECTORY_SEPARATOR . 'contact.user.view.php';
-            break;
-        case 'home.admin':
-            include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'home.admin.view.php';
-            break;
-        default :
-            include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . '404.view.php';
-
+    // IF HE IS AN SIMPLE USER
+    }else{
+        require_once THE_ROOT . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'user.controller.php';
     }
+
+
+// IF IS NOT CONNECTED
+}else{
+
+    require_once THE_ROOT . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'public.controller.php';
 }
 
-$content = ob_get_clean();
 
-require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . 'default.php';
+
