@@ -1,6 +1,6 @@
 <?php
 
-// CLEAN THE ENTRY FROM THE SIGN IN/UP FORMS
+// CLEAN THE ENTRY FROM THE SIGN IN FORM
 function au_formEntryCleaning($entry){
     return htmlspecialchars(strip_tags(trim($entry)), ENT_QUOTES, 'UTF-8');
 }
@@ -17,11 +17,17 @@ function au_signUpSelect($nickname,$email, $db){
     return  mysqli_query($db, $au_query);
 }
 
+// SIGN UP SELECT QUERY FOR CHECK UP, RETURN AN ARRAY
+function au_signUpSelectArray($nickname, $db){
+    $au_query = 'SELECT * FROM user WHERE nickname_user = "'.$nickname.'";';
+    $au_result = mysqli_query($db, $au_query);
+    return  mysqli_fetch_assoc($au_result);
+}
+
 // SIGN UP INSERT INTO QUERY
 function au_signUpUserInsertInto($nickname, $pwd, $mail, $db){
     // FKEY_IMG_ID GENERATOR
-    // $au_signUpImgRandom = rand(1,10);
-    $au_signUpImgRandom = 1; // 1 image for this moment
+    $au_signUpImgRandom = rand(1,10);
 
     // VALIDATION_KEY GENERATOR
     $au_signUpValidationKey = md5(microtime(TRUE) * 100000);
@@ -49,6 +55,21 @@ function au_signUpUserInsertInto($nickname, $pwd, $mail, $db){
 
         // ROLLBACK
         mysqli_rollback($db);
+        return false;
+    }
+}
+
+// UPDATE QUERY FOR THE REGISTRATION PROCESS
+function au_registrationUpdateUser($nickname, $validationKey, $db){
+
+    // UPDATE QUERY
+    $au_update = "UPDATE user SET validation_status_user = 1 WHERE nickname_user = '".$nickname."' AND confirmation_key_user = '".$validationKey."';";
+    $au_updateQuery = mysqli_query($db,$au_update);
+
+    // RETURN
+    if ($au_updateQuery){
+        return true;
+    } else {
         return false;
     }
 }
