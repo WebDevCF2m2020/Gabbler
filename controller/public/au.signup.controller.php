@@ -9,6 +9,7 @@ $au_signUpEmail = isset($_POST['sign_up_pwd']) ? au_formEntryCleaning($_POST['si
 $au_signUpPwd = isset($_POST['sign_up_pwd']) ? au_formEntryCleaning($_POST['sign_up_pwd']) : "";
 $au_signUpCheckPwd = isset($_POST['sign_up_check_pwd']) ? au_formEntryCleaning($_POST['sign_up_check_pwd']) : "";
 
+
 // SOMEONE TRY TO SIGN UP :
 if (isset($_POST['sign_up'])){
 
@@ -79,14 +80,12 @@ if (isset($_POST['sign_up'])){
 
                 // WARNING / SOMETHING WENT RIGHT
                 $au_warningSignIn = "Welcome ". $au_signUpNickname. " ! Please confirm your email before signing in";
-                $au_signInNickname = $au_signUpNickname;
-                $au_signUpNickname = "";
-                $au_signUpEmail = "";
+                $au_signUpNickname = " ";
+                $au_signUpEmail = " ";
                 $au_signUpPwd = "";
                 $au_signUpCheckPwd = "";
 
-
-                // IF THE INSERT INTO FAILED
+            // IF THE INSERT INTO FAILED
             } else {
 
                 // WARNING / SOMETHING WENT WRONG
