@@ -106,7 +106,7 @@ function au_signUpUserInsertInto($nickname, $pwd, $mail, $db){
         // CONDITION MAIL AND ROLLBACK IN COMMENT FOR DEVELOPMENT - ADRIEN (l: 108, 124, 127, 128, 129)
 
         // IF THE MAIL WENT THROUGH
-        // if(mail($mail,$au_registrationSubject,$au_registrationMessage,$au_registrationHeader)) {
+        if(@mail($mail,$au_registrationSubject,$au_registrationMessage,$au_registrationHeader)) {
 
             // COMMIT
             mysqli_commit($db);
