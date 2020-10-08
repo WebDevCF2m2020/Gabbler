@@ -27,8 +27,8 @@ function au_signUpSelectArray($nickname, $db){
 // SIGN UP INSERT INTO QUERY
 function au_signUpUserInsertInto($nickname, $pwd, $mail, $db){
     // FKEY_IMG_ID GENERATOR
-    $au_signUpImgRandom = 1;
-    //$au_signUpImgRandom = rand(1,10); UNCOMMENT FOR PRODUCTION - ADRIEN
+    //$au_signUpImgRandom = 1;
+    $au_signUpImgRandom = rand(1,10); UNCOMMENT FOR PRODUCTION - ADRIEN
 
     // VALIDATION_KEY GENERATOR
     $au_signUpValidationKey = md5(microtime(TRUE) * 100000);
