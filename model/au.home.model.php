@@ -27,7 +27,8 @@ function au_signUpSelectArray($nickname, $db){
 // SIGN UP INSERT INTO QUERY
 function au_signUpUserInsertInto($nickname, $pwd, $mail, $db){
     // FKEY_IMG_ID GENERATOR
-    $au_signUpImgRandom = rand(1,10);
+    $au_signUpImgRandom = 1;
+    //$au_signUpImgRandom = rand(1,10); UNCOMMENT FOR PRODUCTION - ADRIEN
 
     // VALIDATION_KEY GENERATOR
     $au_signUpValidationKey = md5(microtime(TRUE) * 100000);
@@ -102,8 +103,10 @@ function au_signUpUserInsertInto($nickname, $pwd, $mail, $db){
                     </body>
                 </html>';
 
+        // CONDITION MAIL AND ROLLBACK IN COMMENT FOR DEVELOPMENT - ADRIEN (l: 108, 124, 127, 128, 129)
+
         // IF THE MAIL WENT THROUGH
-        if(mail($mail,$au_registrationSubject,$au_registrationMessage,$au_registrationHeader)) {
+        // if(mail($mail,$au_registrationSubject,$au_registrationMessage,$au_registrationHeader)) {
 
             // COMMIT
             mysqli_commit($db);
@@ -119,12 +122,12 @@ function au_signUpUserInsertInto($nickname, $pwd, $mail, $db){
         }
 
         // IF ONE QUERY OR MORE DIDN'T PASS THROUGH
-    }else {
+    //}else {
 
         // ROLLBACK
-        mysqli_rollback($db);
-        return false;
-    }
+        //mysqli_rollback($db);
+        //return false;
+    //}
 }
 
 // UPDATE QUERY FOR THE REGISTRATION PROCESS

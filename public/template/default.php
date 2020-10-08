@@ -15,7 +15,7 @@
         <li><a href="?p=profil.user">Profil.user</a></li>
         <li><a href="?p=room.user">Room.user</a></li>
         <li><a href="?p=history.user">history.user</a></li>
-        <li><a href="?p=contact.user">Contact.user</a></li>
+        <li><a href="?p=reported.user">Reported.user</a></li>
         <li><a href="?p=home.admin">Home.admin</a></li>
         <li><a href="?p=404">Page.404</a></li>
     </ul>
