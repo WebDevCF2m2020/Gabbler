@@ -1,3 +1,11 @@
+<form action="" method="GET">
+        <input type="search" name="search" id="submit-search" value="" placeholder="Type a keyword">
+        <button type="submit" id="submit-search" name="submit-search">Search</button>
+    </form><br/><br/>
+<hr>
+
+
+
 <h3>Nombre total de message : <?=$countAllHistoryMessages?> </h3>
 <p><?=$pagination?></p>
 <?php
