@@ -1,8 +1,28 @@
+<?php 
+    //if(isset($ar_search)){
+    if(isset($alert)){
+        ?>
+        <h3><?=$alert?></h3>
+        <?php
+    }
+    ?>
+    <h3><?=$ar_queryResult?> result(s) found</h3><br/>
+    <?php 
+    
+    /*}
+    else{*/
+    ?>
+
+
 <form action="" method="GET">
-        <input type="search" name="search" id="submit-search" value="" placeholder="Type a keyword">
-        <button type="submit" id="submit-search" name="submit-search">Search</button>
-    </form><br/><br/>
+    <input type="search" name="search" value="" placeholder="Type a keyword">
+    <button type="submit" name="search">Search</button>
+</form><br/>
+
+    
 <hr>
+
+
 
 
 
@@ -18,3 +38,6 @@ foreach($recupHistoryPage as $data):
 endforeach;
 ?>
 <p><?=$pagination?></p>
+<?php 
+    //}
+?>
