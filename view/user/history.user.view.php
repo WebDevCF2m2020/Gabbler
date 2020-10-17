@@ -1,24 +1,26 @@
 <?php 
     
-    //if(isset($ar_search)){
+     
     if(isset($alert)){
         ?>
         <h3><?=$alert?></h3>
         <?php
     }
+    else{
     ?>
-    <h3><?=$ar_nbrOfResults?> result(s) found</h3><br/>
+    <!--DISPLAY NUMBER OF RESULTS- UNDEFINED $-->
+    <h1><?=$ar_numRow?> result(s) found</h1><br/>
     <?php 
-    echo count($ar_queryResult);
-    /*}
-    else{*/
+    
+    }
+    
     ?>
 
 
-<form action="" method="GET">
-    <input type="search" name="search" value="" placeholder="Type a keyword">
-    <button type="submit" name="search">Search</button>
-</form><br/>
+<form action="" method="POST">
+    <input type="search" name="search" id="submit-search" value="" placeholder="Type a keyword">
+    <button type="submit" id="submit-search" name="submit-search">Search</button>
+</form><br/><br/>
 
     
 <hr>
@@ -39,6 +41,4 @@ foreach($recupHistoryPage as $data):
 endforeach;
 ?>
 <p><?=$pagination?></p>
-<?php 
-    //}
-?>
+
