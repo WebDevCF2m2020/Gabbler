@@ -1,4 +1,5 @@
 <?php 
+    
     //if(isset($ar_search)){
     if(isset($alert)){
         ?>
@@ -6,9 +7,9 @@
         <?php
     }
     ?>
-    <h3><?=$ar_queryResult?> result(s) found</h3><br/>
+    <h3><?=$ar_nbrOfResults?> result(s) found</h3><br/>
     <?php 
-    
+    echo count($ar_queryResult);
     /*}
     else{*/
     ?>

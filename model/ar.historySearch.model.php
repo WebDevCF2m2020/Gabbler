@@ -11,7 +11,7 @@ function ar_searchByKeyword($db,$ar_search){
                 INNER JOIN room
                 ON id_room = fkey_room_id
                 WHERE content_message LIKE '%$ar_search%' OR nickname_user LIKE '%$ar_search%' OR date_message LIKE '%$ar_search%' OR name_room LIKE '%$ar_search%' 
-                ORDER BY date_message ASC";
+                ORDER BY date_message DESC";
     $ar_query = mysqli_query($db,$ar_sql) or die (mysqli_error($db));
         if(mysqli_num_rows($ar_query)){
 
