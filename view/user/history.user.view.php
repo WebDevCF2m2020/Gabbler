@@ -1,7 +1,11 @@
+<form action="" method="POST">
+    <input type="search" name="search" id="submit-search" value="" placeholder="Type a keyword">
+    <button type="submit" id="submit-search" name="submit-search">Search</button>
+</form><br/><br/>
+
 <?php 
-    
-     
-    if(isset($alert)){
+
+if(isset($alert)){
         ?>
         <h3><?=$alert?></h3>
         <?php
@@ -9,23 +13,23 @@
     else{
     ?>
     <!--DISPLAY NUMBER OF RESULTS- UNDEFINED $-->
-    <h1><?=$ar_numRow?> result(s) found</h1><br/>
+    <h3><?=$ar_numRow?> result(s) found</h3><br/>
     <?php 
     
     }
-    
     ?>
-
-
-<form action="" method="POST">
-    <input type="search" name="search" id="submit-search" value="" placeholder="Type a keyword">
-    <button type="submit" id="submit-search" name="submit-search">Search</button>
-</form><br/><br/>
-
-    
 <hr>
-
-
+<?php 
+if($ar_numRow > 0){
+    
+    while($ar_row){
+?>
+<b><?php echo $ar_user;?> : </b><?php echo $ar_message;?><br/><?php echo $ar_room;?> - <?php echo $ar_date;?><br/><br/>
+<?php 
+    }
+}
+?>
+<hr>
 
 
 
