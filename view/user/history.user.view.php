@@ -1,40 +1,51 @@
 <form action="" method="POST">
     <input type="search" name="search" id="submit-search" value="" placeholder="Type a keyword">
     <button type="submit" id="submit-search" name="submit-search">Search</button>
-</form><br/><br/>
+</form><br/>
+
 
 <?php 
-
+if(isset($ar_numRow)):
+    
 if(isset($alert)){
         ?>
         <h3><?=$alert?></h3>
         <?php
-        echo var_dump($alert);
-    }
-    else{
-    ?>
-    <!--DISPLAY NUMBER OF RESULTS- UNDEFINED $-->
-    
-    <h1><?="$ar_numRow results found"?></h1><br/>
-    <?php 
-    
-    
-    }
-    ?>
-<hr>
-<?php 
-if($ar_numRow > 0){
-    
-    while($ar_row){
-?>
-<b><?php echo $ar_user;?> : </b><?php echo $ar_message;?><br/><?php echo $ar_room;?> - <?php echo $ar_date;?><br/><br/>
-<?php 
-    }
 }
 ?>
 <hr>
+<?php 
+if($ar_numRow > 0){
+    ?>
+    <!--DISPLAY NUMBER OF RESULTS-->
+    <h3><?=$ar_numRow?> result(s) found</h3><br/>
+    <?php 
+    
+    //FIND AND HIGHLIGHT RESULTS
+        foreach($ar_row as $item){
+            $ar_user = !empty($ar_search) ? ar_highlightWords($item['nickname_user'],$ar_search) : "";
+    
+            $ar_message = !empty($ar_search) ? ar_highlightWords($item['content_message'],$ar_search) : "";
+    
+            $ar_date = !empty($ar_search) ? ar_highlightWords($item['date_message'],$ar_search) : "";
+    
+            $ar_room = !empty($ar_search) ? ar_highlightWords($item['name_room'],$ar_search) : "";
+?>
 
+<!--DISPLAY RESULTS---->
+<b><?php echo $ar_user;?> : </b><?php echo $ar_message;?><br/><?php echo $ar_room;?> - <?php echo $ar_date;?><br/><br/>
 
+<button><a href="?p=history.user">Back</a></button>
+<?php 
+    }
+}
+endif;
+?>
+<hr>
+
+<?php 
+if(!isset($_POST['submit-search'])){
+?>
 
 <h3>Nombre total de message : <?=$countAllHistoryMessages?> </h3>
 <p><?=$pagination?></p>
@@ -48,4 +59,6 @@ foreach($recupHistoryPage as $data):
 endforeach;
 ?>
 <p><?=$pagination?></p>
-
+<?php 
+}
+?>
