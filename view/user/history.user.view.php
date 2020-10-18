@@ -9,12 +9,15 @@ if(isset($alert)){
         ?>
         <h3><?=$alert?></h3>
         <?php
+        echo var_dump($alert);
     }
     else{
     ?>
     <!--DISPLAY NUMBER OF RESULTS- UNDEFINED $-->
-    <h3><?=$ar_numRow?> result(s) found</h3><br/>
+    
+    <h1><?="$ar_numRow results found"?></h1><br/>
     <?php 
+    
     
     }
     ?>
