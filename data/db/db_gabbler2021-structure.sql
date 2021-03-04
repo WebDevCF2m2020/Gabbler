@@ -217,7 +217,7 @@ CREATE UNIQUE INDEX `name_img_UNIQUE` ON `gabbler`.`img` (`name_img` ASC);
 DROP TABLE IF EXISTS `gabbler`.`category` ;
 
 CREATE TABLE IF NOT EXISTS `gabbler`.`category` (
-  `id_category` INT NOT NULL AUTO_INCREMENT,
+  `id_category` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_category` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`id_category`))
 ENGINE = InnoDB;
