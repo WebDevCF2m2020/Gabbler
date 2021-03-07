@@ -74,3 +74,4 @@ __Database__ :
 - Use often gitmoji into commit and use an understandable message for each commit !
 
   https://gitmoji.dev/
+
