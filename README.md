@@ -32,6 +32,8 @@ __Database__ :
 
 - Main language of the project : `ENGLISH`
 
+- Language on Trello : `FRENCH`
+
 - Writing code in `OO language`
 
 - Comment all the code
@@ -40,15 +42,36 @@ __Database__ :
   
 - Use Camel case for methods (`myFavoriteMethod()`)
 
-- Use pre-defined constants for folders. *( ex: `DIRECTORY_SEPARATOR` )*
+- Use pre-defined constants for the root  *( ex: `THE_ROOT` )*
 
 - MVC structure :
-    - Model : file containing the mapping class and their Managers with `SQL` queries *( ex: `room.php` and `roomManager.php` )*
-    - Controller : file containing the transformation and security of data between the `Model` & `View` *( ex: `publicController.php` )*
-    - View: file containing the HTML that displays the content - file provided in the `view` folder. We used Twig for Templates
+    - `model` : file containing the mapping class and their Managers with `SQL` queries *( ex: `room.php` and `roomManager.php` )*
+    - `controller` : file containing the transformation and security of data between the `Model` & `View` *( ex: `publicController.php` )*
+    - `view` : file containing the HTML that displays the content - file provided in the `view` folder. We used Twig for Templates
+  
+- Other structure :
+  - `bin` : content configuration files
+  - `test` : content test files
+  - `data` : content prepare files
+  - `public` :  content public files (front controllers, css, images, front javascript etc ...)
 
 - Pull request to `upstream`, no class or id for `CSS` must be in the view files
+
+- Don't Work on `main` branch !
 
 - link your branch to the ticket you are working on in Trello
 
 - link `pull request` to `issues` in Trello
+
+- All mapping table files extends
+  
+      MappingTableAbstract abstract class
+  
+- All Manager table files extends
+
+      ManagerTableAbstract abstract class
+
+- Use often gitmoji into commit and use an understandable message for each commit !
+
+  https://gitmoji.dev/
+
