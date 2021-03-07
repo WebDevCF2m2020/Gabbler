@@ -32,17 +32,17 @@ __Database__ :
 
 - Main language of the project : `ENGLISH`
 
-- Language on Trello : `FRENCH`
+- Language on Trello : `FRENCH` and `ENGLISH`
 
 - Writing code in `OO language`
 
 - Comment all the code
 
-- Use Pascal case for class (`MyFavoriteClass`) and the same name into model with .php (`MyFavoriteClass.php`)
+- Use Pascal case for PHP class (`MyFavoriteClass`) and the same name into model with .php (`MyFavoriteClass.php`)
   
-- Use Camel case for methods (`myFavoriteMethod()`)
+- Use Camel case for PHP methods (`myFavoriteMethod()`)
 
-- Use pre-defined constants for the root  *( ex: `THE_ROOT` )*
+- Use pre-defined constant for the root  *( ex: `THE_ROOT` )*
 
 - MVC structure :
     - `model` : file containing the mapping class and their Managers with `SQL` queries *( ex: `room.php` and `roomManager.php` )*
@@ -53,7 +53,7 @@ __Database__ :
   - `bin` : content configuration files
   - `test` : content test files
   - `data` : content prepare files
-  - `public` :  content public files (front controllers, css, images, front javascript etc ...)
+  - `public` : content public files (front controllers, css, images, front javascript etc ...)
 
 - Pull request to `upstream`, no class or id for `CSS` must be in the view files
 
@@ -71,7 +71,7 @@ __Database__ :
 
       ManagerTableAbstract abstract class
 
-- Use often gitmoji into commit and use an understandable message for each commit !
+- Often use gitmoji into commit and use an understandable message for each commit !
 
   https://gitmoji.dev/
 
