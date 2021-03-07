@@ -59,7 +59,7 @@ __Database__ :
 
 - Don't Work on `main` branch !
 
-- link your branch to the ticket you are working on in Trello
+- link your branch to the ticket you are working on in Trello ( one ticket = one branch, one branch = several commits )
 
 - link `pull request` to `issues` in Trello
 
