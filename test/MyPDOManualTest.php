@@ -9,7 +9,7 @@ require_once THE_ROOT . "/bin/config.php";
 // Create autoload
 spl_autoload_register(
     function ($className) {
-        require "../model/" . $className . ".php";
+        require THE_ROOT."/model/" . $className . ".php";
     }
 );
 
