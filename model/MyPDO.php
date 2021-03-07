@@ -1,5 +1,6 @@
 <?php
 
+
 // class extends PDO - Singleton
 class MyPDO extends PDO
 {
