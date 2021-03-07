@@ -45,7 +45,7 @@ __Database__ :
 - Use pre-defined constant for the root  *( ex: `THE_ROOT` )*
 
 - MVC structure :
-    - `model` : file containing the mapping class and their Managers with `SQL` queries *( ex: `room.php` and `roomManager.php` )*
+    - `model` : file containing the mapping class and their Managers with `SQL` queries *( ex: `Room.php` and `RoomManager.php` )*
     - `controller` : file containing the transformation and security of data between the `Model` & `View` *( ex: `publicController.php` )*
     - `view` : file containing the HTML that displays the content - file provided in the `view` folder. We used Twig for Templates
   
