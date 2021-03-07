@@ -1,8 +1,16 @@
 <?php
+/*
+Duplicate this file with true values and rename it to "bin/config.php"
+*/
 
+// DB constances
+const DB_TYPE = 'mysql';
 const DB_HOST = 'localhost';
 const DB_USER = 'root';
 const DB_PASSWORD = '';
 const DB_NAME = 'gabbler';
 const DB_PORT = '3308';
 const DB_CHARSET = 'UTF-8';
+
+// dev > true or prod > false
+define("ENV_DEV",true);
