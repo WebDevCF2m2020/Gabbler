@@ -2,7 +2,7 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
 -- Schema gabbler
@@ -23,12 +23,13 @@ DROP TABLE IF EXISTS `gabbler`.`room` ;
 CREATE TABLE IF NOT EXISTS `gabbler`.`room` (
   `id_room` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `public_room` TINYINT UNSIGNED NULL DEFAULT 1 COMMENT '1 => public\n2 => private',
+  `archived_room` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => Not archived\n2 => Archived',
   `name_room` VARCHAR(25) NOT NULL,
   `last_activity__room` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_room`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `name_room_UNIQUE` ON `gabbler`.`room` (`name_room` ASC);
+CREATE UNIQUE INDEX `name_room_UNIQUE` ON `gabbler`.`room` (`name_room` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -48,13 +49,13 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`user` (
   PRIMARY KEY (`id_user`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `nickname_user_UNIQUE` ON `gabbler`.`user` (`nickname_user` ASC);
+CREATE UNIQUE INDEX `nickname_user_UNIQUE` ON `gabbler`.`user` (`nickname_user` ASC) VISIBLE;
 
-CREATE UNIQUE INDEX `mail_user_UNIQUE` ON `gabbler`.`user` (`mail_user` ASC);
+CREATE UNIQUE INDEX `mail_user_UNIQUE` ON `gabbler`.`user` (`mail_user` ASC) VISIBLE;
 
-CREATE UNIQUE INDEX `confirmation_key_user_UNIQUE` ON `gabbler`.`user` (`confirmation_key_user` ASC);
+CREATE UNIQUE INDEX `confirmation_key_user_UNIQUE` ON `gabbler`.`user` (`confirmation_key_user` ASC) VISIBLE;
 
-CREATE UNIQUE INDEX `pwd_user_UNIQUE` ON `gabbler`.`user` (`pwd_user` ASC);
+CREATE UNIQUE INDEX `pwd_user_UNIQUE` ON `gabbler`.`user` (`pwd_user` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -82,9 +83,9 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`message` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_message_user1_idx` ON `gabbler`.`message` (`fkey_user_id` ASC);
+CREATE INDEX `fk_message_user1_idx` ON `gabbler`.`message` (`fkey_user_id` ASC) VISIBLE;
 
-CREATE INDEX `fk_message_room1_idx` ON `gabbler`.`message` (`fkey_room_id` ASC);
+CREATE INDEX `fk_message_room1_idx` ON `gabbler`.`message` (`fkey_room_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -105,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`online` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_online_user1_idx` ON `gabbler`.`online` (`fkey_user_id` ASC);
+CREATE INDEX `fk_online_user1_idx` ON `gabbler`.`online` (`fkey_user_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -131,9 +132,9 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`user_room` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_favorite_room1_idx` ON `gabbler`.`user_room` (`fkey_room_id` ASC);
+CREATE INDEX `fk_favorite_room1_idx` ON `gabbler`.`user_room` (`fkey_room_id` ASC) VISIBLE;
 
-CREATE INDEX `fk_favorite_user1_idx` ON `gabbler`.`user_room` (`fkey_user_id` ASC);
+CREATE INDEX `fk_favorite_user1_idx` ON `gabbler`.`user_room` (`fkey_user_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -147,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`status` (
   PRIMARY KEY (`id_status`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `name_status_UNIQUE` ON `gabbler`.`status` (`name_status` ASC);
+CREATE UNIQUE INDEX `name_status_UNIQUE` ON `gabbler`.`status` (`name_status` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -173,9 +174,9 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`user_right` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_user_right_status1_idx` ON `gabbler`.`user_right` (`fkey_status_id` ASC);
+CREATE INDEX `fk_user_right_status1_idx` ON `gabbler`.`user_right` (`fkey_status_id` ASC) VISIBLE;
 
-CREATE INDEX `fk_user_right_user1_idx` ON `gabbler`.`user_right` (`fkey_user_id` ASC);
+CREATE INDEX `fk_user_right_user1_idx` ON `gabbler`.`user_right` (`fkey_user_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -208,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`img` (
   PRIMARY KEY (`id_img`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `name_img_UNIQUE` ON `gabbler`.`img` (`name_img` ASC);
+CREATE UNIQUE INDEX `name_img_UNIQUE` ON `gabbler`.`img` (`name_img` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -222,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`category` (
   PRIMARY KEY (`id_category`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `name_category_UNIQUE` ON `gabbler`.`category` (`name_category` ASC);
+CREATE UNIQUE INDEX `name_category_UNIQUE` ON `gabbler`.`category` (`name_category` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -249,9 +250,9 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`reported` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_reported_category1_idx` ON `gabbler`.`reported` (`fkey_category_id` ASC);
+CREATE INDEX `fk_reported_category1_idx` ON `gabbler`.`reported` (`fkey_category_id` ASC) VISIBLE;
 
-CREATE INDEX `fk_reported_message1_idx` ON `gabbler`.`reported` (`fkey_message_id` ASC);
+CREATE INDEX `fk_reported_message1_idx` ON `gabbler`.`reported` (`fkey_message_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -265,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`role` (
   PRIMARY KEY (`id_role`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `name_role_UNIQUE` ON `gabbler`.`role` (`name_role` ASC);
+CREATE UNIQUE INDEX `name_role_UNIQUE` ON `gabbler`.`role` (`name_role` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -289,9 +290,9 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`user_has_img` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_user_has_img_img1_idx` ON `gabbler`.`user_has_img` (`user_has_img_id_img` ASC);
+CREATE INDEX `fk_user_has_img_img1_idx` ON `gabbler`.`user_has_img` (`user_has_img_id_img` ASC) VISIBLE;
 
-CREATE INDEX `fk_user_has_img_user1_idx` ON `gabbler`.`user_has_img` (`user_has_img_id_user` ASC);
+CREATE INDEX `fk_user_has_img_user1_idx` ON `gabbler`.`user_has_img` (`user_has_img_id_user` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -315,9 +316,9 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`role_has_user` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_role_has_user_user1_idx` ON `gabbler`.`role_has_user` (`role_has_user_id_user` ASC);
+CREATE INDEX `fk_role_has_user_user1_idx` ON `gabbler`.`role_has_user` (`role_has_user_id_user` ASC) VISIBLE;
 
-CREATE INDEX `fk_role_has_user_role1_idx` ON `gabbler`.`role_has_user` (`role_has_user_id_role` ASC);
+CREATE INDEX `fk_role_has_user_role1_idx` ON `gabbler`.`role_has_user` (`role_has_user_id_role` ASC) VISIBLE;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
