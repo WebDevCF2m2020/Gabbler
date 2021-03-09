@@ -23,6 +23,7 @@ DROP TABLE IF EXISTS `gabbler`.`room` ;
 CREATE TABLE IF NOT EXISTS `gabbler`.`room` (
   `id_room` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `public_room` TINYINT UNSIGNED NULL DEFAULT 1 COMMENT '1 => public\n2 => private',
+  `archived_room` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => Not archived\n2 => Archived',
   `name_room` VARCHAR(25) NOT NULL,
   `last_activity__room` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_room`))
