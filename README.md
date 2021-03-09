@@ -40,14 +40,14 @@ __Database__ :
 
 - Use Pascal case for PHP class (`MyFavoriteClass`) and the same name into model with .php (`MyFavoriteClass.php`)
   
-- Use Camel case for PHP methods (`myFavoriteMethod()`)
+- Use Camel case for PHP methods (`myFavoriteMethod()`) and variables (`$myVariable`). 
 
 - Use pre-defined constant for the root  *( ex: `THE_ROOT` )*
 
 - MVC structure :
     - `model` : file containing the mapping class and their Managers with `SQL` queries *( ex: `Room.php` and `RoomManager.php` )*
-    - `controller` : file containing the transformation and security of data between the `Model` & `View` *( ex: `publicController.php` )*
-    - `view` : file containing the HTML that displays the content - file provided in the `view` folder. We used Twig for Templates
+    - `controller` : file containing the transformation and security of data between the `Model` & `View` *( ex: `home.admin.controller.php` )*
+    - `view` : file containing the HTML that displays the content - file provided in the `view` folder. We used Twig for Templates ( ex: `home_page.html.twig`)
   
 - Other structure :
   - `bin` : content configuration files
@@ -57,9 +57,9 @@ __Database__ :
 
 - Pull request to `upstream`, no class or id for `CSS` must be in the view files
 
-- Don't Work on `main` branch !
+- Don't Work on `main` branch ! Make your first pull request on a buffer branch ( ex: `main2`, `test`).
 
-- link your branch to the ticket you are working on in Trello ( one ticket = one branch, one branch = several commits )
+- Link your branch to the ticket you are working on Trello ( one ticket = one branch, one branch = several commits )
 
 - link `pull request` to `issues` in Trello
 
