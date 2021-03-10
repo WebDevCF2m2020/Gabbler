@@ -34,7 +34,13 @@ abstract class MappingTableAbstract
     // creation of a retriever of attributes (properties) thanks to the magic method __get, retrieves only existing attributes in the class
     public function __get($name)
     {
-        return $this->$name;
+        // if the property is declared (automatically not public), we can take it
+        if (property_exists($this, $name)) {
+            return $this->$name;
+        } else {
+            // otherwise we indicate that we must go through the getter or
+            trigger_error("Vous essayer de lire un attribut protected ou private existant sans passer par son getter ! (__get) ou un attribut non existant", E_USER_NOTICE);
+        }
     }
 
 }
