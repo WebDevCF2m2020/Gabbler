@@ -10,6 +10,9 @@ class MappingTableAbstractManualTest extends MappingTableAbstract{
     protected string $coucou_les_amis;
     protected string $est_ce_que_ca_fonctionne;
 
+
+    // GETTERS
+
     /**
      * @return int
      */
@@ -34,7 +37,7 @@ class MappingTableAbstractManualTest extends MappingTableAbstract{
         return $this->est_ce_que_ca_fonctionne;
     }
 
-
+    // SETTERS
 
     /**
      * @param int $id_test
@@ -61,6 +64,15 @@ class MappingTableAbstractManualTest extends MappingTableAbstract{
     }
 
 
-
-
 }
+
+// tests
+$a = new MappingTableAbstractManualTest([]);
+$b = new MappingTableAbstractManualTest(["id_test"=>5,
+                                         "coucou_les_amis"=>"Bonjour à tous!",
+                                         "est_ce_que_ca_fonctionne"=>"Bien ou pas?"]);
+?>
+<pre><?php
+    var_dump($a,$b) ;
+
+    ?></pre>
