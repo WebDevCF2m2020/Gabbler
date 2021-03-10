@@ -4,7 +4,8 @@ require_once "../model/MappingTableAbstract.php";
 
 // create a pseudo extends files into this test
 
-class MappingTableAbstractManualTest extends MappingTableAbstract{
+class MappingTableAbstractManualTest extends MappingTableAbstract
+{
 
     protected int $id_test;
     protected string $coucou_les_amis;
@@ -68,11 +69,19 @@ class MappingTableAbstractManualTest extends MappingTableAbstract{
 
 // tests
 $a = new MappingTableAbstractManualTest([]);
-$b = new MappingTableAbstractManualTest(["id_test"=>5,
-                                         "coucou_les_amis"=>"Bonjour à tous!",
-                                         "est_ce_que_ca_fonctionne"=>"Bien ou pas?"]);
+$b = new MappingTableAbstractManualTest(["id_test" => 5,
+    "coucou_les_amis" => "Bonjour à tous!",
+    "est_ce_que_ca_fonctionne" => "Bien ou pas?"]);
+$c = new MappingTableAbstractManualTest(["id_test" => 5,
+    "coucou_les_amis" => "Bonjour à tous!",
+    "est_ce_que_ca_fonctionne" => "Bien ou pas?",
+    "blabla___a__xac_a" => "jhjh"]);
 ?>
 <pre><?php
-    var_dump($a,$b) ;
-
+    var_dump($a, $b, $c);
+    $c->blabla___a__xac_a = 25;
+    var_dump($c);
+    echo "\n\r $c->blabla___a__xac_a";
+    echo "\n\r $c->autre_chose";
+    $c->id_test = 7;
     ?></pre>
