@@ -18,4 +18,17 @@ abstract class MappingTableAbstract
             }
         }
     }
+
+    // creation of an attribute generator (properties) using the __set magic method, only creates attributes that do not exist in the class
+    public function __set($name, $value)
+    {
+        // if the property is not declared (automatically not public), it can be created
+        if (!property_exists($this, $name)) {
+            $this->$name = $value;
+        } else {
+            // otherwise we indicate that we must go through the setter
+            trigger_error("Vous essayer de réécrire un attribut protected ou private existant sans passer par son setter ! (__set)", E_USER_NOTICE);
+        }
+    }
+
 }
