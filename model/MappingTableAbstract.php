@@ -12,7 +12,11 @@ abstract class MappingTableAbstract
     final protected function hydrate(array $datas)
     {
         foreach ($datas as $key => $value) {
-            $methodSetters = "set" . ucfirst($key);
+            $keyToArray = explode("_",$key);
+            $methodSetters = "set";
+            foreach ($keyToArray as $word){
+                $methodSetters.=ucfirst($word);
+            }
             if (method_exists($this, $methodSetters)) {
                 $this->$methodSetters($value);
             }
