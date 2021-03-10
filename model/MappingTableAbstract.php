@@ -31,4 +31,10 @@ abstract class MappingTableAbstract
         }
     }
 
+    // creation of a retriever of attributes (properties) thanks to the magic method __get, retrieves only existing attributes in the class
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+
 }
