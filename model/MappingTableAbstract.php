@@ -38,7 +38,7 @@ abstract class MappingTableAbstract
         if (property_exists($this, $name)) {
             return $this->$name;
         } else {
-            // otherwise we indicate that we must go through the getter or
+            // otherwise we indicate that we must go through the getter or attribute does not exist
             trigger_error("Vous essayer de lire un attribut protected ou private existant sans passer par son getter ! (__get) ou un attribut non existant", E_USER_NOTICE);
         }
     }
