@@ -1,7 +1,10 @@
 <?php
 
+use Cassandra\Date;
+
 class User extends MappingTableAbstract
 {
+
     protected int $id_user;
     protected string $nickname_user;
     protected string $pwd_user;
@@ -80,7 +83,11 @@ class User extends MappingTableAbstract
      */
     public function setIdUser(int $id_user): void
     {
-        $this->id_user = $id_user;
+        if (!is_int($id_user) && empty($id_user)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->id_user = $id_user;
+        }
     }
 
     /**
@@ -88,7 +95,13 @@ class User extends MappingTableAbstract
      */
     public function setNicknameUser(string $nickname_user): void
     {
-        $this->nickname_user = $nickname_user;
+        if (!filter_var($nickname_user, FILTER_VALIDATE_EMAIL)) {
+            trigger_error('', E_USER_NOTICE);
+        } else if (strlen($nickname_user) > 60) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->nickname_user = $nickname_user;
+        }
     }
 
     /**
@@ -96,7 +109,11 @@ class User extends MappingTableAbstract
      */
     public function setPwdUser(string $pwd_user): void
     {
-        $this->pwd_user = $pwd_user;
+        if (strlen($pwd_user) < 5 && strlen($pwd_user) > 255) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->pwd_user = $pwd_user;
+        }
     }
 
     /**
@@ -104,15 +121,24 @@ class User extends MappingTableAbstract
      */
     public function setMailUser(string $mail_user): void
     {
-        $this->mail_user = $mail_user;
+        if (strlen($mail_user) < 5 && strlen($mail_user) > 120) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->mail_user = $mail_user;
+        }
     }
 
     /**
-     * @param object $signup_date_user
+     * @param string $signup_date_user
      */
-    public function setSignupDateUser(object $signup_date_user): void
+    public function setSignupDateUser(string $signup_date_user): void
     {
-        $this->signup_date_user = $signup_date_user;
+        $verifyDate = new Date($signup_date_user);
+        if (!is_object($verifyDate)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->signup_date_user = $signup_date_user;
+        }
     }
 
     /**
@@ -120,7 +146,11 @@ class User extends MappingTableAbstract
      */
     public function setColorUser(string $color_user): void
     {
-        $this->color_user = $color_user;
+        if (!(is_string($color_user) && ( is_object(json_decode($color_user)) || is_array(json_decode($color_user))))) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->color_user = $color_user;
+        }
     }
 
     /**
@@ -128,7 +158,11 @@ class User extends MappingTableAbstract
      */
     public function setConfirmationKeyUser(string $confirmation_key_user): void
     {
-        $this->confirmation_key_user = $confirmation_key_user;
+        if (strlen($confirmation_key_user) < 5 && strlen($confirmation_key_user) > 60) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->confirmation_key_user = $confirmation_key_user;
+        }
     }
 
     /**
@@ -136,6 +170,10 @@ class User extends MappingTableAbstract
      */
     public function setValidationStatusKey(int $validation_status_key): void
     {
-        $this->validation_status_key = $validation_status_key;
+        if (!is_int($validation_status_key) && empty($validation_status_key)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->validation_status_key = $validation_status_key;
+        }
     }
 }
