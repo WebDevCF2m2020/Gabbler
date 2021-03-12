@@ -4,7 +4,6 @@ use Cassandra\Date;
 
 class User extends MappingTableAbstract
 {
-
     const MIN = 5;
 
     protected int $id_user;
@@ -17,6 +16,7 @@ class User extends MappingTableAbstract
     protected int $validation_status_key = 1;
 
     /**
+     * User id getter
      * @return int
      */
     public function getIdUser(): int
@@ -25,6 +25,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Nickname getter
      * @return string
      */
     public function getNicknameUser(): string
@@ -33,6 +34,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Password getter
      * @return string
      */
     public function getPwdUser(): string
@@ -41,6 +43,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Email address getter
      * @return string
      */
     public function getMailUser(): string
@@ -49,6 +52,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Signup date getter
      * @return string
      */
     public function getSignupDateUser(): string
@@ -57,6 +61,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Color table getter
      * @return string
      */
     public function getColorUser(): string
@@ -65,6 +70,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Confirmation key getter
      * @return string
      */
     public function getConfirmationKeyUser(): string
@@ -73,6 +79,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Status getter
      * @return int
      */
     public function getValidationStatusKey(): int
@@ -81,6 +88,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * User id setter
      * @param int $id_user
      */
     public function setIdUser(int $id_user): void
@@ -93,6 +101,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Nickname setter
      * @param string $nickname_user
      */
     public function setNicknameUser(string $nickname_user): void
@@ -107,6 +116,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Password setter
      * @param string $pwd_user
      */
     public function setPwdUser(string $pwd_user): void
@@ -121,6 +131,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Email address setter
      * @param string $mail_user
      */
     public function setMailUser(string $mail_user): void
@@ -135,6 +146,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Signup date setter
      * @param string $signup_date_user
      */
     public function setSignupDateUser(string $signup_date_user): void
@@ -150,10 +162,12 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Color table setter
      * @param string $color_user
      */
     public function setColorUser(string $color_user): void
     {
+        // Check if the string is a json array
         if (!(is_string($color_user) && is_array(json_decode($color_user)))) {
             trigger_error('The color table is not valid', E_USER_NOTICE);
         } else if (strlen($color_user) < self::MIN && strlen($color_user) > 45) {
@@ -166,6 +180,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Confirmation key setter
      * @param string $confirmation_key_user
      */
     public function setConfirmationKeyUser(string $confirmation_key_user): void
@@ -180,6 +195,7 @@ class User extends MappingTableAbstract
     }
 
     /**
+     * Status setter
      * @param int $validation_status_key
      */
     public function setValidationStatusKey(int $validation_status_key): void
