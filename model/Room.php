@@ -1,11 +1,12 @@
 <?php
 
+use Cassandra\Date;
 
 class Room extends MappingTableAbstract
 {
     protected int $id_room;
-    protected int $public_room;
-    protected int $archiver_room;
+    protected int $public_room = 1;
+    protected int $archiver_room = 1;
     protected string $name_room;
     protected string $last_activity_room;
 
@@ -54,7 +55,11 @@ class Room extends MappingTableAbstract
      */
     public function setIdRoom(int $id_room): void
     {
-        $this->id_room = $id_room;
+        if (!is_int($id_room) && empty($id_room)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->id_room = $id_room;
+        }
     }
 
     /**
@@ -62,7 +67,11 @@ class Room extends MappingTableAbstract
      */
     public function setPublicRoom(int $public_room): void
     {
-        $this->public_room = $public_room;
+        if (!is_int($public_room) && empty($public_room)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->public_room = $public_room;
+        }
     }
 
     /**
@@ -70,7 +79,11 @@ class Room extends MappingTableAbstract
      */
     public function setArchiverRoom(int $archiver_room): void
     {
-        $this->archiver_room = $archiver_room;
+        if (!is_int($archiver_room) && empty($archiver_room)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->archiver_room = $archiver_room;
+        }
     }
 
     /**
@@ -78,7 +91,13 @@ class Room extends MappingTableAbstract
      */
     public function setNameRoom(string $name_room): void
     {
-        $this->name_room = $name_room;
+        if (strlen($name_room) < 5 || strlen($name_room) > 25) {
+            trigger_error('', E_USER_NOTICE);
+        } else if (empty($name_room)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->name_room = $name_room;
+        }
     }
 
     /**
@@ -86,6 +105,13 @@ class Room extends MappingTableAbstract
      */
     public function setLastActivityRoom(string $last_activity_room): void
     {
-        $this->last_activity_room = $last_activity_room;
+        $verifyDate = new Date($last_activity_room);
+        if (!is_object($verifyDate)) {
+            trigger_error('', E_USER_NOTICE);
+        } else if (empty($last_activity_room)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->last_activity_room = $last_activity_room;
+        }
     }
 }
