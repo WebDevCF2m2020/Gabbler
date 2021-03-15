@@ -55,7 +55,8 @@ class Room extends MappingTableAbstract
      */
     public function setIdRoom(int $id_room): void
     {
-        if (!is_int($id_room) && empty($id_room)) {
+        $id_room = (int)$id_room;
+        if (empty($id_room)) {
             trigger_error('', E_USER_NOTICE);
         } else {
             $this->id_room = $id_room;
@@ -67,7 +68,8 @@ class Room extends MappingTableAbstract
      */
     public function setPublicRoom(int $public_room): void
     {
-        if (!is_int($public_room) && empty($public_room)) {
+        $public_room = (int)$public_room;
+        if (empty($public_room)) {
             trigger_error('', E_USER_NOTICE);
         } else {
             $this->public_room = $public_room;
@@ -79,7 +81,8 @@ class Room extends MappingTableAbstract
      */
     public function setArchiverRoom(int $archiver_room): void
     {
-        if (!is_int($archiver_room) && empty($archiver_room)) {
+        $archiver_room = (int)$archiver_room;
+        if (empty($archiver_room)) {
             trigger_error('', E_USER_NOTICE);
         } else {
             $this->archiver_room = $archiver_room;
@@ -91,9 +94,9 @@ class Room extends MappingTableAbstract
      */
     public function setNameRoom(string $name_room): void
     {
-        if (strlen($name_room) < 5 || strlen($name_room) > 25) {
+        if (empty($name_room)) {
             trigger_error('', E_USER_NOTICE);
-        } else if (empty($name_room)) {
+        } else if (strlen($name_room) < 5 || strlen($name_room) > 25) {
             trigger_error('', E_USER_NOTICE);
         } else {
             $this->name_room = $name_room;
@@ -106,9 +109,9 @@ class Room extends MappingTableAbstract
     public function setLastActivityRoom(string $last_activity_room): void
     {
         $verifyDate = new Date($last_activity_room);
-        if (!is_object($verifyDate)) {
+        if (empty($last_activity_room)) {
             trigger_error('', E_USER_NOTICE);
-        } else if (empty($last_activity_room)) {
+        } else if (!is_object($verifyDate)) {
             trigger_error('', E_USER_NOTICE);
         } else {
             $this->last_activity_room = $last_activity_room;
