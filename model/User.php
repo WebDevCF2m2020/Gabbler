@@ -105,6 +105,7 @@ class User extends MappingTableAbstract
      */
     public function setNicknameUser(string $nickname_user): void
     {
+        $nickname_user = strip_tags(trim($nickname_user));
         if (empty($nickname_user)) {
             trigger_error('The nickname cannot be empty', E_USER_NOTICE);
         } else if (strlen($nickname_user) < self::MIN || strlen($nickname_user) > 60) {
@@ -120,6 +121,7 @@ class User extends MappingTableAbstract
      */
     public function setPwdUser(string $pwd_user): void
     {
+        $pwd_user = strip_tags(trim($pwd_user));
         if (empty($pwd_user)) {
             trigger_error('The password cannot be empty', E_USER_NOTICE);
         } else if (strlen($pwd_user) < self::MIN && strlen($pwd_user) > 255) {
@@ -135,6 +137,7 @@ class User extends MappingTableAbstract
      */
     public function setMailUser(string $mail_user): void
     {
+        $mail_user = strip_tags(trim($mail_user));
         if (!filter_var($mail_user, FILTER_VALIDATE_EMAIL)) {
             trigger_error('The email address is not valid', E_USER_NOTICE);
         } else if (strlen($mail_user) < self::MIN && strlen($mail_user) > 120) {
@@ -167,7 +170,6 @@ class User extends MappingTableAbstract
      */
     public function setColorUser(string $color_user): void
     {
-
         if (empty($color_user)) {
             trigger_error('The color table cannot be empty', E_USER_NOTICE);
         } else if (!(is_string($color_user) && is_object(json_decode($color_user)))) { // Check if the string is a json array
