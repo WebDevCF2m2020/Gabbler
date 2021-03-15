@@ -63,15 +63,28 @@ class Message extends MappingTableAbstract
      */
     public function setIdMessage(int $id_message): void
     {
-        $this->id_message = $id_message;
+        $id_message = (int)$id_message;
+        if (empty($id_message)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->id_message = $id_message;
+        }
     }
 
     /**
      * @param string $date_message
+     * @throws Exception
      */
     public function setDateMessage(string $date_message): void
     {
-        $this->date_message = $date_message;
+        $test_date_message = new DateTime($date_message);
+        if (empty($date_message)) {
+            trigger_error('', E_USER_NOTICE);
+        } else if (!is_object($test_date_message)) {
+            trigger_error('' . E_USER_NOTICE);
+        } else {
+            $this->date_message = $date_message;
+        }
     }
 
     /**
@@ -79,7 +92,12 @@ class Message extends MappingTableAbstract
      */
     public function setContentMessage(string $content_message): void
     {
-        $this->content_message = $content_message;
+        $content_message = strip_tags(trim($content_message));
+        if (empty($content_message)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->content_message = $content_message;
+        }
     }
 
     /**
@@ -87,7 +105,12 @@ class Message extends MappingTableAbstract
      */
     public function setArchivedMessage(int $archived_message): void
     {
-        $this->archived_message = $archived_message;
+        $archived_message = (int)$archived_message;
+        if (empty($archived_message)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->archived_message = $archived_message;
+        }
     }
 
     /**
@@ -95,7 +118,12 @@ class Message extends MappingTableAbstract
      */
     public function setFkeyUserId(int $fkey_user_id): void
     {
-        $this->fkey_user_id = $fkey_user_id;
+        $fkey_user_id = (int)$fkey_user_id;
+        if (empty($fkey_user_id)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->fkey_user_id = $fkey_user_id;
+        }
     }
 
     /**
@@ -103,6 +131,11 @@ class Message extends MappingTableAbstract
      */
     public function setFkeyRoomId(int $fkey_room_id): void
     {
-        $this->fkey_room_id = $fkey_room_id;
+        $fkey_room_id = (int)$fkey_room_id;
+        if (empty($fkey_room_id)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->fkey_room_id = $fkey_room_id;
+        }
     }
 }
