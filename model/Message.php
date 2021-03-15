@@ -1,7 +1,7 @@
 <?php
 
 
-class Message
+class Message extends MappingTableAbstract
 {
     protected int $id_message;
     protected string $date_message;
