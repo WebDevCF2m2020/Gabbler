@@ -23,7 +23,20 @@ $classNotValidated = new Help([
     "content_help" => "",
     "processed_help" => 6,
     "user_id" => 0
-])
+]);
+
+class test extends Help
+{
+    public function getTest()
+    {
+        return $this->test;
+    }
+
+    public function setTest($test)
+    {
+        $this->test = $test;
+    }
+}
 
 // Display of test results
 ?>
@@ -63,21 +76,8 @@ $classNotValidated = new Help([
     New setters and getters:
     <?php
 
-//        $classValidated->setNewSetters('bonjour');
-//        $classValidated->getNewSetters();
-
-    class test extends Help
-    {
-        public function getTest()
-        {
-            return $this->test;
-        }
-
-        public function setTest($test)
-        {
-            $this->test = $test;
-        }
-    }
+    // $classValidated->setNewSetters('bonjour');
+    // $classValidated->getNewSetters();
 
     $newTest = new Test([]);
     $newTest->setTest('hello');
