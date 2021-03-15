@@ -48,7 +48,7 @@ $classNotValidated = new Help([
     var_dump($classValidated->getUserId());
     ?>
 
-     Testing setters :
+    Testing setters :
     <?php
     $classValidated->setIdHelp(2);
     $classValidated->setMailHelp("tes2@tes2.fr");
@@ -58,5 +58,31 @@ $classNotValidated = new Help([
     $classValidated->setProcessedHelp(2);
     $classValidated->setUserId(7894);
     var_dump($classValidated);
+    ?>
+
+    New setters and getters:
+    <?php
+
+//        $classValidated->setNewSetters('bonjour');
+//        $classValidated->getNewSetters();
+
+    class test extends Help
+    {
+        public function getTest()
+        {
+            return $this->test;
+        }
+
+        public function setTest($test)
+        {
+            $this->test = $test;
+        }
+    }
+
+    $newTest = new Test([]);
+    $newTest->setTest('hello');
+
+    var_dump($newTest->getTest());
+    var_dump($newTest);
     ?>
 </pre>
