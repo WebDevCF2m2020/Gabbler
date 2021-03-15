@@ -61,7 +61,7 @@ class Room extends MappingTableAbstract
     {
         $id_room = (int)$id_room;
         if (empty($id_room)) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('The room ID is not valid', E_USER_NOTICE);
         } else {
             $this->id_room = $id_room;
         }
@@ -75,7 +75,7 @@ class Room extends MappingTableAbstract
     {
         $public_room = (int)$public_room;
         if (empty($public_room)) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('The public room is not valid', E_USER_NOTICE);
         } else {
             $this->public_room = $public_room;
         }
@@ -89,7 +89,7 @@ class Room extends MappingTableAbstract
     {
         $archived_room = (int)$archived_room;
         if (empty($archived_room)) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('The archived room is not valid', E_USER_NOTICE);
         } else {
             $this->archived_room = $archived_room;
         }
@@ -103,9 +103,9 @@ class Room extends MappingTableAbstract
     {
         $name_room = strip_tags(trim($name_room));
         if (empty($name_room)) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('The name room cannot be empty', E_USER_NOTICE);
         } else if (strlen($name_room) < 5 || strlen($name_room) > 25) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('The length of the name room must be between 5 and 25 characters', E_USER_NOTICE);
         } else {
             $this->name_room = $name_room;
         }
@@ -120,9 +120,9 @@ class Room extends MappingTableAbstract
     {
         $verifyDate = new DateTime($last_activity_room);
         if (empty($last_activity_room)) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('The date of the last activity room cannot be empty', E_USER_NOTICE);
         } else if (!is_object($verifyDate)) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('the date of the last activity room is not valid', E_USER_NOTICE);
         } else {
             $this->last_activity_room = $last_activity_room;
         }
