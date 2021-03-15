@@ -37,7 +37,7 @@ $classNotValidated = new Help([
     Class Not Validated :
     <?php var_dump($classNotValidated) ?>
 
-    Testing getter :
+    Testing getters :
     <?php
     var_dump($classValidated->getIdHelp());
     var_dump($classValidated->getMailHelp());
@@ -46,5 +46,17 @@ $classNotValidated = new Help([
     var_dump($classValidated->getContentHelp());
     var_dump($classValidated->getProcessedHelp());
     var_dump($classValidated->getUserId());
+    ?>
+
+     Testing setters :
+    <?php
+    $classValidated->setIdHelp(2);
+    $classValidated->setMailHelp("tes2@tes2.fr");
+    $classValidated->setNicknameHelp("Mary Jane");
+    $classValidated->setSubjectHelp("Need help");
+    $classValidated->setContentHelp("Hello World !");
+    $classValidated->setProcessedHelp(2);
+    $classValidated->setUserId(7894);
+    var_dump($classValidated);
     ?>
 </pre>
