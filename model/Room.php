@@ -1,16 +1,15 @@
 <?php
 
-use Cassandra\Date;
-
 class Room extends MappingTableAbstract
 {
     protected int $id_room;
     protected int $public_room = 1;
-    protected int $archiver_room = 1;
+    protected int $archived_room = 1;
     protected string $name_room;
     protected string $last_activity_room;
 
     /**
+     * Room id getter
      * @return int
      */
     public function getIdRoom(): int
@@ -19,6 +18,7 @@ class Room extends MappingTableAbstract
     }
 
     /**
+     * Public getter
      * @return int
      */
     public function getPublicRoom(): int
@@ -27,14 +27,16 @@ class Room extends MappingTableAbstract
     }
 
     /**
+     * Archived getter
      * @return int
      */
-    public function getArchiverRoom(): int
+    public function getArchivedRoom(): int
     {
-        return $this->archiver_room;
+        return $this->archived_room;
     }
 
     /**
+     * Name getter
      * @return string
      */
     public function getNameRoom(): string
@@ -43,6 +45,7 @@ class Room extends MappingTableAbstract
     }
 
     /**
+     * Last activity getter
      * @return string
      */
     public function getLastActivityRoom(): string
@@ -51,6 +54,7 @@ class Room extends MappingTableAbstract
     }
 
     /**
+     * Room id setter
      * @param int $id_room
      */
     public function setIdRoom(int $id_room): void
@@ -64,6 +68,7 @@ class Room extends MappingTableAbstract
     }
 
     /**
+     * Public setter
      * @param int $public_room
      */
     public function setPublicRoom(int $public_room): void
@@ -77,23 +82,26 @@ class Room extends MappingTableAbstract
     }
 
     /**
-     * @param int $archiver_room
+     * Archived setter
+     * @param int $archived_room
      */
-    public function setArchiverRoom(int $archiver_room): void
+    public function setArchiverRoom(int $archived_room): void
     {
-        $archiver_room = (int)$archiver_room;
-        if (empty($archiver_room)) {
+        $archived_room = (int)$archived_room;
+        if (empty($archived_room)) {
             trigger_error('', E_USER_NOTICE);
         } else {
-            $this->archiver_room = $archiver_room;
+            $this->archived_room = $archived_room;
         }
     }
 
     /**
+     * Name setter
      * @param string $name_room
      */
     public function setNameRoom(string $name_room): void
     {
+        $name_room = strip_tags(trim($name_room));
         if (empty($name_room)) {
             trigger_error('', E_USER_NOTICE);
         } else if (strlen($name_room) < 5 || strlen($name_room) > 25) {
@@ -104,11 +112,13 @@ class Room extends MappingTableAbstract
     }
 
     /**
+     * Last activity setter
      * @param string $last_activity_room
+     * @throws Exception
      */
     public function setLastActivityRoom(string $last_activity_room): void
     {
-        $verifyDate = new Date($last_activity_room);
+        $verifyDate = new DateTime($last_activity_room);
         if (empty($last_activity_room)) {
             trigger_error('', E_USER_NOTICE);
         } else if (!is_object($verifyDate)) {
