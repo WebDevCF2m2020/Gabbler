@@ -11,6 +11,7 @@ class Message extends MappingTableAbstract
     protected int $fkey_room_id;
 
     /**
+     * Message ID getter
      * @return int
      */
     public function getIdMessage(): int
@@ -19,6 +20,7 @@ class Message extends MappingTableAbstract
     }
 
     /**
+     * Date getter
      * @return string
      */
     public function getDateMessage(): string
@@ -27,6 +29,7 @@ class Message extends MappingTableAbstract
     }
 
     /**
+     * Content getter
      * @return string
      */
     public function getContentMessage(): string
@@ -35,6 +38,7 @@ class Message extends MappingTableAbstract
     }
 
     /**
+     * Archived getter
      * @return int
      */
     public function getArchivedMessage(): int
@@ -43,6 +47,7 @@ class Message extends MappingTableAbstract
     }
 
     /**
+     * Foreign key user getter
      * @return int
      */
     public function getFkeyUserId(): int
@@ -51,6 +56,7 @@ class Message extends MappingTableAbstract
     }
 
     /**
+     * Foreign key room getter
      * @return int
      */
     public function getFkeyRoomId(): int
@@ -59,6 +65,7 @@ class Message extends MappingTableAbstract
     }
 
     /**
+     * Message ID setter
      * @param int $id_message
      */
     public function setIdMessage(int $id_message): void
@@ -72,6 +79,7 @@ class Message extends MappingTableAbstract
     }
 
     /**
+     * Date setter
      * @param string $date_message
      * @throws Exception
      */
@@ -88,6 +96,7 @@ class Message extends MappingTableAbstract
     }
 
     /**
+     * Content setter
      * @param string $content_message
      */
     public function setContentMessage(string $content_message): void
@@ -101,6 +110,7 @@ class Message extends MappingTableAbstract
     }
 
     /**
+     * Archived setter
      * @param int $archived_message
      */
     public function setArchivedMessage(int $archived_message): void
@@ -114,6 +124,7 @@ class Message extends MappingTableAbstract
     }
 
     /**
+     * Foreign key user setter
      * @param int $fkey_user_id
      */
     public function setFkeyUserId(int $fkey_user_id): void
@@ -127,6 +138,7 @@ class Message extends MappingTableAbstract
     }
 
     /**
+     * Foreign key room setter
      * @param int $fkey_room_id
      */
     public function setFkeyRoomId(int $fkey_room_id): void
