@@ -50,7 +50,7 @@ __Database__ :
     - `view` : file containing the HTML that displays the content - file provided in the `view` folder. We used Twig for Templates ( ex: `home_page.html.twig`)
   
 - Other structure :
-  - `bin` : content configuration files
+  - `config` : content configuration files
   - `test` : content test files
   - `data` : content prepare files
   - `public` : content public files (front controllers, css, images, front javascript etc ...)
