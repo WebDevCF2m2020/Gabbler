@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `gabbler`.`room` ;
 
 CREATE TABLE IF NOT EXISTS `gabbler`.`room` (
   `id_room` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `public_room` TINYINT UNSIGNED NULL DEFAULT 1 COMMENT '1 => public\n2 => private',
+  `public_room` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => public\n2 => private',
   `archived_room` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => Not archived\n2 => Archived',
   `name_room` VARCHAR(25) NOT NULL,
   `last_activity_room` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`user` (
   `signup_date_user` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'When confirmation is ok',
   `color_user` VARCHAR(45) NOT NULL,
   `confirmation_key_user` VARCHAR(60) NOT NULL,
-  `validation_status_user` TINYINT UNSIGNED NULL DEFAULT 1 COMMENT '1 => not mail validate\n2 => mail validate',
+  `validation_status_user` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => not mail validate\n2 => mail validate',
   PRIMARY KEY (`id_user`))
 ENGINE = InnoDB;
 
@@ -116,7 +116,7 @@ DROP TABLE IF EXISTS `gabbler`.`user_room` ;
 
 CREATE TABLE IF NOT EXISTS `gabbler`.`user_room` (
   `id_user_room` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `favorite_user_room` TINYINT UNSIGNED NULL DEFAULT 1 COMMENT '1 => not favorite\n2 => favorite',
+  `favorite_user_room` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => not favorite\n2 => favorite',
   `fkey_room_id` INT UNSIGNED NOT NULL,
   `fkey_user_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id_user_room`),
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`help` (
   `nickname_help` VARCHAR(80) NOT NULL,
   `subject_help` VARCHAR(120) NOT NULL,
   `content_help` TINYTEXT NOT NULL,
-  `processed_help` TINYINT UNSIGNED NULL DEFAULT 1 COMMENT '1 => not response\n2 => response\n3 => closed',
+  `processed_help` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => not response\n2 => response\n3 => closed',
   `user_id` INT UNSIGNED NULL COMMENT 'Admin user id',
   PRIMARY KEY (`id_help`))
 ENGINE = InnoDB;
@@ -204,8 +204,8 @@ DROP TABLE IF EXISTS `gabbler`.`img` ;
 CREATE TABLE IF NOT EXISTS `gabbler`.`img` (
   `id_img` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_img` VARCHAR(40) NOT NULL,
-  `active_img` TINYINT UNSIGNED NULL DEFAULT 2 COMMENT '1 => archived\n2 => actived\n3 => illegal',
-  `date_img` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `active_img` TINYINT UNSIGNED NOT NULL DEFAULT 2 COMMENT '1 => archived\n2 => actived\n3 => illegal',
+  `date_img` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_img`))
 ENGINE = InnoDB;
 
