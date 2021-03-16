@@ -39,3 +39,27 @@ class test extends Role{
         $this->test = $test;
     }
 }
+//Display of thest results
+?>
+<pre>
+Class Empty : 
+<?php var_dump($classEmpty); ?>
+
+Class Validated :
+<?php var_dump($classValidated); ?>
+
+Class Not Validated : 
+<?php var_dump($classNotValidated); ?>
+
+Testing getters : 
+<?php
+var_dump($classValidated->getIdRole());
+var_dump($classValidated->getNameRole());
+?>
+
+Testing setters : 
+<?php
+$classValidated->setIdRole(2);
+$classValidated->setNameRole("lafolleducode");
+var_dump($classValidated);
+?>
