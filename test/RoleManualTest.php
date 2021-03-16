@@ -13,7 +13,15 @@ spl_autoload_register(
     }
 );
 // Dependencies
-require_once '../model/MappingTableAbstract.php';
-require_once '../model/Role.php';
+//require_once '../model/MappingTableAbstract.php';
+//require_once '../model/Role.php';
 // Test model/Role.php here
 
+//Creation of instances for test 
+$classEmpty = new Role([]);
+$classValidated = new role([
+    "id_role"=>1,
+    "name_role"=>"admin"
+]);
+
+//create a dummy extends files into this test
