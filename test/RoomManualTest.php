@@ -20,3 +20,16 @@ $classNotValidated = new Room([
     "name_room" => "",
     "last_activity_room" => ""
 ]);
+
+class test extends Room
+{
+    public function getTest()
+    {
+        return $this->test;
+    }
+
+    public function setTest($test)
+    {
+        $this->test = $test;
+    }
+}
