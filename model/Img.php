@@ -45,7 +45,12 @@ class Img
      */
     public function setIdImg(int $id_img): void
     {
-        $this->id_img = $id_img;
+        $id_img = (int)$id_img;
+        if (empty($id_img)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->id_img = $id_img;
+        }
     }
 
     /**
@@ -53,7 +58,14 @@ class Img
      */
     public function setNameImg(string $name_img): void
     {
-        $this->name_img = $name_img;
+        $name_img = strip_tags(trim($name_img));
+        if (empty($name_img)) {
+            trigger_error('', E_USER_NOTICE);
+        } else if (strlen($name_img) < 5 || strlen($name_img) > 40) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->name_img = $name_img;
+        }
     }
 
     /**
@@ -61,14 +73,27 @@ class Img
      */
     public function setActiveImg(int $active_img): void
     {
-        $this->active_img = $active_img;
+        $active_img = (int)$active_img;
+        if (empty($active_img)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->active_img = $active_img;
+        }
     }
 
     /**
      * @param string $date_img
+     * @throws Exception
      */
     public function setDateImg(string $date_img): void
     {
-        $this->date_img = $date_img;
+        $test_date_img = new DateTime($date_img);
+        if (empty($date_img)) {
+            trigger_error('', E_USER_NOTICE);
+        } else if (!is_object($date_img)) {
+            trigger_error('', E_USER_NOTICE);
+        } else {
+            $this->date_img = $date_img;
+        }
     }
 }
