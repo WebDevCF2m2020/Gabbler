@@ -67,10 +67,10 @@ class UserRight extends MappingTableAbstract {
      * @throws Exception
      */
     public function setDateAuthorizedUserRight(string $date_authorized_user_right): void {
-        $date_authorized_user_right = new DateTime($date_authorized_user_right);
+        $verifyDate = new DateTime($date_authorized_user_right);
         if (empty($date_authorized_user_right)) {
             trigger_error('The date for the authorisation cannot be empty', E_USER_NOTICE);
-        } else if (!is_object($date_authorized_user_right)) {
+        } else if (!is_object($verifyDate)) {
             trigger_error('the date for the authorisation is not valid', E_USER_NOTICE);
         } else {
             $this->date_authorized_user_right = $date_authorized_user_right;
