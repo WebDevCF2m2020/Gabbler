@@ -8,7 +8,7 @@ class Online extends MappingTableAbstract {
 
     // PROPERTIES
     protected int $id_online;
-    protected int $last_activity_online;
+    protected string $last_activity_online;
     protected int $connected_online = 2 ;
     protected int $fkey_user_id;
 
@@ -24,9 +24,9 @@ class Online extends MappingTableAbstract {
 
     /**
      * $last_activity_online's getter
-     * @return int
+     * @return string
      */
-    public function getLastActivityOnline(): int {
+    public function getLastActivityOnline(): string {
         return $this->last_activity_online;
     }
 
@@ -64,13 +64,16 @@ class Online extends MappingTableAbstract {
     /**
      * $last_activity_online's setter
      * @param string $last_activity_online
+     * @throws Exception
      */
     public function setLastActivityOnline(string $last_activity_online): void {
-        $last_activity_online = strtotime($last_activity_online);
-        if ($last_activity_online === false) {
-            trigger_error('The last activity isn\'t valid', E_USER_NOTICE);
+        $last_activity_online = new DateTime($last_activity_online);
+        if (empty($last_activity_online)) {
+            trigger_error('The date of the last activity of the user cannot be empty', E_USER_NOTICE);
+        } else if (!is_object($last_activity_online)) {
+            trigger_error('the date of the last activity of the user isn\'t valid', E_USER_NOTICE);
         } else {
-            $this->last_activity_online = (int)$last_activity_online;
+            $this->last_activity_online = $last_activity_online;
         }
     }
 
