@@ -9,8 +9,11 @@ require_once THE_ROOT . "/config/config.php";
 // Create autoload
 spl_autoload_register(
     function ($className) {
-        require THE_ROOT."/model/" . $className . ".php";
+        require THE_ROOT. "/model/" . $className . ".php";
     }
 );
-
+// Dependencies
+require_once '../model/MappingTableAbstract.php';
+require_once '../model/Role.php';
 // Test model/Role.php here
+
