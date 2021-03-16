@@ -90,7 +90,7 @@ class Reported extends MappingTableAbstract {
      */
     public function setProcessedReported(int $processed_reported): void {
         $processed_reported = (int)$processed_reported;
-        if($processed_reported === 1 || $processed_reported === 2){
+        if($processed_reported < 1 && $processed_reported > 2){
             trigger_error("The status has to be 1 (not processed) or 2(processed)",E_USER_NOTICE);
         } else {
             $this->processed_reported = $processed_reported;
