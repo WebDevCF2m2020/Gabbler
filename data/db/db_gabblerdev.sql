@@ -2,56 +2,75 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
+-- -----------------------------------------------------
+-- Schema gabblerdev
+-- -----------------------------------------------------
+-- DROP SCHEMA IF EXISTS `gabblerdev` ;
 
+-- -----------------------------------------------------
+-- Schema gabblerdev
+-- -----------------------------------------------------
+-- CREATE SCHEMA IF NOT EXISTS `gabblerdev` DEFAULT CHARACTER SET utf8 ;
+-- USE `gabblerdev` ;
 
 -- -----------------------------------------------------
 -- Table `room`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `room` ;
+
 CREATE TABLE IF NOT EXISTS `room` (
-  `id_room` INT NOT NULL AUTO_INCREMENT,
-  `public_room` TINYINT NULL,
+  `id_room` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `public_room` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => public\n2 => private',
+  `archived_room` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => Not archived\n2 => Archived',
   `name_room` VARCHAR(25) NOT NULL,
-  `last_activity__room` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_room`),
-  UNIQUE INDEX `name_room_UNIQUE` (`name_room` ASC) )
+  `last_activity_room` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_room`))
 ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `name_room_UNIQUE` ON `room` (`name_room` ASC);
 
 
 -- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `user` ;
+
 CREATE TABLE IF NOT EXISTS `user` (
-  `id_user` INT NOT NULL AUTO_INCREMENT,
-  `nickname_user` VARCHAR(60) NOT NULL,
+  `id_user` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nickname_user` VARCHAR(60) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL,
   `pwd_user` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL,
   `mail_user` VARCHAR(120) NOT NULL,
-  `signup_date_user` DATETIME NOT NULL,
+  `signup_date_user` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'When confirmation is ok',
   `color_user` VARCHAR(45) NOT NULL,
   `confirmation_key_user` VARCHAR(60) NOT NULL,
-  `validation_status_user` TINYINT NULL,
-  PRIMARY KEY (`id_user`),
-  UNIQUE INDEX `nickname_user_UNIQUE` (`nickname_user` ASC) ,
-  UNIQUE INDEX `mail_user_UNIQUE` (`mail_user` ASC) ,
-  UNIQUE INDEX `confirmation_key_user_UNIQUE` (`confirmation_key_user` ASC) ,
-  UNIQUE INDEX `pwd_user_UNIQUE` (`pwd_user` ASC) )
+  `validation_status_user` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => not mail validate\n2 => mail validate',
+  PRIMARY KEY (`id_user`))
 ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `nickname_user_UNIQUE` ON `user` (`nickname_user` ASC);
+
+CREATE UNIQUE INDEX `mail_user_UNIQUE` ON `user` (`mail_user` ASC);
+
+CREATE UNIQUE INDEX `confirmation_key_user_UNIQUE` ON `user` (`confirmation_key_user` ASC);
+
+CREATE UNIQUE INDEX `pwd_user_UNIQUE` ON `user` (`pwd_user` ASC);
 
 
 -- -----------------------------------------------------
 -- Table `message`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `message` ;
+
 CREATE TABLE IF NOT EXISTS `message` (
-  `id_message` INT NOT NULL AUTO_INCREMENT,
-  `date_message` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `id_message` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `date_message` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `content_message` TINYTEXT NOT NULL,
-  `archived_message` TINYINT(1) NULL,
-  `fkey_user_id` INT NOT NULL,
-  `fkey_room_id` INT NOT NULL,
+  `archived_message` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => Not archived\n2 => Archived',
+  `fkey_user_id` INT UNSIGNED NOT NULL,
+  `fkey_room_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id_message`),
-  INDEX `fk_message_user1_idx` (`fkey_user_id` ASC) ,
-  INDEX `fk_message_room1_idx` (`fkey_room_id` ASC) ,
   CONSTRAINT `fk_message_user1`
     FOREIGN KEY (`fkey_user_id`)
     REFERENCES `user` (`id_user`)
@@ -64,35 +83,42 @@ CREATE TABLE IF NOT EXISTS `message` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE INDEX `fk_message_user1_idx` ON `message` (`fkey_user_id` ASC);
+
+CREATE INDEX `fk_message_room1_idx` ON `message` (`fkey_room_id` ASC);
+
 
 -- -----------------------------------------------------
 -- Table `online`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `online` ;
+
 CREATE TABLE IF NOT EXISTS `online` (
-  `id_online` INT NOT NULL AUTO_INCREMENT,
+  `id_online` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `last_activity_online` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `connected_online` TINYINT(1) NULL,
-  `fkey_user` INT NOT NULL,
+  `connected_online` TINYINT(1) NOT NULL DEFAULT 2 COMMENT '1 => not connected\n2 => online',
+  `fkey_user_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id_online`),
-  INDEX `fk_online_user1_idx` (`fkey_user` ASC) ,
   CONSTRAINT `fk_online_user1`
-    FOREIGN KEY (`fkey_user`)
+    FOREIGN KEY (`fkey_user_id`)
     REFERENCES `user` (`id_user`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE INDEX `fk_online_user1_idx` ON `online` (`fkey_user_id` ASC);
+
 
 -- -----------------------------------------------------
 -- Table `user_room`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `user_room` ;
+
 CREATE TABLE IF NOT EXISTS `user_room` (
-  `id_user_room` INT NOT NULL AUTO_INCREMENT,
-  `favorite_user_room` TINYINT NULL,
-  `fkey_room_id` INT NOT NULL,
-  `fkey_user_id` INT NOT NULL,
-  INDEX `fk_favorite_room1_idx` (`fkey_room_id` ASC) ,
-  INDEX `fk_favorite_user1_idx` (`fkey_user_id` ASC) ,
+  `id_user_room` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `favorite_user_room` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => not favorite\n2 => favorite',
+  `fkey_room_id` INT UNSIGNED NOT NULL,
+  `fkey_user_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id_user_room`),
   CONSTRAINT `fk_favorite_room1`
     FOREIGN KEY (`fkey_room_id`)
@@ -106,29 +132,36 @@ CREATE TABLE IF NOT EXISTS `user_room` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE INDEX `fk_favorite_room1_idx` ON `user_room` (`fkey_room_id` ASC);
+
+CREATE INDEX `fk_favorite_user1_idx` ON `user_room` (`fkey_user_id` ASC);
+
 
 -- -----------------------------------------------------
 -- Table `status`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `status` ;
+
 CREATE TABLE IF NOT EXISTS `status` (
-  `id_status` INT NOT NULL AUTO_INCREMENT,
+  `id_status` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_status` VARCHAR(25) NOT NULL,
-  PRIMARY KEY (`id_status`),
-  UNIQUE INDEX `name_status_UNIQUE` (`name_status` ASC) )
+  PRIMARY KEY (`id_status`))
 ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `name_status_UNIQUE` ON `status` (`name_status` ASC);
 
 
 -- -----------------------------------------------------
 -- Table `user_right`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `user_right` ;
+
 CREATE TABLE IF NOT EXISTS `user_right` (
-  `id_user_right` INT NOT NULL AUTO_INCREMENT,
+  `id_user_right` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `date_authorized_user_right` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `fkey_status_id` INT NOT NULL,
-  `fkey_user_id` INT NOT NULL,
-  INDEX `fk_user_right_status1_idx` (`fkey_status_id` ASC) ,
+  `fkey_status_id` INT UNSIGNED NOT NULL,
+  `fkey_user_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id_user_right`),
-  INDEX `fk_user_right_user1_idx` (`fkey_user_id` ASC) ,
   CONSTRAINT `fk_user_right_status1`
     FOREIGN KEY (`fkey_status_id`)
     REFERENCES `status` (`id_status`)
@@ -141,57 +174,70 @@ CREATE TABLE IF NOT EXISTS `user_right` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE INDEX `fk_user_right_status1_idx` ON `user_right` (`fkey_status_id` ASC);
+
+CREATE INDEX `fk_user_right_user1_idx` ON `user_right` (`fkey_user_id` ASC);
+
 
 -- -----------------------------------------------------
 -- Table `help`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `help` ;
+
 CREATE TABLE IF NOT EXISTS `help` (
-  `id_help` INT NOT NULL AUTO_INCREMENT,
+  `id_help` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `mail_help` VARCHAR(120) NOT NULL,
   `nickname_help` VARCHAR(80) NOT NULL,
   `subject_help` VARCHAR(120) NOT NULL,
   `content_help` TINYTEXT NOT NULL,
-  PRIMARY KEY (`id_help`),
-  UNIQUE INDEX `mail_UNIQUE` (`mail_help` ASC) ,
-  UNIQUE INDEX `nickname_UNIQUE` (`nickname_help` ASC) )
+  `processed_help` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => not response\n2 => response\n3 => closed',
+  `user_id` INT UNSIGNED NULL COMMENT 'Admin user id',
+  PRIMARY KEY (`id_help`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `img`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `img` ;
+
 CREATE TABLE IF NOT EXISTS `img` (
-  `id_img` INT NOT NULL AUTO_INCREMENT,
+  `id_img` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_img` VARCHAR(40) NOT NULL,
-  `active_img` TINYINT NULL,
-  `date_img` TIMESTAMP NULL,
-  PRIMARY KEY (`id_img`),
-  UNIQUE INDEX `name_img_UNIQUE` (`name_img` ASC) )
+  `active_img` TINYINT UNSIGNED NOT NULL DEFAULT 2 COMMENT '1 => archived\n2 => actived\n3 => illegal',
+  `date_img` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_img`))
 ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `name_img_UNIQUE` ON `img` (`name_img` ASC);
 
 
 -- -----------------------------------------------------
 -- Table `category`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `category` ;
+
 CREATE TABLE IF NOT EXISTS `category` (
-  `id_category` INT NOT NULL AUTO_INCREMENT,
+  `id_category` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_category` VARCHAR(25) NOT NULL,
-  PRIMARY KEY (`id_category`),
-  UNIQUE INDEX `name_category_UNIQUE` (`name_category` ASC) )
+  PRIMARY KEY (`id_category`))
 ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `name_category_UNIQUE` ON `category` (`name_category` ASC);
 
 
 -- -----------------------------------------------------
 -- Table `reported`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `reported` ;
+
 CREATE TABLE IF NOT EXISTS `reported` (
-  `id_reported` INT NOT NULL AUTO_INCREMENT,
+  `id_reported` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `inquiry_reported` TINYTEXT NULL,
-  `fkey_category_id` INT NOT NULL,
-  `fkey_message_id` INT NOT NULL,
+  `processed_reported` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => not processed\n2 => processed',
+  `fkey_category_id` INT UNSIGNED NOT NULL,
+  `fkey_message_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id_reported`),
-  INDEX `fk_reported_category1_idx` (`fkey_category_id` ASC) ,
-  INDEX `fk_reported_message1_idx` (`fkey_message_id` ASC) ,
   CONSTRAINT `fk_reported_category1`
     FOREIGN KEY (`fkey_category_id`)
     REFERENCES `category` (`id_category`)
@@ -204,27 +250,34 @@ CREATE TABLE IF NOT EXISTS `reported` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE INDEX `fk_reported_category1_idx` ON `reported` (`fkey_category_id` ASC);
+
+CREATE INDEX `fk_reported_message1_idx` ON `reported` (`fkey_message_id` ASC);
+
 
 -- -----------------------------------------------------
 -- Table `role`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `role` ;
+
 CREATE TABLE IF NOT EXISTS `role` (
-  `id_role` INT NOT NULL AUTO_INCREMENT,
+  `id_role` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_role` VARCHAR(25) NOT NULL,
-  PRIMARY KEY (`id_role`),
-  UNIQUE INDEX `name_role_UNIQUE` (`name_role` ASC) )
+  PRIMARY KEY (`id_role`))
 ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `name_role_UNIQUE` ON `role` (`name_role` ASC);
 
 
 -- -----------------------------------------------------
 -- Table `user_has_img`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `user_has_img` ;
+
 CREATE TABLE IF NOT EXISTS `user_has_img` (
-  `user_has_img_id_user` INT NOT NULL,
-  `user_has_img_id_img` INT NOT NULL,
+  `user_has_img_id_user` INT UNSIGNED NOT NULL,
+  `user_has_img_id_img` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`user_has_img_id_user`, `user_has_img_id_img`),
-  INDEX `fk_user_has_img_img1_idx` (`user_has_img_id_img` ASC) ,
-  INDEX `fk_user_has_img_user1_idx` (`user_has_img_id_user` ASC) ,
   CONSTRAINT `fk_user_has_img_user1`
     FOREIGN KEY (`user_has_img_id_user`)
     REFERENCES `user` (`id_user`)
@@ -237,16 +290,20 @@ CREATE TABLE IF NOT EXISTS `user_has_img` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE INDEX `fk_user_has_img_img1_idx` ON `user_has_img` (`user_has_img_id_img` ASC);
+
+CREATE INDEX `fk_user_has_img_user1_idx` ON `user_has_img` (`user_has_img_id_user` ASC);
+
 
 -- -----------------------------------------------------
 -- Table `role_has_user`
 -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `role_has_user` ;
+
 CREATE TABLE IF NOT EXISTS `role_has_user` (
-  `role_has_user_id_role` INT NOT NULL,
-  `role_has_user_id_user` INT NOT NULL,
+  `role_has_user_id_role` INT UNSIGNED NOT NULL,
+  `role_has_user_id_user` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`role_has_user_id_role`, `role_has_user_id_user`),
-  INDEX `fk_role_has_user_user1_idx` (`role_has_user_id_user` ASC) ,
-  INDEX `fk_role_has_user_role1_idx` (`role_has_user_id_role` ASC) ,
   CONSTRAINT `fk_role_has_user_role1`
     FOREIGN KEY (`role_has_user_id_role`)
     REFERENCES `role` (`id_role`)
@@ -258,6 +315,10 @@ CREATE TABLE IF NOT EXISTS `role_has_user` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+CREATE INDEX `fk_role_has_user_user1_idx` ON `role_has_user` (`role_has_user_id_user` ASC);
+
+CREATE INDEX `fk_role_has_user_role1_idx` ON `role_has_user` (`role_has_user_id_role` ASC);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
