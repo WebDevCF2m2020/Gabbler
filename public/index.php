@@ -26,7 +26,8 @@ if(isset($_SESSION['session_id'])&&$_SESSION['session_id'] === session_id()){
 
 // IF IS NOT CONNECTED
 }else{
-
+$test = new UserRight(['id_user_right' => 25, 'date_authorized_user_right'=>'2012-03-24 17:45:12', 'fkey_status_id'=> 5, 'fkey_user_id'=> 9]);
+var_dump($test);
 
 }
 
