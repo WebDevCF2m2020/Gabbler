@@ -1,7 +1,7 @@
 <?php
 
 
-class Img
+class Img extends MappingTableAbstract
 {
     protected int $id_img;
     protected string $name_img;
