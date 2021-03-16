@@ -63,3 +63,14 @@ $classValidated->setIdRole(2);
 $classValidated->setNameRole("lafolleducode");
 var_dump($classValidated);
 ?>
+
+New setters and getters : 
+<?php
+
+$newTest = new Test([]);
+$newTest->setTest('hello');
+
+var_dump($newTest->getTest());
+var_dump($newTest);
+?>
+</pre>
