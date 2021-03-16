@@ -67,10 +67,10 @@ class Online extends MappingTableAbstract {
      * @throws Exception
      */
     public function setLastActivityOnline(string $last_activity_online): void {
-        $last_activity_online = new DateTime($last_activity_online);
+        $verifyDate = new DateTime($last_activity_online);
         if (empty($last_activity_online)) {
             trigger_error('The date of the last activity of the user cannot be empty', E_USER_NOTICE);
-        } else if (!is_object($last_activity_online)) {
+        } else if (!is_object($verifyDate)) {
             trigger_error('the date of the last activity of the user isn\'t valid', E_USER_NOTICE);
         } else {
             $this->last_activity_online = $last_activity_online;
