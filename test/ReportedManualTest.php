@@ -20,3 +20,16 @@ $classNotValidated = new Reported([
     "fkey_category_id" => 0,
     "fkey_message_id" => 0
 ]);
+
+class test extends Reported
+{
+    public function getTest()
+    {
+        return $this->test;
+    }
+
+    public function setTest($test)
+    {
+        $this->test = $test;
+    }
+}
