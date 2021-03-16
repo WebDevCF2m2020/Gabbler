@@ -1,90 +1,48 @@
 <?php 
 
 //Class purpose as described by mother.
-class UserRoom extends MappingTableAbstract {
+class Status extends MappingTableAbstract {
 
         //All properties are protected!!
-        protected int $id_user_room;
-        protected int $favorite_user_room;
-        protected int $fkey_room_id;
-        protected int $fkey_user_id;
+        protected int $id_status;
+        protected string $name_status;
 
-        public function getIdUserRoom(): int{  
-                //Getting the id_user_room field.      
-                return $this->id_user_room;
+        public function getIdStatus(): int{  
+                //Getting the id_status field.      
+                return $this->id_status;
         }
 
-        public function getFavoriteUserRoom(): int {   
-                //Getting the favorite_user_room field.      
-                return $this->favorite_user_room;
+        public function getNameStatus(): string {   
+                //Getting the name_status field.      
+                return $this->name_status;
         }
 
-        public function getFkeyRoomId(): int{  
-                //Getting the fkey_room_id field.      
-                return $this->fkey_room_id;
-        }
+        public function setIdStatus(int $id_status): void {  
 
-        public function getFkeyUserId(): int {   
-                //Getting the fkey_user_id field.      
-                return $this->fkey_user_id;
-        }
-        
-
-        public function setIdUserRoom(int $id_user_room): void {  
-
-                $id_user_room = (int) $id_user_room;
+                $id_status = (int) $id_status;
                 //Checking if is zero value.  
-                if(($id_user_room === 0) && (ctype_digit($id_user_room))){  
+                if(($id_status === 0) && (ctype_digit($id_status))){  
                 trigger_error("This can not equal to zero!!",E_USER_NOTICE);   
-                }elseif(empty($id_user_room)){
+                }elseif(empty($id_status)){
                 //Checking if not empty.
                 trigger_error("This ca not be empty!!",E_USER_NOTICE); 
                 }else{
-                $this->id_user_room = $id_user_room;                    
+                $this->id_status = $id_status;                    
                 }
         }
 
-        public function setFavoriteUserRoom(int $favorite_user_room): void {  
+        public function setNameStatus(string $name_status): string{  
 
-                $favorite_user_room = (int) $favorite_user_room;
-                //Checking if is zero value.  
-                if(($favorite_user_room === 0) && (ctype_digit($favorite_user_room))){  
-                trigger_error("This can not equal to zero!!",E_USER_NOTICE);   
-                }elseif(empty($favorite_user_room)){
+                //Variable securing.
+                $name_status = filter_var(trim(htmlspecialchars(strip_tags($name_status)),ENT_QUOTES),FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_HIGH);
+                if(empty($name_status)){
                 //Checking if not empty.
-                trigger_error("This ca not be empty!!",E_USER_NOTICE); 
+                trigger_error("This ca not be empty!!",E_USER_NOTICE);
+                }else if(strlen($name_status)>25){
+                //Checking the length of the value of the variable.
+                trigger_error("This ca not be longer than 25 characters!!",E_USER_NOTICE);
                 }else{
-                $this->favorite_user_room = $favorite_user_room;                    
+                $this->name_status = $name_status;
                 }
         }
-
-        public function setFkeyRoomId(int $fkey_room_id): void {
-
-                $fkey_room_id = (int) $fkey_room_id;  
-                //Checking if is zero value.  
-                if(($fkey_room_id === 0) && (ctype_digit($fkey_room_id))){  
-                trigger_error("This can not equal to zero!!",E_USER_NOTICE);   
-                }elseif(empty($fkey_room_id)){
-                //Checking if not empty.
-                trigger_error("This ca not be empty!!",E_USER_NOTICE); 
-                }else{
-                $this->fkey_room_id = $fkey_room_id;                    
-                }
-        }
-        
-        public function setFkeyUserId(int $fkey_user_id): void {
-                
-                $fkey_user_id = (int) $fkey_user_id;              
-                //Checking if is zero value.  
-                if(($fkey_user_id === 0) && (ctype_digit($fkey_user_id))){  
-                trigger_error("This can not equal to zero!!",E_USER_NOTICE);   
-                }elseif(empty($fkey_user_id)){
-                //Checking if not empty.
-                trigger_error("This ca not be empty!!",E_USER_NOTICE); 
-                }else{
-                $this->fkey_user_id = $fkey_user_id;                    
-                }
-        }
-
-
 }
