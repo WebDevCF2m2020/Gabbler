@@ -9,6 +9,7 @@ class Img
     protected string $date_img;
 
     /**
+     * Img ID getter
      * @return int
      */
     public function getIdImg(): int
@@ -17,6 +18,7 @@ class Img
     }
 
     /**
+     * Name Img getter
      * @return string
      */
     public function getNameImg(): string
@@ -25,6 +27,7 @@ class Img
     }
 
     /**
+     * Active Img getter
      * @return int
      */
     public function getActiveImg(): int
@@ -33,6 +36,7 @@ class Img
     }
 
     /**
+     * Date Img getter
      * @return string
      */
     public function getDateImg(): string
@@ -41,6 +45,7 @@ class Img
     }
 
     /**
+     * Img ID setter
      * @param int $id_img
      */
     public function setIdImg(int $id_img): void
@@ -54,6 +59,7 @@ class Img
     }
 
     /**
+     * Name img setter
      * @param string $name_img
      */
     public function setNameImg(string $name_img): void
@@ -69,6 +75,7 @@ class Img
     }
 
     /**
+     * Active img getter
      * @param int $active_img
      */
     public function setActiveImg(int $active_img): void
@@ -82,6 +89,7 @@ class Img
     }
 
     /**
+     * Date img setter
      * @param string $date_img
      * @throws Exception
      */
