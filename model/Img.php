@@ -52,7 +52,7 @@ class Img extends MappingTableAbstract
     {
         $id_img = (int)$id_img;
         if (empty($id_img)) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('The img ID is not valid', E_USER_NOTICE);
         } else {
             $this->id_img = $id_img;
         }
@@ -66,9 +66,9 @@ class Img extends MappingTableAbstract
     {
         $name_img = strip_tags(trim($name_img));
         if (empty($name_img)) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('The name image cannot be empty', E_USER_NOTICE);
         } else if (strlen($name_img) < 5 || strlen($name_img) > 40) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('The length of the name image must be between 5 and 25 characters', E_USER_NOTICE);
         } else {
             $this->name_img = $name_img;
         }
@@ -82,7 +82,7 @@ class Img extends MappingTableAbstract
     {
         $active_img = (int)$active_img;
         if (empty($active_img)) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('The active image is not valid', E_USER_NOTICE);
         } else {
             $this->active_img = $active_img;
         }
@@ -97,9 +97,9 @@ class Img extends MappingTableAbstract
     {
         $test_date_img = new DateTime($date_img);
         if (empty($date_img)) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('The date of the image cannot be empty', E_USER_NOTICE);
         } else if (!is_object($date_img)) {
-            trigger_error('', E_USER_NOTICE);
+            trigger_error('the date of the image is not valid', E_USER_NOTICE);
         } else {
             $this->date_img = $date_img;
         }
