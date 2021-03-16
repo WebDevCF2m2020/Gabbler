@@ -5,7 +5,7 @@
 /nbproject
 
 # Config
-bin/config.php
+config/config.php
 
 # Workbench backup
 data/db/db_gabbler.mwb.bak
