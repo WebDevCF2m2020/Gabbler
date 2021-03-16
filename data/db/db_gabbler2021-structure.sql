@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `gabbler`.`room` (
   `public_room` TINYINT UNSIGNED NULL DEFAULT 1 COMMENT '1 => public\n2 => private',
   `archived_room` TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1 => Not archived\n2 => Archived',
   `name_room` VARCHAR(25) NOT NULL,
-  `last_activity__room` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_activity_room` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_room`))
 ENGINE = InnoDB;
 
@@ -96,7 +96,7 @@ DROP TABLE IF EXISTS `gabbler`.`online` ;
 CREATE TABLE IF NOT EXISTS `gabbler`.`online` (
   `id_online` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `last_activity_online` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `connected_online` TINYINT(1) NULL DEFAULT 2 COMMENT '1 => not connected\n2 => online',
+  `connected_online` TINYINT(1) NOT NULL DEFAULT 2 COMMENT '1 => not connected\n2 => online',
   `fkey_user_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id_online`),
   CONSTRAINT `fk_online_user1`
