@@ -22,3 +22,16 @@ $classNotValidated = new Message([
     "fkey_user_id" => 0,
     "fkey_room_id" => 0
 ]);
+
+class test extends Help
+{
+    public function getTest()
+    {
+        return $this->test;
+    }
+
+    public function setTest($test)
+    {
+        $this->test = $test;
+    }
+}
