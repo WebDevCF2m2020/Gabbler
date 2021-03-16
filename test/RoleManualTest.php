@@ -23,5 +23,19 @@ $classValidated = new role([
     "id_role"=>1,
     "name_role"=>"admin"
 ]);
+$classNotValidated = new Role([
+    "id_role"=>0,
+    "name_role"=>"chic-choc"
+]);
 
 //create a dummy extends files into this test
+class test extends Role{
+    public function getTest()
+    {
+        return $this->test;
+    }
+    public function setTest($test)
+    {
+        $this->test = $test;
+    }
+}
