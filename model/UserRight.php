@@ -8,7 +8,7 @@ class UserRight extends MappingTableAbstract {
 
     // PROPERTIES
     protected int $id_user_right;
-    protected int $date_authorized_user_right;
+    protected string $date_authorized_user_right;
     protected int $fkey_status_id;
     protected int $fkey_user_id;
 
@@ -24,9 +24,9 @@ class UserRight extends MappingTableAbstract {
 
     /**
      * $date_authorized_user_right's getter
-     * @return int
+     * @return string
      */
-    public function getDateAuthorizedUserRight(): int {
+    public function getDateAuthorizedUserRight(): string {
         return $this->date_authorized_user_right;
     }
 
@@ -64,13 +64,16 @@ class UserRight extends MappingTableAbstract {
     /**
      * $date_authorized_user_right's setter
      * @param string $date_authorized_user_right
+     * @throws Exception
      */
     public function setDateAuthorizedUserRight(string $date_authorized_user_right): void {
-        $date_authorized_user_right = strtotime($date_authorized_user_right);
-        if ($date_authorized_user_right === false) {
-            trigger_error('The last activity isn\'t valid', E_USER_NOTICE);
+        $date_authorized_user_right = new DateTime($date_authorized_user_right);
+        if (empty($date_authorized_user_right)) {
+            trigger_error('The date for the authorisation cannot be empty', E_USER_NOTICE);
+        } else if (!is_object($date_authorized_user_right)) {
+            trigger_error('the date for the authorisation is not valid', E_USER_NOTICE);
         } else {
-            $this->date_authorized_user_right = (int)$date_authorized_user_right;
+            $this->date_authorized_user_right = $date_authorized_user_right;
         }
     }
 
@@ -82,7 +85,7 @@ class UserRight extends MappingTableAbstract {
     {
         $fkey_status_id = (int)$fkey_status_id;
         if (empty($fkey_status_id)) {
-            trigger_error('The foreign key for the user can\'t be empty', E_USER_NOTICE);
+            trigger_error('The foreign key for the status can\'t be empty', E_USER_NOTICE);
         } else {
             $this->fkey_status_id = $fkey_status_id;
         }
