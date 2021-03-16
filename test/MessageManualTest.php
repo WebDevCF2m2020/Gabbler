@@ -23,7 +23,7 @@ $classNotValidated = new Message([
     "fkey_room_id" => 0
 ]);
 
-class test extends Help
+class test extends Message
 {
     public function getTest()
     {
@@ -35,3 +35,50 @@ class test extends Help
         $this->test = $test;
     }
 }
+
+// Display of test results
+?>
+<pre>
+    Class Empty :
+    <?php var_dump($classEmpty); ?>
+
+    Class Validated :
+    <?php var_dump($classValidated) ?>
+
+    Class Not Validated :
+    <?php var_dump($classNotValidated) ?>
+
+    Testing getters :
+    <?php
+    var_dump($classValidated->getIdMessage());
+    var_dump($classValidated->getDateMessage());
+    var_dump($classValidated->getContentMessage());
+    var_dump($classValidated->getArchivedMessage());
+    var_dump($classValidated->getFkeyUserId());
+    var_dump($classValidated->getFkeyRoomId());
+    ?>
+
+    Testing setters :
+    <?php
+    $classValidated->setIdMessage(345);
+    $classValidated->setDateMessage("2011-01-01T15:03:01.012345Z");
+    $classValidated->setContentMessage("Message");
+    $classValidated->setArchivedMessage(2);
+    $classValidated->setFkeyUserId(4352);
+    $classValidated->setFkeyRoomId(34256432);
+    var_dump($classValidated);
+    ?>
+
+    New setters and getters:
+    <?php
+
+    // $classValidated->setNewSetters('bonjour');
+    // $classValidated->getNewSetters();
+
+    $newTest = new Test(['test' => 'Bonjour']);
+    $newTest->setTest('Hello');
+
+    var_dump($newTest->getTest());
+    var_dump($newTest);
+    ?>
+</pre>
