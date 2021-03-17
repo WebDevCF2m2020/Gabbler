@@ -31,7 +31,7 @@ abstract class MappingTableAbstract
             $this->$name = $value;
         } else {
             // otherwise we indicate that we must go through the setter
-            trigger_error("Vous essayer de réécrire un attribut protected ou private existant sans passer par son setter ! (__set)", E_USER_NOTICE);
+            trigger_error("You are trying to rewrite an existing protected or private attribute without going through its setter! (__set)", E_USER_NOTICE);
         }
     }
 
@@ -43,7 +43,7 @@ abstract class MappingTableAbstract
             return $this->$name;
         } else {
             // otherwise we indicate that we must go through the getter or attribute does not exist
-            trigger_error("Vous essayer de lire un attribut protected ou private existant sans passer par son getter ! (__get) ou un attribut non existant", E_USER_NOTICE);
+            trigger_error("You are trying to read an existing protected or private attribute without going through its getter! (__get) or a non-existent attribute", E_USER_NOTICE);
         }
     }
 

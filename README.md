@@ -9,7 +9,7 @@ Updated after each sprint (and FTP Update):
 https://gabbler.webdev-cf2m.be/
 
 ## Test adress
-Updated after echa sprint (and FTP Update):
+Updated after each sprint (and FTP Update):
 
 https://testgabbler.webdev-cf2m.be/
 
