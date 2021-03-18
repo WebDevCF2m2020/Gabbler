@@ -1,8 +1,8 @@
 <?php
 
 // Dependencies
-require_once '../model/MappingTableAbstract.php';
-require_once '../model/UserRoom.php';
+require_once '../../model/MappingTableAbstract.php';
+require_once '../../model/UserRoom.php';
 
 //Creation of instances for test
 $classEmpty = new UserRoom([]);
