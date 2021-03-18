@@ -18,3 +18,26 @@ $classNotValidated = new UserRoom([
     "fkey_room_id"=>0,
     "fkey_user_id"=>0
 ]);
+
+//create a dummy extends files into this test
+class test extends UserRoom{
+    public function getTest()
+    {
+        return $this->test;
+    }
+    public function setTest($test)
+    {
+        $this->test = $test;
+    }
+}
+//Display of test results
+?>
+<pre>
+Class Empty :
+<?php var_dump($classEmpty); ?>
+
+Class Validated : 
+<?php var_dump($$classValidated); ?>
+
+Class Not Validated : 
+<?php var_dump($classNotValidated); ?>
