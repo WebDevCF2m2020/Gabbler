@@ -4,6 +4,9 @@
 # Netbeans
 /nbproject
 
+# VisualStudioCode
+/.vscode
+
 # Config
 config/config.php
 config/config.php.dev
