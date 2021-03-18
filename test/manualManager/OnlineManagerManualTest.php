@@ -18,7 +18,22 @@ spl_autoload_register(
 $DB = MyPDO::getInstance(DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";port=" . DB_PORT . ";charset=" . DB_CHARSET, DB_USER, DB_PASSWORD, ENV_DEV);
 
 // Create instance
-$test = new MessageManager($DB);
+$test = new OnlineManager($DB);
 
 // data selection
 $result = $test->selectAll();
+
+
+if (empty($result)) {
+    echo "<h1>pas de données pour la table Online</h1>";
+} else {
+    foreach ($result as $item) {
+        // creation of a type object
+        $object = new Online($item);
+        echo "<hr>";
+        echo "<p>{$object->getIdOnline()}</p>";
+        echo "<p>{$object->getLastActivityOnline()}</p>";
+        echo "<p>{$object->getConnectedOnline()}</p>";
+        echo "<p>{$object->getFkeyUserId()}</p>";
+    }
+}
