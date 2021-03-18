@@ -41,3 +41,20 @@ Class Validated :
 
 Class Not Validated : 
 <?php var_dump($classNotValidated); ?>
+
+Testing getters : 
+<?php
+var_dump($classValidated->getIdUserRoom());
+var_dump($classValidated->getFavoriteUserRoom());
+var_dump($classValidated->getFkeyRoomId());
+var_dump($classValidated->getFkeyUserId());
+?>
+
+Testing setters : 
+<?php
+$classValidated->setIdUserRoom(3);
+$classValidated->setFavoriteUserRoom(1);
+$classValidated->setFkeyRoomId(2);
+$classValidated->setFkeyUserId(2);
+var_dump($classValidated);
+?>
