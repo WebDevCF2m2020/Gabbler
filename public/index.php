@@ -39,8 +39,7 @@ if (isset($_SESSION['session_id']) && $_SESSION['session_id'] === session_id()) 
 // IF IS NOT CONNECTED
 } else {
 
-    // test Twig with base.html.twig
-    echo $twig->render("base.html.twig");
+    require THE_ROOT.'/controller/public.controller.php';
 
 }
 
