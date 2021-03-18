@@ -17,3 +17,21 @@ $DB = MyPDO::getInstance(DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME . "
 
 // Create a HelpManager instance
 $imgManager = new ImgManager($DB);
+
+// data selection
+$result = $imgManager->selectAll();
+
+if(empty($result)){
+    echo "<h1>pas de données pour la table img</h1>";
+}else{
+    foreach ($result as $item){
+        // creation of a help type object
+        $imgObject = new Img($item);
+        echo "<hr>";
+        echo "<p>{$imgObject->getIdImg()}</p>";
+        echo "<p>{$imgObject->getNameImg()}</p>";
+        echo "<p>{$imgObject->getActiveImg()}</p>";
+        echo "<p>{$imgObject->getDateImg()}</p>";
+     
+    }
+}
