@@ -17,5 +17,8 @@ spl_autoload_register(
 // DB Singleton connection
 $DB = MyPDO::getInstance(DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";port=" . DB_PORT . ";charset=" . DB_CHARSET, DB_USER, DB_PASSWORD, ENV_DEV);
 
-// Create a MessageManager instance
-$helpManager = new MessageManager($DB);
+// Create instance
+$test = new MessageManager($DB);
+
+// data selection
+$result = $test->selectAll();
