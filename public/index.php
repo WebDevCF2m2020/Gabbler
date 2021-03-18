@@ -25,9 +25,11 @@ spl_autoload_register(
 // DB Singleton connection
 $DB = MyPDO::getInstance(DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";port=" . DB_PORT . ";charset=" . DB_CHARSET, DB_USER, DB_PASSWORD, ENV_DEV);
 
-
+// Loading View Twig
 $loader = new FilesystemLoader(THE_ROOT . '/view');
+// Creation of the environment and mode dev debug
 $twig = new Environment($loader, ['debug' => true]);
+// Activated debug
 $twig->addExtension(new DebugExtension());
 
 // IF THE USER IS CONNECTED
