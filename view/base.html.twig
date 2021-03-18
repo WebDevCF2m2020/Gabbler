@@ -1,0 +1,14 @@
+{# base Twig template #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Gabbler{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body id="page-top">
+    {% block body %}<h1>Gabbler</h1>{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>
