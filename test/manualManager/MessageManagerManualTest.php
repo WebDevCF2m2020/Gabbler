@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Test HelpManager
+ * Test MessageManager
  */
 
 // Common's dependencies
@@ -22,3 +22,19 @@ $test = new MessageManager($DB);
 
 // data selection
 $result = $test->selectAll();
+
+if(empty($result)){
+    echo "<h1>pas de données pour la table message</h1>";
+}else{
+    foreach ($result as $item){
+        // creation of a type object
+        $object = new Message($item);
+        echo "<hr>";
+        echo "<p>{$object->getIdMessage()}</p>";
+        echo "<p>{$object->getDateMessage()}</p>";
+        echo "<p>{$object->getContentMessage()}</p>";
+        echo "<p>{$object->getArchivedMessage()}</p>";
+        echo "<p>{$object->getFkeyUserId()}</p>";
+        echo "<p>{$object->getFkeyRoomId()}</p>";
+    }
+}
