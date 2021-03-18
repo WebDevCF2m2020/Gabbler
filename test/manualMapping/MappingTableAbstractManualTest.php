@@ -1,6 +1,6 @@
 <?php
 // dependency
-require_once "../model/MappingTableAbstract.php";
+require_once "../../model/MappingTableAbstract.php";
 
 // create a pseudo extends files into this test
 
