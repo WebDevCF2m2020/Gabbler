@@ -1,7 +1,7 @@
 <?php
 
 
-class UserManager
+class UserManager extends ManagerTableAbstract implements ManagerTableInterface
 {
 
 }
