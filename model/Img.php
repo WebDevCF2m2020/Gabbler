@@ -98,7 +98,7 @@ class Img extends MappingTableAbstract
         $test_date_img = new DateTime($date_img);
         if (empty($date_img)) {
             trigger_error('The date of the image cannot be empty', E_USER_NOTICE);
-        } else if (!is_object($date_img)) {
+        } else if (!is_object($test_date_img)) {
             trigger_error('the date of the image is not valid', E_USER_NOTICE);
         } else {
             $this->date_img = $date_img;
