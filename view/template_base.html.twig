@@ -1,0 +1,12 @@
+{#  Twig template #}
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {#{% block header %}<h1>Gabbler</h1>{% endblock %}#}
+    {% block content %}
+        {% block left %}{% endblock %}
+        {% block center %}{% endblock %}
+        {% block right %}{% endblock %}
+    {% endblock %}
+    {% block footer %}<p>footer</p>{% endblock %}
+{% endblock %}
