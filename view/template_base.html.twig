@@ -2,11 +2,12 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    {#{% block header %}<h1>Gabbler</h1>{% endblock %}#}
+    {% block header %}<h1>Gabbler</h1><p>Ordre des blocs</p><h3>header</h3><hr>{% endblock %}
     {% block content %}
-        {% block left %}{% endblock %}
-        {% block center %}{% endblock %}
-        {% block right %}{% endblock %}
+        <h2>Content</h2><hr>
+        {% block left %}<h3>left</h3><hr>{% endblock %}
+        {% block center %}<h3>center</h3><hr>{% endblock %}
+        {% block right %}<h3>right</h3><hr>{% endblock %}
     {% endblock %}
-    {% block footer %}<p>footer</p>{% endblock %}
+    {% block footer %}<p>footer</p><hr>{% endblock %}
 {% endblock %}
