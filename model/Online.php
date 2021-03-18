@@ -9,7 +9,7 @@ class Online extends MappingTableAbstract {
     // PROPERTIES
     protected int $id_online;
     protected string $last_activity_online;
-    protected int $connected_online = 2 ;
+    protected int $connected_online = 1 ;
     protected int $fkey_user_id;
 
     // GETTERS
@@ -83,10 +83,10 @@ class Online extends MappingTableAbstract {
      */
     public function setConnectedOnline(int $connected_online): void {
         $connected_online = (int)$connected_online;
-        if($connected_online < 1 && $connected_online > 2){
-            trigger_error("The status has to be 1 (not connected) or 2(connected)",E_USER_NOTICE);
-        } else {
+        if($connected_online === 1 || $connected_online === 2){
             $this->connected_online = $connected_online;
+        } else {
+            trigger_error("The status has to be 1 (not connected) or 2(connected)",E_USER_NOTICE);
         }
     }
 
