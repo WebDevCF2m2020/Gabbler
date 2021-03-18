@@ -6,6 +6,7 @@
 
 # Config
 config/config.php
+config/config.php.dev
 
 # Workbench backup
 data/db/db_gabbler.mwb.bak
