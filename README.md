@@ -4,9 +4,14 @@
 Gabbler is a community chat project created by the students of the CF2M web developer class.
 
 ## Development address
-Updated after each sprint:
+Updated after each sprint (and FTP Update):
 
 https://gabbler.webdev-cf2m.be/
+
+## Test adress
+Updated after each sprint (and FTP Update):
+
+https://testgabbler.webdev-cf2m.be/
 
 ## Instruction 
 
