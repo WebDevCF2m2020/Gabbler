@@ -58,3 +58,13 @@ $classValidated->setFkeyRoomId(2);
 $classValidated->setFkeyUserId(2);
 var_dump($classValidated);
 ?>
+
+New setters and getters : 
+<?php
+$newTest = new Test([]);
+$newTest->setTest('good morning sunshine');
+
+var_dump($newTest->getTest());
+var_dump($newTest);
+?>
+</pre>
