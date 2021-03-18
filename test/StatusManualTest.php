@@ -15,7 +15,7 @@ $classNotValidated = new Status([
     "name_status" => "nouveau statusnouveau statusnouveau statusnouveau statusnouveau statusnouveau statusnouveau statusnouveau statusnouveau statusnouveau statusnouveau statusnouveau status"
 ]);
 
-class test extends Message
+class test extends Status
 {
     public function getTest()
     {
@@ -27,3 +27,42 @@ class test extends Message
         $this->test = $test;
     }
 }
+
+// Display of test results
+?>
+<pre>
+    Class Empty :
+    <?php var_dump($classEmpty); ?>
+
+    Class Validated :
+    <?php var_dump($classValidated) ?>
+
+    Class Not Validated :
+    <?php var_dump($classNotValidated) ?>
+
+    Testing getters :
+    <?php
+    var_dump($classValidated->getIdStatus());
+    var_dump($classValidated->getNameStatus());
+    ?>
+
+    Testing setters :
+    <?php
+    $classValidated->setIdStatus(345);
+    $classValidated->setNameStatus("Nouveau Status");
+    var_dump($classValidated);
+    ?>
+
+    New setters and getters:
+    <?php
+
+    // $classValidated->setNewSetters('bonjour');
+    // $classValidated->getNewSetters();
+
+    $newTest = new Test(['test' => 'Bonjour']);
+    $newTest->setTest('Hello');
+
+    var_dump($newTest->getTest());
+    var_dump($newTest);
+    ?>
+</pre>
