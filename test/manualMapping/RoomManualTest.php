@@ -1,8 +1,8 @@
 <?php
 
 // Dependencies
-require_once '../model/MappingTableAbstract.php';
-require_once '../model/Room.php';
+require_once '../../model/MappingTableAbstract.php';
+require_once '../../model/Room.php';
 
 // Creation of new instances for the tests
 $classEmpty = new Room([]);
