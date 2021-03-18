@@ -31,3 +31,45 @@ class test extends UserRight
         $this->test = $test;
     }
 }
+// Display of test results
+?>
+<pre>
+    Class Empty :
+    <?php var_dump($classEmpty); ?>
+
+    Class Validated :
+    <?php var_dump($classValidated) ?>
+
+    Class Not Validated :
+    <?php var_dump($classNotValidated) ?>
+
+    Testing getters :
+    <?php
+    var_dump($classValidated->getIdUserRight());
+    var_dump($classValidated->getDateAuthorizedUserRight());
+    var_dump($classValidated->getFkeyStatusId());
+    var_dump($classValidated->getFkeyUserId());
+    ?>
+
+    Testing setters :
+    <?php
+    $classValidated->setIdUserRight(4536);
+    $classValidated->setDateAuthorizedUserRight("2011-01-01T15:03");
+    $classValidated->setFkeyStatusId(345);
+    $classValidated->setFkeyUserId(45632);
+    var_dump($classValidated);
+    ?>
+
+    New setters and getters:
+    <?php
+
+    // $classValidated->setNewSetters('bonjour');
+    // $classValidated->getNewSetters();
+
+    $newTest = new Test(['test' => 'Bonjour']);
+    $newTest->setTest('Hello');
+
+    var_dump($newTest->getTest());
+    var_dump($newTest);
+    ?>
+</pre>
