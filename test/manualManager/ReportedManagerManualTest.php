@@ -21,3 +21,18 @@ $test = new ReportedManager($DB);
 
 // data selection
 $result = $test->selectAll();
+
+if(empty($result)){
+    echo "<h1>pas de données pour la table Reported</h1>";
+}else{
+    foreach ($result as $item){
+        // creation of a type object
+        $object = new Reported($item);
+        echo "<hr>";
+        echo "<p>{$object->getIdReported()}</p>";
+        echo "<p>{$object->getInquiryReported()}</p>";
+        echo "<p>{$object->getProcessedReported()}</p>";
+        echo "<p>{$object->getFkeyCategoryId()}</p>";
+        echo "<p>{$object->getFkeyMessageId()}</p>";
+    }
+}
