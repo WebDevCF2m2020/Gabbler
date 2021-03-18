@@ -18,3 +18,16 @@ $classNotValidated = new UserRight([
     "fkey_status_id" => 0,
     "fkey_user_id" => 0,
 ]);
+
+class test extends UserRight
+{
+    public function getTest()
+    {
+        return $this->test;
+    }
+
+    public function setTest($test)
+    {
+        $this->test = $test;
+    }
+}
