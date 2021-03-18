@@ -37,7 +37,7 @@ Class Empty :
 <?php var_dump($classEmpty); ?>
 
 Class Validated : 
-<?php var_dump($$classValidated); ?>
+<?php var_dump($classValidated); ?>
 
 Class Not Validated : 
 <?php var_dump($classNotValidated); ?>
