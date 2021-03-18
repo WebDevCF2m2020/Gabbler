@@ -1,6 +1,7 @@
 <?php
 
-// Import Class
+// Import Class Twig
+use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 // SESSION START
@@ -25,6 +26,7 @@ $DB = MyPDO::getInstance(DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME . "
 
 
 $loader = new FilesystemLoader(THE_ROOT . '/view');
+$twig = new Environment($loader, ['debug' => true]);
 
 // IF THE USER IS CONNECTED
 if (isset($_SESSION['session_id']) && $_SESSION['session_id'] === session_id()) {
