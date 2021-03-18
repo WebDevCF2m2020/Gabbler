@@ -16,3 +16,6 @@ public/.htaccess
 
 # public server info (delete this file at the end of work)
 public/phpinfo.php
+
+# Dir vendor Composer
+/vendor
