@@ -31,7 +31,7 @@ class Category extends MappingTableAbstract {
                 }
         }
 
-        public function setNameCategory(string $name_category): string{  
+        public function setNameCategory(string $name_category): void{  
 
                 //Variable securing.
                 $name_category = filter_var(trim(htmlspecialchars(strip_tags($name_category)),ENT_QUOTES),FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_HIGH);
