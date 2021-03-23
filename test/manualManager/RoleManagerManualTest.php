@@ -19,3 +19,15 @@ $roleManager = new RoleManager($DB);
 
 // data selection
 $result = $roleManager->selectAll();
+
+if(empty($result)){
+    echo "<h1>pas de données pour la table role</h1>";
+}else{
+    foreach ($result as $item){
+        // creation of a role type object
+        $roleObject = new Role($item);
+        echo "<hr>";
+        echo "<p>{$roleObject->getIdRole()}</p>";
+        echo "<p>{$roleObject->getNameRole()}</p>";
+    }
+}
