@@ -14,7 +14,18 @@ if (isset($_POST['signup'])) {
         ->setUsername(MAIL)
         ->setPassword(PWD);
 
-
+    // TEST 1 = Sign up without HTML
+    $mailer1 = new Swift_Mailer($transport); // Create the Mailer for TEST 1
+    $message1 = (new Swift_Message('Inscription to Gabbler')) // Create the message for TEST 1
+    ->setFrom([MAIL => 'GABBLER'])
+        ->setTo([$_POST['email'] => $_POST['nickname']])
+        ->setBody('Welcome to Gabbler '.$_POST['nickname']);
+    // Send the message for TEST 1
+    if ($mailer1->send($message1)){
+        $warning .= 'TEST 1 = The mail has been send<br>';
+    } else {
+        $warning .= 'TEST 1 = The mail has NOT been send<br>';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -26,18 +37,18 @@ if (isset($_POST['signup'])) {
 <form method="post">
     <?php
     if (isset($warning)) {
-    echo "<span>" . $warning . "</span>";
+    echo "<span>" . $warning . "</span><br>";
     }
     ?>
-    <input type="text" placeholder="Nickname" name="nickname" maxlength="30" required/><br>
-    <input type="email" placeholder="Email" name="email"  required/><br>
-    <input type="password" placeholder="Password" name="pwd" maxlength="30" required/><br>
+    <input type="text" placeholder="Nickname" name="nickname" maxlength="30" required/><br><br>
+    <input type="email" placeholder="Email" name="email"  required/><br><br>
+    <input type="password" placeholder="Password" name="pwd" maxlength="30" required/><br><br>
     <button type="submit" name="signup">Sign Up</button>
-</form>
+</form><br><br>
 <?php
-echo isset($message1) ? $message1->toString()."<br>" : "";
-echo isset($message2) ? $message2->toString()."<br>" : "";
-echo isset($message3) ? $message3->toString()."<br>" : "";
+echo isset($message1) ? "The content of the message from TEST 1 : ".$message1->toString()."<br><br>" : "";
+echo isset($message2) ? "The content of the message from TEST 2 : ".$message2->toString()."<br><br>" : "";
+echo isset($message3) ? "The content of the message from TEST 3 : ".$message3->toString()."<br><br>" : "";
 ?>
 </body>
 </html>
