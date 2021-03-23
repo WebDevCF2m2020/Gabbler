@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le : mar. 23 mars 2021 à 14:25
+-- Généré le : mar. 23 mars 2021 à 17:52
 -- Version du serveur :  10.5.4-MariaDB
 -- Version de PHP : 8.0.3
 
@@ -258,7 +258,7 @@ INSERT INTO `room` (`id_room`, `public_room`, `archived_room`, `name_room`, `las
 (1, 1, 1, 'general', '2021-03-23 09:02:46'),
 (2, 1, 1, 'cinema', '2021-03-23 09:02:49'),
 (3, 1, 1, 'music', '2021-03-22 09:02:49'),
-(4, 1, 1, 'food', '2021-03-23 09:03:45');
+(4, 1, 1, 'foodlovers', '2021-03-23 15:21:12');
 
 -- --------------------------------------------------------
 
