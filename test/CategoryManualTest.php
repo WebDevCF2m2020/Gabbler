@@ -2,7 +2,7 @@
 
 //dependencies
 require_once '../../model/MappingTableAbstract.php';
-require_once '../../model.Category.php';
+require_once '../../model/Category.php';
 
 // Creation of new instances for the tests
 $classEmpty = new Category([]);
