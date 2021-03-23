@@ -60,7 +60,7 @@ if (isset($_POST['signup'])) {
     $message3->setBody(
         '<html>' .
         ' <body style="background-color: beige; text-align: center;">' .
-        '  <p style="letter-spacing: 3px; font-size: 2em;">Hey !  Hello '.$_POST['nickname'].', You are now a proud menber of Gabbler !</p>' .
+        '  <p style="letter-spacing: 3px; font-size: 2em;">Hey !  Hello '.$_POST['nickname'].', You are now a proud member of Gabbler !</p>' .
         ' </body>' .
         '</html>',
         'text/html'
@@ -87,7 +87,6 @@ if (isset($_POST['signup'])) {
     ?>
     <input type="text" placeholder="Nickname" name="nickname" maxlength="30" required/><br><br>
     <input type="email" placeholder="Email" name="email"  required/><br><br>
-    <input type="password" placeholder="Password" name="pwd" maxlength="30" required/><br><br>
     <button type="submit" name="signup">Sign Up</button>
 </form><br><br>
 <?php
