@@ -4,7 +4,8 @@
 {% block body %}
     {% block header %}<h1>Gabbler</h1><p>Ordre des blocs</p><h3>header</h3><hr>{% endblock %}
     {% block content %}
-        <h2>Content</h2><hr>
+        <h2>Content</h2>
+        <h3>{{ connect }}</h3><hr>
         {% block left %}<h3>left</h3><hr>{% endblock %}
         {% block center %}<h3>center</h3><hr>{% endblock %}
         {% block right %}<h3>right</h3><hr>{% endblock %}

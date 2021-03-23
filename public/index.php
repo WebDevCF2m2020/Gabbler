@@ -35,6 +35,7 @@ $twig->addExtension(new DebugExtension());
 // IF THE USER IS CONNECTED
 if (isset($_SESSION['session_id']) && $_SESSION['session_id'] === session_id()) {
 
+    require THE_ROOT.'/controller/private.controller.php';
 
 // IF IS NOT CONNECTED
 } else {
