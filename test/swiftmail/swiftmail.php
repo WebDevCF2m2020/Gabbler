@@ -22,9 +22,9 @@ if (isset($_POST['signup'])) {
         ->setBody('Welcome to Gabbler '.$_POST['nickname']);
     // Send the message for TEST 1
     if ($mailer1->send($message1)){
-        $warning .= 'TEST 1 = The mail has been send<br>';
+        $warning .= 'TEST 1 = The mail has been sent<br>';
     } else {
-        $warning .= 'TEST 1 = The mail has NOT been send<br>';
+        $warning .= 'TEST 1 = The mail has NOT been sent<br>';
     }
 
     // TEST 2 = Sign up with HTML and a picture
@@ -46,9 +46,9 @@ if (isset($_POST['signup'])) {
         );
     // Send the message for TEST 2
     if ($mailer2->send($message2)){
-        $warning .= 'TEST 2 = The mail has been send<br>';
+        $warning .= 'TEST 2 = The mail has been sent<br>';
     } else {
-        $warning .= 'TEST 2 = The mail has NOT been send<br>';
+        $warning .= 'TEST 2 = The mail has NOT been sent<br>';
     }
 
     // TEST 3 = Sign up with HTML and a file
@@ -67,9 +67,9 @@ if (isset($_POST['signup'])) {
     );
     // Send the message for TEST 1
     if ($mailer3->send($message3)){
-        $warning .= 'TEST 3 = The mail has been send<br>';
+        $warning .= 'TEST 3 = The mail has been sent<br>';
     } else {
-        $warning .= 'TEST 3 = The mail has NOT been send<br>';
+        $warning .= 'TEST 3 = The mail has NOT been sent<br>';
     }
 }
 ?>
