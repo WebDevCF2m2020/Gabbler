@@ -31,6 +31,7 @@ class Status extends MappingTableAbstract {
                 }
         }
 
+
         public function setNameStatus(string $name_status): void{
 
                 //Variable securing.
@@ -45,4 +46,6 @@ class Status extends MappingTableAbstract {
                 $this->name_status = $name_status;
                 }
         }
+
 }
+

@@ -87,4 +87,6 @@ class UserRoom extends MappingTableAbstract {
         }
 
 
+
 }
+
