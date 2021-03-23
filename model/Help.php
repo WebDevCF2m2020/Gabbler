@@ -161,7 +161,7 @@ class Help extends MappingTableAbstract {
      * $user_id's setter
      * @param int $user_id
      */
-    public function setUserId(int $user_id): void {
+    public function setUserId($user_id): void {
         $user_id = (int) $user_id;
         $this->user_id = $user_id;
     }
