@@ -4,8 +4,8 @@ if (isset($_POST['signup'])) {
 
     $warning = "";
 
-    require_once '../vendor/autoload.php';
-    require_once '../config/config.php';
+    require_once '../../vendor/autoload.php';
+    require_once '../../config/config.php';
 
     // Transport for all test (in config.php, define MAIL and PWD with your school gmail address and pwd,
     // in gmail, enable the 'Less secure app access' in the 'security' section from your gmail account
@@ -32,7 +32,7 @@ if (isset($_POST['signup'])) {
     $message2 = (new Swift_Message('Inscription to Gabbler')) // Create the message for TEST 2
         ->setFrom([MAIL => 'GABBLER'])
         ->setTo([$_POST['email'] => $_POST['nickname']]);
-    $image = $message2->embed(Swift_Image::fromPath('../data/charte/Logos/Ico - G/Ico Rouge - WhiteMode.png'));
+    $image = $message2->embed(Swift_Image::fromPath('../../data/charte/Logos/Ico - G/Ico Rouge - WhiteMode.png'));
     $message2->setBody(
             '<html>' .
             ' <body style="background-color: beige; text-align: center;">' .
@@ -56,7 +56,7 @@ if (isset($_POST['signup'])) {
     $message3 = (new Swift_Message('Inscription to Gabbler')) // Create the message for TEST 3
         ->setFrom([MAIL => 'GABBLER'])
         ->setTo([$_POST['email'] => $_POST['nickname']]);
-    $message3->attach(Swift_Attachment::fromPath('../data/charte/Logos/Ico - G/Ico Rouge - WhiteMode.png'));
+    $message3->attach(Swift_Attachment::fromPath('../../data/charte/Logos/Ico - G/Ico Rouge - WhiteMode.png'));
     $message3->setBody(
         '<html>' .
         ' <body style="background-color: beige; text-align: center;">' .
@@ -77,6 +77,11 @@ if (isset($_POST['signup'])) {
 <html>
 <head>
     <title>Test SwiftMailer</title>
+    <style>
+        span {
+            color: #5281e2;
+        }
+    </style>
 </head>
 <body>
 <form method="post">
@@ -89,10 +94,12 @@ if (isset($_POST['signup'])) {
     <input type="email" placeholder="Email" name="email"  required/><br><br>
     <button type="submit" name="signup">Sign Up</button>
 </form><br><br>
+<pre>
 <?php
-echo isset($message1) ? "The content of the message from TEST 1 : ".$message1->toString()."<br><br>" : "";
-echo isset($message2) ? "The content of the message from TEST 2 : ".$message2->toString()."<br><br>" : "";
-echo isset($message3) ? "The content of the message from TEST 3 : ".$message3->toString()."<br><br>" : "";
+echo isset($message1) ? "<span>The content of the message from TEST 1 :</span> " .$message1->toString()."<br><br>" : "";
+echo isset($message2) ? "<span>The content of the message from TEST 2 :</span> ".$message2->toString()."<br><br>" : "";
+echo isset($message3) ? "<span>The content of the message from TEST 3 :</span> ".$message3->toString()."<br><br>" : "";
 ?>
+</pre>
 </body>
 </html>
