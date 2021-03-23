@@ -51,6 +51,26 @@ if (isset($_POST['signup'])) {
         $warning .= 'TEST 2 = The mail has NOT been send<br>';
     }
 
+    // TEST 3 = Sign up with HTML and a file
+    $mailer3 = new Swift_Mailer($transport); // Create the Mailer for TEST 3
+    $message3 = (new Swift_Message('Inscription to Gabbler')) // Create the message for TEST 3
+        ->setFrom([MAIL => 'GABBLER'])
+        ->setTo([$_POST['email'] => $_POST['nickname']]);
+    $message3->attach(Swift_Attachment::fromPath('../data/charte/Logos/Ico - G/Ico Rouge - WhiteMode.png'));
+    $message3->setBody(
+        '<html>' .
+        ' <body style="background-color: beige; text-align: center;">' .
+        '  <p style="letter-spacing: 3px; font-size: 2em;">Hey !  Hello '.$_POST['nickname'].', You are now a proud menber of Gabbler !</p>' .
+        ' </body>' .
+        '</html>',
+        'text/html'
+    );
+    // Send the message for TEST 1
+    if ($mailer3->send($message3)){
+        $warning .= 'TEST 3 = The mail has been send<br>';
+    } else {
+        $warning .= 'TEST 3 = The mail has NOT been send<br>';
+    }
 }
 ?>
 <!DOCTYPE html>
