@@ -2,15 +2,15 @@
 //User right managing class.
 class UserRightManager extends ManagerTableAbstract implements ManagerTableInterface {
 
-    // Selection of every input of the status table
+    //Fetch all user_right content.
     public function selectAll(): array {
-        $sql = "SELECT * FROM status;";
+        $sql = "SELECT * FROM user_right;";
         $query = $this->db->query($sql);
-        // The return when there is one or more result(s)
+        //If there's something to fetch, the sent back data wil be in associative array form.
         if($query->rowCount()){
             return $query->fetchAll(PDO::FETCH_ASSOC);
         }
-        // The return when there is no result
+        //If not returns an empty array!! 
         return [];
     }
 
