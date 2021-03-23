@@ -1,0 +1,6 @@
+<?php
+
+/* 
+ * Private Admin Controller
+ */
+

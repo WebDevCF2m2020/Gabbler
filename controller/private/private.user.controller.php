@@ -1,0 +1,6 @@
+<?php
+
+/* 
+ * Private User Controller
+ */
+
