@@ -1,5 +1,21 @@
 <?php
 
+if (isset($_POST['signup'])) {
+
+    $warning = "";
+
+    require_once '../vendor/autoload.php';
+    require_once '../config/config.php';
+
+    // Transport for all test (in config.php, define MAIL and PWD with your school gmail address and pwd,
+    // in gmail, enable the 'Less secure app access' in the 'security' section from your gmail account
+    // (turn it back of after the test))
+    $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587,'tls'))
+        ->setUsername(MAIL)
+        ->setPassword(PWD);
+
+
+}
 ?>
 <!DOCTYPE html>
 <html>

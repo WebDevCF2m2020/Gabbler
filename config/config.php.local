@@ -14,3 +14,7 @@ const DB_CHARSET = 'UTF8';
 
 // dev > true or prod > false
 define("ENV_DEV",true);
+
+// SwiftMailer test
+define("MAIL", "yourmail@gmail.com");
+define("PWD", "YourSuperSecurePwd");
