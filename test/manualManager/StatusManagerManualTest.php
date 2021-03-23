@@ -19,3 +19,16 @@ $statusManager = new StatusManager($DB);
 
 // data selection
 $result = $statusManager->selectAll();
+
+
+if(empty($result)){
+    echo "<h1>pas de données pour la table status</h1>";
+}else{
+    foreach ($result as $item){
+        // creation of a role type object
+        $statusObject = new Status($item);
+        echo "<hr>";
+        echo "<p>{$statusObject->getIdStatus()}</p>";
+        echo "<p>{$statusObject->getNameStatus()}</p>";
+    }
+}
