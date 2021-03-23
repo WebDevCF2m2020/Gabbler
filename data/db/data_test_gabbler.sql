@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le : mar. 23 mars 2021 à 10:03
+-- Généré le : mar. 23 mars 2021 à 14:25
 -- Version du serveur :  10.5.4-MariaDB
 -- Version de PHP : 8.0.3
 
@@ -40,10 +40,10 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 INSERT INTO `category` (`id_category`, `name_category`) VALUES
-(1, 'Cinema'),
-(4, 'Food'),
-(3, 'Gaming'),
-(2, 'Music');
+(1, 'insult'),
+(3, 'other'),
+(2, 'rascism'),
+(4, 'sexual harassment');
 
 -- --------------------------------------------------------
 
@@ -68,9 +68,9 @@ CREATE TABLE IF NOT EXISTS `help` (
 --
 
 INSERT INTO `help` (`id_help`, `mail_help`, `nickname_help`, `subject_help`, `content_help`, `processed_help`, `user_id`) VALUES
-(1, 'test@test.be', 'Gabbler', 'Can you help me ?', 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. ', 1, 2),
-(2, 'help@help.com', 'Gamer3', 'I need help', 'On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L\'avantage du Lorem Ipsum sur un texte générique comme \'Du texte.', 2, 4),
-(3, 'help@help.com', 'Gamer456', 'I need help ', 'On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. ', 3, 45);
+(1, 'test@test.be', 'Gabbler', 'Can you help me ?', 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.', 1, NULL),
+(2, 'help@help.com', 'Gamer3', 'I need help', 'On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L\\\'avantage du Lorem Ipsum sur un texte générique comme \\\'Du texte.', 2, NULL),
+(3, 'help@help.com', 'Gamer456', 'I need help', 'On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même.', 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -130,14 +130,10 @@ CREATE TABLE IF NOT EXISTS `message` (
 --
 
 INSERT INTO `message` (`id_message`, `date_message`, `content_message`, `archived_message`, `fkey_user_id`, `fkey_room_id`) VALUES
-(1, '2021-03-23 09:35:50', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', 1, 1, 1),
-(2, '2021-03-23 09:35:50', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 2, 2),
-(3, '2021-03-23 09:42:51', 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born', 1, 3, 3),
-(4, '2021-03-23 09:42:51', 'No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know', 1, 4, 4),
-(5, '2021-03-23 09:44:14', 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non providen', 1, 5, 4),
-(6, '2021-03-23 09:44:14', 'similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.', 1, 6, 3),
-(7, '2021-03-23 09:46:09', 'Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus', 1, 7, 2),
-(8, '2021-03-23 09:46:09', 'Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae', 1, 8, 1);
+(1, '2021-03-23 14:14:08', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', 1, 5, 1),
+(2, '2021-03-23 14:14:08', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 6, 4),
+(3, '2021-03-23 14:15:12', 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born', 2, 5, 2),
+(4, '2021-03-23 14:15:12', 'No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know', 2, 6, 3);
 
 -- --------------------------------------------------------
 
@@ -160,14 +156,8 @@ CREATE TABLE IF NOT EXISTS `online` (
 --
 
 INSERT INTO `online` (`id_online`, `last_activity_online`, `connected_online`, `fkey_user_id`) VALUES
-(1, '2021-03-23 09:47:33', 2, 1),
-(2, '2021-03-23 09:47:33', 2, 2),
-(3, '2021-03-23 09:48:39', 2, 3),
-(4, '2021-03-23 09:48:39', 2, 4),
-(5, '2021-03-23 09:49:01', 1, 5),
-(6, '2021-03-23 09:49:01', 1, 6),
-(7, '2021-03-23 09:49:20', 1, 7),
-(8, '2021-03-23 09:49:20', 1, 8);
+(1, '2021-03-23 14:15:53', 2, 5),
+(2, '2021-03-23 14:15:53', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -194,12 +184,8 @@ CREATE TABLE IF NOT EXISTS `reported` (
 INSERT INTO `reported` (`id_reported`, `inquiry_reported`, `processed_reported`, `fkey_category_id`, `fkey_message_id`) VALUES
 (1, 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire', 1, 1, 1),
 (2, 'that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will', 1, 2, 2),
-(3, ' which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish', 1, 3, 3),
-(4, 'In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best', 1, 4, 4),
-(5, 'every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations', 2, 4, 5),
-(6, 'of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds', 2, 3, 6),
-(7, 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta ', 2, 2, 7),
-(8, 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt', 2, 1, 8);
+(3, 'which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish', 2, 3, 3),
+(4, 'In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best', 2, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -245,13 +231,7 @@ CREATE TABLE IF NOT EXISTS `role_has_user` (
 
 INSERT INTO `role_has_user` (`role_has_user_id_role`, `role_has_user_id_user`) VALUES
 (1, 5),
-(1, 8),
-(2, 6),
-(2, 7),
-(3, 1),
-(3, 2),
-(3, 3),
-(3, 4);
+(3, 6);
 
 -- --------------------------------------------------------
 
@@ -332,14 +312,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nickname_user`, `pwd_user`, `mail_user`, `signup_date_user`, `color_user`, `confirmation_key_user`, `validation_status_user`) VALUES
-(1, 'Sketch', '2.#7n58cKbgLh+3z', 'ossicaka-2433@yopmail.com', '2021-03-23 10:09:14', 'red', 'un', 1),
-(2, 'Punch', '!UHr9p<L~_dj`7kL', 'veqessunnox-4807@yopmail.com', '2021-03-23 10:12:30', 'blue', 'deux', 1),
-(3, 'Crow', 'xPk_Q4>~pC_2LUqP', 'ecukossar-2379@yopmail.com', '2021-03-23 10:14:01', 'green', 'trois', 1),
-(4, 'Twinkle Toes', 'e~+YMLgP8V8>9YT2', 'cessettaxu-9387@yopmail.com', '2021-03-23 10:14:01', 'yellow', 'quatre', 1),
-(5, 'Queenie', '9ZK+!W*wn9gE-%RA', 'ennesumif-1397@yopmail.com', '2021-03-23 10:18:40', 'pink', 'cinq', 2),
-(6, 'Twinkle', '>8~Hxj}p4_:7pwA8', 'qarripuqa-1640@yopmail.com', '2021-03-23 10:18:40', 'turquoise', 'six', 2),
-(7, 'Black Widow', '8j~C7k{H.qg}6Zkm', 'ijaronnuk-7391@yopmail.com', '2021-03-23 10:22:15', 'gold', 'sept', 2),
-(8, 'Snowflake', 'Z\\`pfy,Y_,93)A,X', 'delebuno-7127@yopmail.com', '2021-03-23 10:22:15', 'silver', 'huit', 2);
+(5, 'Johnny', '$2y$10$X6Lu7QpJSxki2.wXAaxSteav1fTVWr/uYqnq9cFMbAo1U/vSXGtjm', 'admin@test.com', '2020-09-17 10:17:51', '\"background\":\"#2ec4b6\",\"color\":\"#fdfffc\"', 'acd147d11882e3ea05e3229e7935768e', 1),
+(6, 'Marylin', '$2y$10$vCj/d6P6EfJxSRzX4iN7y.jprp.6K0M4KSvo75JcLg3OTNuf/gmni', 'user@test.com', '2020-09-17 10:17:51', '\"background\":\"#f6f6f6\",\"color\":\"#505352\"', 'b32eda8047fc109444d81adf9a28308d', 1);
 
 -- --------------------------------------------------------
 
@@ -361,14 +335,8 @@ CREATE TABLE IF NOT EXISTS `user_has_img` (
 --
 
 INSERT INTO `user_has_img` (`user_has_img_id_user`, `user_has_img_id_img`) VALUES
-(1, 7),
-(2, 11),
-(3, 9),
-(4, 4),
-(5, 6),
-(6, 8),
-(7, 10),
-(8, 12);
+(5, 8),
+(6, 2);
 
 -- --------------------------------------------------------
 
@@ -392,10 +360,8 @@ CREATE TABLE IF NOT EXISTS `user_right` (
 --
 
 INSERT INTO `user_right` (`id_user_right`, `date_authorized_user_right`, `fkey_status_id`, `fkey_user_id`) VALUES
-(1, '2021-03-23 10:00:16', 1, 2),
-(2, '2021-03-23 10:00:16', 3, 3),
-(3, '2021-03-23 10:00:38', 3, 4),
-(4, '2021-03-23 10:00:38', 4, 7);
+(1, '2021-03-23 14:19:39', 1, 5),
+(2, '2021-03-23 14:19:39', 4, 6);
 
 -- --------------------------------------------------------
 
@@ -419,10 +385,8 @@ CREATE TABLE IF NOT EXISTS `user_room` (
 --
 
 INSERT INTO `user_room` (`id_user_room`, `favorite_user_room`, `fkey_room_id`, `fkey_user_id`) VALUES
-(1, 1, 1, 7),
-(2, 1, 2, 8),
-(3, 2, 3, 2),
-(4, 2, 2, 6);
+(1, 1, 1, 6),
+(2, 2, 4, 5);
 
 --
 -- Contraintes pour les tables déchargées
