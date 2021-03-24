@@ -10,14 +10,14 @@ if (isset($_POST['signup'])) {
     // Transport for all test (in config.php, define MAIL and PWD with your school gmail address and pwd,
     // in gmail, enable the 'Less secure app access' in the 'security' section from your gmail account
     // (turn it back of after the test))
-    $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587,'tls'))
-        ->setUsername(MAIL)
-        ->setPassword(PWD);
+    $transport = (new Swift_SmtpTransport(MAIL_SMTP, MAIL_PORT, MAIL_ENCRYPTION))
+        ->setUsername(MAIL_ADDRESS)
+        ->setPassword(MAIL_PWD);
 
     // TEST 1 = Sign up without HTML
     $mailer1 = new Swift_Mailer($transport); // Create the Mailer for TEST 1
     $message1 = (new Swift_Message('Inscription to Gabbler')) // Create the message for TEST 1
-        ->setFrom([MAIL => 'GABBLER'])
+        ->setFrom([MAIL_ADDRESS => 'GABBLER'])
         ->setTo([$_POST['email'] => $_POST['nickname']])
         ->setBody('Welcome to Gabbler '.$_POST['nickname']);
     // Send the message for TEST 1
@@ -30,7 +30,7 @@ if (isset($_POST['signup'])) {
     // TEST 2 = Sign up with HTML and a picture
     $mailer2 = new Swift_Mailer($transport); // Create the Mailer for TEST 2
     $message2 = (new Swift_Message('Inscription to Gabbler')) // Create the message for TEST 2
-        ->setFrom([MAIL => 'GABBLER'])
+        ->setFrom([MAIL_ADDRESS => 'GABBLER'])
         ->setTo([$_POST['email'] => $_POST['nickname']]);
     $image = $message2->embed(Swift_Image::fromPath('../../data/charte/Logos/Ico - G/Ico Rouge - WhiteMode.png'));
     $message2->setBody(
@@ -54,7 +54,7 @@ if (isset($_POST['signup'])) {
     // TEST 3 = Sign up with HTML and a file
     $mailer3 = new Swift_Mailer($transport); // Create the Mailer for TEST 3
     $message3 = (new Swift_Message('Inscription to Gabbler')) // Create the message for TEST 3
-        ->setFrom([MAIL => 'GABBLER'])
+        ->setFrom([MAIL_ADDRESS => 'GABBLER'])
         ->setTo([$_POST['email'] => $_POST['nickname']]);
     $message3->attach(Swift_Attachment::fromPath('../../data/charte/Logos/Ico - G/Ico Rouge - WhiteMode.png'));
     $message3->setBody(
