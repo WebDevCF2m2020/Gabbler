@@ -12,12 +12,17 @@ if (isset($_POST['signup'])) {
     // (turn it back of after the test))
     $transport = (new Swift_SmtpTransport(MAIL_SMTP, MAIL_PORT, MAIL_ENCRYPTION))
         ->setUsername(MAIL_ADDRESS)
-        ->setPassword(MAIL_PWD);
+        ->setPassword(MAIL_PWD)
+        ->setStreamOptions(array('ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )));
 
     // TEST 1 = Sign up without HTML
     $mailer1 = new Swift_Mailer($transport); // Create the Mailer for TEST 1
     $message1 = (new Swift_Message('Inscription to Gabbler')) // Create the message for TEST 1
-        ->setFrom([MAIL_ADDRESS => 'GABBLER'])
+    ->setFrom([MAIL_ADDRESS => 'GABBLER'])
         ->setTo([$_POST['email'] => $_POST['nickname']])
         ->setBody('Welcome to Gabbler '.$_POST['nickname']);
     // Send the message for TEST 1
@@ -30,20 +35,20 @@ if (isset($_POST['signup'])) {
     // TEST 2 = Sign up with HTML and a picture
     $mailer2 = new Swift_Mailer($transport); // Create the Mailer for TEST 2
     $message2 = (new Swift_Message('Inscription to Gabbler')) // Create the message for TEST 2
-        ->setFrom([MAIL_ADDRESS => 'GABBLER'])
+    ->setFrom([MAIL_ADDRESS => 'GABBLER'])
         ->setTo([$_POST['email'] => $_POST['nickname']]);
     $image = $message2->embed(Swift_Image::fromPath('../../data/charte/Logos/Ico - G/Ico Rouge - WhiteMode.png'));
     $message2->setBody(
-            '<html>' .
-            ' <body style="background-color: beige; text-align: center;">' .
-            '  Here is an image <img src="' .
-            $image .
-            '" alt="Image" />' .
-            '  Rest of message' .
-            ' </body>' .
-            '</html>',
-            'text/html'
-        );
+        '<html>' .
+        ' <body style="background-color: beige; text-align: center;">' .
+        '  Here is an image <img src="' .
+        $image .
+        '" alt="Image" />' .
+        '  Rest of message' .
+        ' </body>' .
+        '</html>',
+        'text/html'
+    );
     // Send the message for TEST 2
     if ($mailer2->send($message2)){
         $warning .= 'TEST 2 = The mail has been sent<br>';
@@ -54,7 +59,7 @@ if (isset($_POST['signup'])) {
     // TEST 3 = Sign up with HTML and a file
     $mailer3 = new Swift_Mailer($transport); // Create the Mailer for TEST 3
     $message3 = (new Swift_Message('Inscription to Gabbler')) // Create the message for TEST 3
-        ->setFrom([MAIL_ADDRESS => 'GABBLER'])
+    ->setFrom([MAIL_ADDRESS => 'GABBLER'])
         ->setTo([$_POST['email'] => $_POST['nickname']]);
     $message3->attach(Swift_Attachment::fromPath('../../data/charte/Logos/Ico - G/Ico Rouge - WhiteMode.png'));
     $message3->setBody(
@@ -65,7 +70,7 @@ if (isset($_POST['signup'])) {
         '</html>',
         'text/html'
     );
-    // Send the message for TEST 1
+    // Send the message for TEST 3
     if ($mailer3->send($message3)){
         $warning .= 'TEST 3 = The mail has been sent<br>';
     } else {
@@ -87,7 +92,7 @@ if (isset($_POST['signup'])) {
 <form method="post">
     <?php
     if (isset($warning)) {
-    echo "<span>" . $warning . "</span><br>";
+        echo "<span>" . $warning . "</span><br>";
     }
     ?>
     <input type="text" placeholder="Nickname" name="nickname" maxlength="30" required/><br><br>
