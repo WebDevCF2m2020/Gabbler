@@ -15,6 +15,6 @@ const DB_CHARSET = 'UTF8';
 // dev > true or prod > false
 define("ENV_DEV",true);
 
-// SwiftMailer test
+// SwiftMailer test - put in your config.php a gmail mail and your password to be able to test the sending of mail
 define("MAIL", "yourmail@gmail.com");
 define("PWD", "YourSuperSecurePwd");
