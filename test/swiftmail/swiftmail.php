@@ -12,7 +12,12 @@ if (isset($_POST['signup'])) {
     // (turn it back of after the test))
     $transport = (new Swift_SmtpTransport(MAIL_SMTP, MAIL_PORT, MAIL_ENCRYPTION))
         ->setUsername(MAIL_ADDRESS)
-        ->setPassword(MAIL_PWD);
+        ->setPassword(MAIL_PWD)
+        ->setStreamOptions(array('ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )));
 
     // TEST 1 = Sign up without HTML
     $mailer1 = new Swift_Mailer($transport); // Create the Mailer for TEST 1
@@ -65,7 +70,7 @@ if (isset($_POST['signup'])) {
         '</html>',
         'text/html'
     );
-    // Send the message for TEST 1
+    // Send the message for TEST 3
     if ($mailer3->send($message3)){
         $warning .= 'TEST 3 = The mail has been sent<br>';
     } else {
@@ -87,7 +92,7 @@ if (isset($_POST['signup'])) {
 <form method="post">
     <?php
     if (isset($warning)) {
-    echo "<span>" . $warning . "</span><br>";
+        echo "<span>" . $warning . "</span><br>";
     }
     ?>
     <input type="text" placeholder="Nickname" name="nickname" maxlength="30" required/><br><br>
