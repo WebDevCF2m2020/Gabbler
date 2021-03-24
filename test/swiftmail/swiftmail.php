@@ -70,7 +70,7 @@ if (isset($_POST['signup'])) {
         '</html>',
         'text/html'
     );
-    // Send the message for TEST 1
+    // Send the message for TEST 3
     if ($mailer3->send($message3)){
         $warning .= 'TEST 3 = The mail has been sent<br>';
     } else {
