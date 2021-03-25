@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le : mar. 23 mars 2021 à 17:52
+-- Généré le : jeu. 25 mars 2021 à 12:15
 -- Version du serveur :  10.5.4-MariaDB
 -- Version de PHP : 8.0.3
 
@@ -312,8 +312,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nickname_user`, `pwd_user`, `mail_user`, `signup_date_user`, `color_user`, `confirmation_key_user`, `validation_status_user`) VALUES
-(5, 'Johnny', '$2y$10$X6Lu7QpJSxki2.wXAaxSteav1fTVWr/uYqnq9cFMbAo1U/vSXGtjm', 'admin@test.com', '2020-09-17 10:17:51', '\"background\":\"#2ec4b6\",\"color\":\"#fdfffc\"', 'acd147d11882e3ea05e3229e7935768e', 1),
-(6, 'Marylin', '$2y$10$vCj/d6P6EfJxSRzX4iN7y.jprp.6K0M4KSvo75JcLg3OTNuf/gmni', 'user@test.com', '2020-09-17 10:17:51', '\"background\":\"#f6f6f6\",\"color\":\"#505352\"', 'b32eda8047fc109444d81adf9a28308d', 1);
+(5, 'Johnny', '$2y$10$X6Lu7QpJSxki2.wXAaxSteav1fTVWr/uYqnq9cFMbAo1U/vSXGtjm', 'admin@test.com', '2020-09-17 10:17:51', '{\"background\":\"#2ec4b6\",\"color\":\"#fdfffc\"}', 'acd147d11882e3ea05e3229e7935768e', 1),
+(6, 'Marylin', '$2y$10$vCj/d6P6EfJxSRzX4iN7y.jprp.6K0M4KSvo75JcLg3OTNuf/gmni', 'user@test.com', '2020-09-17 10:17:51', '{\"background\":\"#f6f6f6\",\"color\":\"#505352\"}', 'b32eda8047fc109444d81adf9a28308d', 1);
 
 -- --------------------------------------------------------
 
