@@ -3,7 +3,6 @@
 //UserRight manual testing phase:
 
 //loading dependencies!
-
 require_once "../../config/config";
 
 spl_autoload_register(
@@ -15,3 +14,13 @@ spl_autoload_register(
 $DB = MyPDO::getInstance(DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";port=" . DB_PORT . ";charset=" . DB_CHARSET, DB_USER, DB_PASSWORD, ENV_DEV);
 
 $userRight = new UserRightManager($DB);
+
+$fetchedData = $userRight->selectAll();
+
+if(!$fetchedData){
+    echo "Nothing to fetch";
+}else{
+
+
+
+}
