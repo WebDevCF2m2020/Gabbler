@@ -32,6 +32,11 @@ $twig = new Environment($loader, ['debug' => true]);
 // Activated debug
 $twig->addExtension(new DebugExtension());
 
+
+// Joint Managers
+$userManager = new UserManager($DB);
+
+
 // IF THE USER IS CONNECTED
 if (isset($_SESSION['session_id']) && $_SESSION['session_id'] === session_id()) {
 
