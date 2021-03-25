@@ -1,6 +1,6 @@
 <?php 
 
-//UserRight manual testing phase:
+//User manual testing phase:
 
 //loading dependencies!
 require_once "../../config/config.php";
@@ -15,11 +15,11 @@ spl_autoload_register(
 //PDO data base connection:
 $DB = MyPDO::getInstance(DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";port=" . DB_PORT . ";charset=" . DB_CHARSET, DB_USER, DB_PASSWORD, ENV_DEV);
 
-//Instantiating UserRightManager class:
-$userRight = new UserRightManager($DB);
+//Instantiating UserManager class:
+$user = new UserManager($DB);
 
 //Sending query:
-$fetchedData = $userRight->selectAll();
+$fetchedData = $user->selectAll();
 
 //Checking results:
 if(empty($fetchedData)){
@@ -27,12 +27,16 @@ if(empty($fetchedData)){
 }else{
 
     foreach ($fetchedData as $value){
-        //$userRightObject will equal a new object:
-        $userRightObject = new UserRight($value);
-        echo "<h3>{$userRightObject->getIdUserRight()}</h3>";
-        echo "<h3>{$userRightObject->getDateAuthorizedUserRight()}</h3>";
-        echo "<h3>{$userRightObject->getFkeyStatusId()}</h3>";
-        echo "<h3>{$userRightObject->getFkeyUserId()}</h3>";
+        //$userObject will equal a new object:
+        $userObject = new User($value);
+        echo "<h3>{$userObject->getIdUser()}</h3>";
+        echo "<h3>{$userObject->getNicknameUser()}</h3>";
+        echo "<h3>{$userObject->getPwdUser()}</h3>";
+        echo "<h3>{$userObject->getMailUser()}</h3>";
+        echo "<h3>{$userObject->getSignupDateUser()}</h3>";
+        echo "<h3>{$userObject->getColorUser()}</h3>";
+        echo "<h3>{$userObject->getConfirmationKeyUser()}</h3>";
+        echo "<h3>{$userObject->getValidationStatusKey()}</h3>";
     }
     
 }
