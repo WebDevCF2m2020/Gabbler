@@ -14,4 +14,9 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
         // else an empty array
         return [];
     }
+    
+    // checks the user's connection in the DB and retrieves the necessary parameters to create the session
+    public function signIn(User $user):array {
+        
+    }
 }
