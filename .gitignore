@@ -14,6 +14,9 @@ config/config.php.dev
 # Workbench backup
 data/db/db_gabbler.mwb.bak
 
+# OpenOffice backup
+data/features/.~lock.listeCrud.odt#
+
 # public .htaccess
 public/.htaccess
 

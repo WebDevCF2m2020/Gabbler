@@ -24,4 +24,9 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface 
         
     }
 
+    // Create the session with the values coming from signIn ()
+    protected function createSession(array $datas): bool {
+        
+    }
+
 }
