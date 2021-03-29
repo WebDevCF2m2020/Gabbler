@@ -25,9 +25,6 @@ __TO DO LIST__ :
 
 [trello.com](https://trello.com/b/NhaVQegb/gabbler-2021)
 
-__Graphic charter__ :
-
-![Alt text](data/charte/Maquette%20XD/white%20mode/Rooms.png)
 
 __Database__ :
 
