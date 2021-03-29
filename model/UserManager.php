@@ -17,6 +17,7 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface 
     // Checks the user's connection in the DB and retrieves the necessary parameters to create the session
     public function signIn(User $user): array {
 
+        // call $this->verifyPassword()
         // call $this->createSession()
     }
 
@@ -28,7 +29,7 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface 
     // Allows you to create a new user, if inserted, an email must be sent to him with a confirmation link containing his id and his unique key
     public function signUp(User $user): array {
 
-
+        // call $this->cryptPassword()
         // call $this->signUpValidationKey()
     }
 
@@ -44,6 +45,16 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface 
 
     // Allows you to create a random character string of up to 60 characters
     protected function signUpValidationKey(): string {
+        
+    }
+    
+    // crypt password with password_hash
+    protected function cryptPassword(string $pwd): string {
+        
+    }
+    
+    // verify password crypted (password_hash) with password_verify
+    protected function verifyPassword(string $cryptPwd, string $pwd): bool {
         
     }
 
