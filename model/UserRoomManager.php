@@ -1,9 +1,8 @@
 <?php
-
 /**
- * Class OnlineManager
+ * Class UserRoomManager
  */
-class OnlineManager extends ManagerTableAbstract implements ManagerTableInterface {
+class UserRoomManager extends ManagerTableAbstract implements ManagerTableInterface {
 
     // Selection of every input of the online table
     public function selectAll(): array {
