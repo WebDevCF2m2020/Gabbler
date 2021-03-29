@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Class OnlineManager
+ * Class UserRoomManager
  */
 class UserRoomManager extends ManagerTableAbstract implements ManagerTableInterface {
 
