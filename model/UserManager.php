@@ -47,12 +47,12 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface 
     protected function signUpValidationKey(): string {
         
     }
-    
+
     // crypt password with password_hash
     protected function cryptPassword(string $pwd): string {
         
     }
-    
+
     // verify password crypted (password_hash) with password_verify
     protected function verifyPassword(string $cryptPwd, string $pwd): bool {
         
