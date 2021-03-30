@@ -10,7 +10,7 @@
 
 //the second block to override is the center within the content:
 {% block center %}
-    <h2>Log in</h2>
+    <h2>Log in form</h2>
 
         <form class = "container" method = "POST">
         
@@ -33,4 +33,30 @@
             </div> 
 
         </form>
+
+//Since there is no desing to both forms have the same components!! No worries, macros will make leife easier later.
+    <h2>Sign up form</h2>
+
+        <form class = "container" method = "POST">
+        
+            <div class="row mb-3">
+                {{formComponent.input("text","name","Full name","name")}}
+            </div>
+            <div class="row mb-3">
+                {{formComponent.input("password","password","Password","password")}}
+            </div>
+            <div class="row mb-3">
+                {{formComponent.input("password","password2","Confirm your password","password2")}}
+            </div>
+            <div class="row mb-3">
+                {{formComponent.input("email","email","Mail address","mailaddress")}}
+            </div>
+        
+            <div class="row">
+                <button type="submit" name="submit" id="button">Submit</button> 
+            </div> 
+
+        </form>
+
+
 {% endblock %}
