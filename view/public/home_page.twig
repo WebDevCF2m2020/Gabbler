@@ -1,8 +1,12 @@
+//Calling the parent template:
 {% extends "template_gabbler.html.twig" %}
 
-{% block header %}<h2>Create your account</h2><hr>{% endblock %}
+//The first block to override is the header:
+{% block header %}<h2>Here you will log in</h2><hr>{% endblock %}
 
-{% block content %}
-       
+//the second block to override is the center within the content:
+{% block center %}
+    <h2>Log in</h2>
+
+ 
 {% endblock %}
-
