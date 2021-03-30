@@ -1,28 +1,3 @@
-{{% macro nameInput(type,name,label,placeholder,id) %}}
-    <div class="row">
-        <input type="text" name="name" placeholder="Full name" id="name">
-    </div>
-{{% endmacro%}}
-
-{{% macro passwordInput(type,name,label,placeholder,id) %}}
-    <div class="row">
-        <input type="password" name="password" placeholder="Password" id="password">
-    </div>
-{{% endmacro%}}
-
-{{% macro password2Input(type,name,label,placeholder,id) %}}
-    <div class="row">
-        <input type="password" name="password2" placeholder="Confirm your password" id="password2">
-    </div>
-{{% endmacro%}}
-
-{{% macro mailInput(type,name,label,placeholder,id) %}}
-    <div class="row">
-        <input type="email" name="password" placeholder="Mail address" id="Mailaddress">
-    </div>
-{{% endmacro%}}
-
-
 {{% macro nameInput(type,name,placeholder,id) %}}
     <div class="row mb-3">
         <input type="{{type}}" name="{{name}}" placeholder="{{placeholder}}" id={{id}}>
