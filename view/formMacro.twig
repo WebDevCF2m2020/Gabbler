@@ -1,14 +1,24 @@
-{{% macro nameInput(name,label) %}}
+{{% macro nameInput(type,name,label,placeholder,id) %}}
     <div class="row">
-        <label for="name" class="col-form-label">Full name</label>
         <input type="text" name="name" placeholder="Full name" id="name">
     </div>
 {{% endmacro%}}
 
-{{% macro passwordInput(name,label) %}}
+{{% macro passwordInput(type,name,label,placeholder,id) %}}
     <div class="row">
-        <label for="password" class="col-form-label">Password</label>
         <input type="password" name="password" placeholder="Password" id="password">
+    </div>
+{{% endmacro%}}
+
+{{% macro password2Input(type,name,label,placeholder,id) %}}
+    <div class="row">
+        <input type="password" name="password2" placeholder="Confirm your password" id="password2">
+    </div>
+{{% endmacro%}}
+
+{{% macro mailInput(type,name,label,placeholder,id) %}}
+    <div class="row">
+        <input type="password" name="password" placeholder="Mail address" id="ailaddress">
     </div>
 {{% endmacro%}}
 
