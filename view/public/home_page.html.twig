@@ -1,15 +1,16 @@
-//Calling the parent template:
+{# Calling the parent template: #}
 {% extends "template_gabbler.html.twig" %}
 
-//Importing macro/macros:
+{#Importing macro/macros: #}
 {% import "formMacro.twig" as formComponent %}
 
 
-//The first block to override is the header:
+{#The first block to override is the header: #}
 {% block header %}<h2>Here you will log in</h2><hr>{% endblock %}
 
-//the second block to override is the center within the content:
+{#the second block to override is the center within the content: #}
 {% block center %}
+    
     <h2>Login form</h2>
 
         <form class = "container" method = "POST">
@@ -27,7 +28,7 @@
 
         </form>
 
-//Since there is no desing to base work on, both forms have the same components!! No worries, macros will make leife easier later.
+{#Since there is no desing to base work on, both forms have the same components!! No worries, macros will make leife easier later. #}
     <h2>Sign up form</h2>
 
         <form class = "container" method = "POST">

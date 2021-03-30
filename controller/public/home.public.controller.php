@@ -23,4 +23,4 @@ if(isset($_GET['registration'])){
 }
 
 // test Twig with template_base.html.twig
-echo $twig->render("template_gabbler.html.twig",["connect"=>"Public"]);
+echo $twig->render("public/home_page.html.twig",["connect"=>"Public"]);
