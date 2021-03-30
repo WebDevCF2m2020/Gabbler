@@ -18,8 +18,31 @@
 
 {{% macro mailInput(type,name,label,placeholder,id) %}}
     <div class="row">
-        <input type="password" name="password" placeholder="Mail address" id="ailaddress">
+        <input type="email" name="password" placeholder="Mail address" id="Mailaddress">
     </div>
 {{% endmacro%}}
 
 
+{{% macro nameInput(type,name,placeholder,id) %}}
+    <div class="row mb-3">
+        <input type="{{type}}" name="{{name}}" placeholder="{{placeholder}}" id={{id}}>
+    </div>
+{{% endmacro%}}
+
+{{% macro passwordInput(type,name,label,placeholder,id) %}}
+    <div class="row mb-3">
+        <input type="{{type}}" name="{{name}}" placeholder="{{placeholder}}" id={{id}}>
+    </div>
+{{% endmacro%}}
+
+{{% macro password2Input(type,name,label,placeholder,id) %}}
+    <div class="row mb-3">
+        <input type="{{type}}" name="{{name}}" placeholder="{{placeholder}}" id={{id}}>
+    </div>
+{{% endmacro%}}
+
+{{% macro mailInput(type,name,label,placeholder,id) %}}
+    <div class="row mb-3">
+        <input type="{{type}}" name="{{name}}" placeholder="{{placeholder}}" id={{id}}>
+    </div>
+{{% endmacro%}}

@@ -2,7 +2,7 @@
 {% extends "template_gabbler.html.twig" %}
 
 //Importing macro/macros:
-{% import "formMacro.twig" %}
+{% import "formMacro.twig" formComponent %}
 
 
 //The first block to override is the header:
@@ -12,9 +12,9 @@
 {% block center %}
     <h2>Log in</h2>
         <form class = "container" method = "POST">
-    
-    
-    
-    
+            {{formComponent.nameInput(type,name,label,placeholder,id)}}
+            {{formComponent.passwordInput(type,name,label,placeholder,id)}}
+            {{formComponent.password2Input(type,name,label,placeholder,id)}}
+            {{formComponent.mailInput(type,name,label,placeholder,id)}}
         </form>
 {% endblock %}
