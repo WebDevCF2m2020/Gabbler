@@ -12,9 +12,9 @@
 {% block center %}
     <h2>Log in</h2>
         <form class = "container" method = "POST">
-            {{formComponent.nameInput("text","name","Full name","name")}}
-            {{formComponent.passwordInput("password","password","Password","password")}}
-            {{formComponent.password2Input("password","password2","Confirm your password","password2")}}
-            {{formComponent.mailInput("email","email","Mail address","mailaddress")}}
+            {{formComponent.input("text","name","Full name","name")}}
+            {{formComponent.input("password","password","Password","password")}}
+            {{formComponent.input("password","password2","Confirm your password","password2")}}
+            {{formComponent.input("email","email","Mail address","mailaddress")}}
         </form>
 {% endblock %}
