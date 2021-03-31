@@ -46,7 +46,7 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     }
     // Disconnecting from the session
 
-    public static function signOut(User $user): bool {
+    public static function signOut(): bool {
 
         $_SESSION = array();
 
