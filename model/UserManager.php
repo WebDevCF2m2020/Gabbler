@@ -44,7 +44,7 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface 
 
     // Allows you to create a random character string of up to 60 characters
     protected function signUpValidationKey(): string {
-        
+        $signUpValidationKey = md5(microtime(TRUE) * 100000);
     }
 
 }
