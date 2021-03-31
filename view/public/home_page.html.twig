@@ -1,0 +1,60 @@
+{# Calling the parent template: #}
+{% extends "template_gabbler.html.twig" %}
+
+{#Importing macro/macros: #}
+{% import "formMacro.twig" as formComponent %}
+
+
+{#The first block to override is the header: #}
+{% block header %}<h2>Here you will log in</h2><hr>{% endblock %}
+
+{#the second block to override is the center within the content: #}
+{% block center %}
+    
+    <h2>Login form</h2>
+
+        <form class = "container" method = "POST">
+        
+            <div class="row mb-3">
+                {{formComponent.input("text","name","Full name","name")}}
+            </div>
+            <div class="row mb-3">
+                {{formComponent.input("password","password","Password","password")}}
+            </div>
+
+            <div class="row">
+                <button type="submit" name="signin" id="button">Login</button> 
+            </div> 
+
+        </form>
+
+{#Since there is no desing to base work on, both forms have the same components!! No worries, macros will make leife easier later. #}
+    <h2>Sign up form</h2>
+
+        <form class = "container" method = "POST">
+        
+            <div class="row mb-3">
+                {{formComponent.input("text","name","Full name","name")}}
+            </div>
+            <div class="row mb-3">
+                {{formComponent.input("password","password","Password","password")}}
+            </div>
+            <div class="row mb-3">
+                {{formComponent.input("password","password2","Confirm your password","password2")}}
+            </div>
+            <div class="row mb-3">
+                {{formComponent.input("email","email","Mail address","mailaddress")}}
+            </div>
+        
+            <div class="row">
+                <button type="submit" name="signup" id="button">Sign up</button> 
+            </div> 
+
+        </form>
+
+        <div class="row">
+            <a href="?help" name="help">Need help?</a> 
+        </div> 
+
+
+{% endblock %}
