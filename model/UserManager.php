@@ -105,11 +105,11 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     }
 
     // Allows you to create a random character string of up to 60 characters
-    protected function signUpValidationKey(): string
-    {
 
+    protected function signUpValidationKey(): string {
+        return md5(microtime(TRUE) * 100000);
     }
-
+      
     // crypt password with password_hash
     protected function cryptPassword(string $pwd): string {
         return password_hash($pwd,PASSWORD_DEFAULT);
@@ -118,6 +118,7 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     // verify password crypted (password_hash) with password_verify
     protected function verifyPassword(string $cryptPwd, string $pwd): bool {
         return password_verify($pwd,$cryptPwd);
+
 
     }
 
