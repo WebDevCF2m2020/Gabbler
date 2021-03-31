@@ -25,8 +25,22 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     }
 
     // Disconnecting from the session
-    public static function signOut(User $user): bool
-    {
+
+    public static function signOut(User $user): bool {
+
+        $_SESSION = array();
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        session_destroy();
+
+        return true;
 
     }
 
@@ -52,8 +66,13 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     }
 
     // When clicking from the mailbox with a confirmation link containing its nickname_user and its unique key, the validation field is updated by mail
-    public function registrationUpdateUser(string $userName, string $validateKey): bool
-    {
+
+    public function registrationUpdateUser(string $nickname, string $confirmationKey): bool {
+        $query = "UPDATE user SET validation_status_user = 1 WHERE nickname_user = ? AND confirmation_key_user = ?;";
+        $prepare = $this->db->prepare($query);
+        $prepare->bindValue(1,$nickname, PDO::PARAM_STR);
+        $prepare->bindValue(2,$confirmationKey,PDO::PARAM_STR);
+        return $prepare->execute();
 
     }
 
@@ -70,14 +89,14 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     }
 
     // crypt password with password_hash
-    protected function cryptPassword(string $pwd): string
-    {
 
+    protected function cryptPassword(string $pwd): string {
+        return password_hash($pwd,PASSWORD_DEFAULT);
     }
 
     // verify password crypted (password_hash) with password_verify
-    protected function verifyPassword(string $cryptPwd, string $pwd): bool
-    {
+    protected function verifyPassword(string $cryptPwd, string $pwd): bool {
+        return password_verify($pwd,$cryptPwd);
 
     }
 
