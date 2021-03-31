@@ -101,7 +101,10 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     // Create the session with the values coming from signIn ()
     protected function createSession(array $datas): bool
     {
-
+        unset($datas['pwd_user']);
+        $_SESSION = $datas;
+        $_SESSION['session_id'] = session_id();
+        return true;
     }
 
     // Allows you to create a random character string of up to 60 characters
