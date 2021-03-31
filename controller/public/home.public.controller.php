@@ -16,10 +16,19 @@ if(isset($_POST['signup'])){
         // WARNING TO DISPLAY IN HOME_PAGE.HTML.TWIG
         $warning = "The passwords do not match";
     } else {
-        $userInstance = new User($_POST);
-        
-    }
+        // CHECK IF THE NICKNAME OR EMAIL ARE ALREADY USED
+        $verifyExistence = $userManager->verifyExistence($_POST['nickname_user'], $_POST['mail_user']);
+        // IF ALREADY USED
+        if ($verifyExistence >= 1){
+            // WARNING TO DISPLAY IN HOME_PAGE.HTML.TWIG
+            $warning = "This nickname and/or email address are already used !";
+        // IF NOT USED
+        } else if ($verifyExistence === 0){
+            
+        }
+        //$userInstance = new User($_POST);
 
+    }
     // $userManager -> insert -> mail
     
 }

@@ -125,4 +125,14 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
 
     }
 
+    // verify if the nickname or email is already used
+    public function verifyExistence(string $nickname, string $email) : int {
+        $query = "SELECT * FROM user WHERE nickname_user = ? OR mail_user = ?;";
+        $prepare = $this->db->prepare($query);
+        $prepare->bindValue(1,$nickname, PDO::PARAM_STR);
+        $prepare->bindValue(2,$email,PDO::PARAM_STR);
+        $prepare->execute();
+        return $prepare->rowCount();
+    }
+
 }
