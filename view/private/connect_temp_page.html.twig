@@ -1,0 +1,8 @@
+{% extends "template_gabbler.html.twig" %}
+
+{% block header %}<h1>Connected Test</h1><hr>{% endblock %}
+
+{% block content %}
+        <h1>Connected Test</h1>
+        <pre>{{ dump(session) }}</pre>
+    {% endblock %}
