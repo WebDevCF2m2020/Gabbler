@@ -24,7 +24,7 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
 	      LEFT JOIN role r ON r.id_role = h.role_has_user_id_role
 	      WHERE u.nickname_user = ? ;";
         $req = $this->db->prepare($query);
-        $req->bindValue(1,$user-getNicknameUser(),PDO::PARAM_STR);
+        $req->bindValue(1,$user->getNicknameUser(),PDO::PARAM_STR);
         try{
             $req->execute();
             if($req->rowCount()){
