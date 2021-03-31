@@ -34,8 +34,12 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface 
     }
 
     // When clicking from the mailbox with a confirmation link containing its nickname_user and its unique key, the validation field is updated by mail
-    public function registrationUpdateUser(string $userName, string $validateKey): bool {
-        
+    public function registrationUpdateUser(string $nickname, string $confirmationKey): bool {
+        $query = "UPDATE user SET validation_status_user = 1 WHERE nickname_user = ? AND confirmation_key_user = ?;";
+        $prepare = $this->db->prepare($query);
+        $prepare->bindValue(1,$nickname, PDO::PARAM_STR);
+        $prepare->bindValue(2,$confirmationKey,PDO::PARAM_STR);
+        return $prepare->execute();
     }
 
     // Create the session with the values coming from signIn ()
