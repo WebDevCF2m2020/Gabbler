@@ -55,7 +55,7 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface 
 
     // verify password crypted (password_hash) with password_verify
     protected function verifyPassword(string $cryptPwd, string $pwd): bool {
-        
+        return password_verify($pwd,$cryptPwd);
     }
 
 }
