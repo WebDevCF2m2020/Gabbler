@@ -32,6 +32,8 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
                 if($this->verifyPassword($connectUser['pwd_user'], $user->getPwdUser())){
                     $this->createSession($connectUser);
                     return true;
+                }else{
+                    return false;
                 }
             }else{
                 return false;
@@ -67,6 +69,7 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     // Allows you to create a new user, if inserted, an email must be sent to him with a confirmation link containing his id and his unique key
     public function signUp(User $user): bool
     {
+        var_dump($user);
         $cryptPassword = $this->cryptPassword($user->getPwdUser());
         $signUpValidationKey = $this->signUpValidationKey();
 
