@@ -85,20 +85,44 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     {
         $cryptPassword = $this->cryptPassword($user->getPwdUser());
         $signUpValidationKey = $this->signUpValidationKey();
+        $imgRandom = rand(1, 10);
 
-        $sql = "INSERT INTO user (nickname_user, pwd_user, mail_user, color_user, confirmation_key_user) VALUES (?,?,?,?,?)";
-        $prepare = $this->db->prepare($sql);
+        // USER
+        $sqlUser = "INSERT INTO user (nickname_user, pwd_user, mail_user, color_user, confirmation_key_user) VALUES (?,?,?,?,?)";
+        $prepareUser = $this->db->prepare($sqlUser);
+        // USER ROLE
+        $sqlRoleUser = "INSERT INTO `role_has_user` (role_has_user_id_role, role_has_user_id_user) VALUES (? , ? )";
+        $prepareRoleUser = $this->db->prepare($sqlRoleUser);
+        // IMG
+        $sqlImgUser =  "INSERT INTO `user_has_img` (user_has_img_id_user, user_has_img_id_img) VALUES ( ? , ? )";
+        $prepareImgUser = $this->db->prepare($sqlImgUser);
+        // USER RIGHT
+        $sqlRightUser ="INSERT INTO `user_right` (fkey_status_id, fkey_user_id) VALUES (? , ? )";
+        $prepareRightUser = $this->db->prepare($sqlRightUser);
         try {
-            $prepare->execute([
+            $this->db->beginTransaction();
+
+            $prepareUser->execute([
                 $user->getNicknameUser(),
                 $cryptPassword,
                 $user->getMailUser(),
                 '{"background":"#f6f6f6","color":"#505352"}',
                 $signUpValidationKey
             ]);
+
+            $idUser = $this->db->lastInsertId();
+
+            $prepareRoleUser->execute([3, $idUser]);
+
+            $prepareImgUser->execute([$idUser, $imgRandom]);
+
+            $prepareRightUser->execute([4, $idUser]);
+
+            $this->db->commit();
             return true;
         } catch (Exception $e) {
             trigger_error($e->getMessage());
+            $this->db->rollBack();
             return false;
         }
     }
