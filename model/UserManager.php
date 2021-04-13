@@ -17,21 +17,24 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     }
 
     // Checks the user's connection in the DB and retrieves the necessary parameters to create the session
-    public function signIn(User $user): array {
-        $query = "SELECT u.`nickname_user`,u.`pwd_user` 
+    public function signIn(User $user): bool {
+        $query = "SELECT u.*, r.*
 	      FROM user u
 	      LEFT JOIN role_has_user h ON u.id_user = h.role_has_user_id_user
 	      LEFT JOIN role r ON r.id_role = h.role_has_user_id_role
-	      WHERE nickname_user = ? AND pwd_user = ? ;";
+	      WHERE u.nickname_user = ? ;";
         $req = $this->db->prepare($query);
-        $req->bindValue(1,$user-getNicknameUser(),PDO::PARAM_STR);
-        $req->bindValue(2,$user->getPwdUser(),PDO::PARAM_STR);
+        $req->bindValue(1,$user->getNicknameUser(),PDO::PARAM_STR);
         try{
             $req->execute();
             if($req->rowCount()){
-                $_SESSION = $req->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['sessionId'] = session_id();
-                return true;
+                $connectUser = $req->fetch(PDO::FETCH_ASSOC);
+                if($this->verifyPassword($connectUser['pwd_user'], $user->getPwdUser())){
+                    $this->createSession($connectUser);
+                    return true;
+                }else{
+                    return false;
+                }
             }else{
                 return false;
             }
@@ -45,7 +48,7 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     }
     // Disconnecting from the session
 
-    public static function signOut(User $user): bool {
+    public static function signOut(): bool {
 
         $_SESSION = array();
 
@@ -64,8 +67,9 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     }
 
     // Allows you to create a new user, if inserted, an email must be sent to him with a confirmation link containing his id and his unique key
-    public function signUp(User $user): array
+    public function signUp(User $user): bool
     {
+        var_dump($user);
         $cryptPassword = $this->cryptPassword($user->getPwdUser());
         $signUpValidationKey = $this->signUpValidationKey();
 
@@ -79,15 +83,17 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
                 '{"background":"#f6f6f6","color":"#505352"}',
                 $signUpValidationKey
             ]);
+            return true;
         } catch (Exception $e) {
             trigger_error($e->getMessage());
+            return false;
         }
     }
 
     // When clicking from the mailbox with a confirmation link containing its nickname_user and its unique key, the validation field is updated by mail
 
     public function registrationUpdateUser(string $nickname, string $confirmationKey): bool {
-        $query = "UPDATE user SET validation_status_user = 1 WHERE nickname_user = ? AND confirmation_key_user = ?;";
+        $query = "UPDATE user SET validation_status_user = 2 WHERE nickname_user = ? AND confirmation_key_user = ?;";
         $prepare = $this->db->prepare($query);
         $prepare->bindValue(1,$nickname, PDO::PARAM_STR);
         $prepare->bindValue(2,$confirmationKey,PDO::PARAM_STR);
@@ -98,17 +104,19 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     // Create the session with the values coming from signIn ()
     protected function createSession(array $datas): bool
     {
-
+        unset($datas['pwd_user']);
+        $_SESSION = $datas;
+        $_SESSION['session_id'] = session_id();
+        return true;
     }
 
     // Allows you to create a random character string of up to 60 characters
-    protected function signUpValidationKey(): string
-    {
 
+    protected function signUpValidationKey(): string {
+        return md5(microtime(TRUE) * 100000);
     }
-
+      
     // crypt password with password_hash
-
     protected function cryptPassword(string $pwd): string {
         return password_hash($pwd,PASSWORD_DEFAULT);
     }
@@ -116,6 +124,7 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
     // verify password crypted (password_hash) with password_verify
     protected function verifyPassword(string $cryptPwd, string $pwd): bool {
         return password_verify($pwd,$cryptPwd);
+
 
     }
 

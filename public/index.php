@@ -32,9 +32,21 @@ $twig = new Environment($loader, ['debug' => true]);
 // Activated debug
 $twig->addExtension(new DebugExtension());
 
+//SwiftMail
+$transport = (new Swift_SmtpTransport(MAIL_SMTP, MAIL_PORT, MAIL_ENCRYPTION))
+        ->setUsername(MAIL_ADDRESS)
+        ->setPassword(MAIL_PWD)
+        ->setStreamOptions(array('ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )));
+
 
 // Joint Managers
 $userManager = new UserManager($DB);
+$helpManager = new HelpManager($DB); 
+
 
 
 // IF THE USER IS CONNECTED

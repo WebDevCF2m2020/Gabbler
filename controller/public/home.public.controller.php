@@ -14,7 +14,10 @@ if(isset($_POST['signup'])){
 // signin
 if(isset($_POST['signin'])){
     $userInstance = new User($_POST);
-    // $userManager -> connect -> session -> redirect
+    if($userManager->signIn($userInstance)) {
+        header("Location: ./");
+        exit();
+    }
 }
 
 // confirm with mail
