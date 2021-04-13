@@ -63,11 +63,6 @@ class ReportedManager extends ManagerTableAbstract implements ManagerTableInterf
         return $prepare->execute();
     }
 
-    public function deleteReported(int $idReported): bool
-    {
-
-    }
-
     public function mailToAdmin(Reported $datas, string $mail): bool
     {
         //TODO
