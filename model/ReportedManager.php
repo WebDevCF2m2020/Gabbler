@@ -19,9 +19,22 @@ class ReportedManager extends ManagerTableAbstract implements ManagerTableInterf
         return [];
     }
 
-    public function viewReported(int $idReported): array
+    public function viewReportedById(int $idReported): array
     {
+        $sql = "SELECT * FROM reported WHERE id_reported = ?";
+        $prepare = $this->db->prepare($sql);
 
+        try {
+            $prepare->execute([$idReported]);
+            if ($prepare->rowCount()) {
+                return $prepare->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return [];
+            }
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return [];
+        }
     }
 
     public function newReported(Reported $datas): bool
@@ -41,7 +54,7 @@ class ReportedManager extends ManagerTableAbstract implements ManagerTableInterf
 
     public function mailToAdmin(Reported $datas, string $mail): bool
     {
-
+        //TODO
     }
 
 }
