@@ -16,6 +16,20 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
         return [];
     }
 
+    // To fetch the datas for the sign up mail
+    public function selectUserDataSignUp(string $email): array {
+        $sql="SELECT nickname_user, confirmation_key_user FROM user WHERE mail_user = ? ;
+        ";
+        $request = $this->db->prepare($sql);
+        $request->execute([$email]);
+        // if there is a result
+        if($request->rowCount()){
+            return $request->fetch(PDO::FETCH_ASSOC);
+        }
+        // if not
+        return [];
+    }
+
     // Checks the user's connection in the DB and retrieves the necessary parameters to create the session
     public function signIn(User $user): bool {
         $query = "SELECT u.*, r.*
@@ -32,6 +46,8 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
                 if($this->verifyPassword($connectUser['pwd_user'], $user->getPwdUser())){
                     $this->createSession($connectUser);
                     return true;
+                } else {
+                    return false;
                 }
             }else{
                 return false;
@@ -133,6 +149,18 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
         $prepare->bindValue(2,$email,PDO::PARAM_STR);
         $prepare->execute();
         return $prepare->rowCount();
+    }
+
+    // Select on the new user for SwiftMailer
+    public function selectConfirmationKey(string $nickname) : array {
+        $query = "SELECT confirmation_key_user FROM user WHERE nickname_user = ?;";
+        $prepare = $this->db->prepare($query);
+        $prepare->bindValue(1,$nickname, PDO::PARAM_STR);
+        $prepare->execute();
+        if($prepare->rowCount()){
+            return $prepare->fetch(PDO::FETCH_ASSOC);
+        }
+        return [];
     }
 
 }
