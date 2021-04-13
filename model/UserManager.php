@@ -30,6 +30,35 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
         return [];
     }
 
+    public function signInRightVerification(User $user): string {
+        $sql = "SELECT user.nickname_user, user.validation_status_user, user_right.date_authorized_user_right, status.id_status
+	      FROM user
+	      LEFT JOIN user_right ON user.id_user = user_right.fkey_user_id
+	      LEFT JOIN status ON status.id_status = user_right.fkey_status_id
+	      WHERE user.nickname_user = ? ;";
+        $req = $this->db->prepare($sql);
+        $req->bindValue(1,$user->getNicknameUser(),PDO::PARAM_STR);
+        try{
+            $req->execute();
+            if($req->rowCount()){
+                $userInfo = $req->fetch(PDO::FETCH_ASSOC);
+                if ($userInfo['validation_status_user'] == 1 ){
+                    return "You will have to confirm your email address before trying to sign in";
+                } else if ($userInfo['id_status'] == 3){
+                    return "You have been banned.";
+                } else if ($userInfo['id_status'] == 2 && $userInfo['date_authorized_user_right'] > date('Y/m/d G:i:s',time())){
+                    return "You're suspended";
+                } else {
+                    return "";
+                }
+            }else{
+                return "Something went wrong, please retry";
+            }
+        }catch (PDOException $e){
+            return $e->getMessage();
+        }
+    }
+
     // Checks the user's connection in the DB and retrieves the necessary parameters to create the session
     public function signIn(User $user): bool {
         $query = "SELECT u.*, r.*

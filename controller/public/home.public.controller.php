@@ -116,9 +116,16 @@ if(isset($_POST['signup'])){
 // signin
 if(isset($_POST['signin'])){
     $userInstance = new User($_POST);
-    if($userManager->signIn($userInstance)) {
-        header("Location: ./");
-        exit();
+
+    $verifyRights = $userManager->signInRightVerification($userInstance);
+
+    if ($verifyRights === ''){
+        if($userManager->signIn($userInstance)) {
+            header("Location: ./");
+            exit();
+        }
+    } else {
+        $warning = $verifyRights;
     }
 }
 
@@ -141,6 +148,5 @@ if(isset($_GET['registration'])){
     }
 }
 var_dump($_POST);
-echo'<br>'.$warning;
 // test Twig with template_base.html.twig
 echo $twig->render("public/home_page.html.twig",["connect"=>"Public"]);
