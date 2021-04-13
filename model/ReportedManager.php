@@ -19,13 +19,16 @@ class ReportedManager extends ManagerTableAbstract implements ManagerTableInterf
         return [];
     }
 
+    // Select a reported message by its id
     public function viewReportedById(int $idReported): array
     {
         $sql = "SELECT * FROM reported WHERE id_reported = ?";
         $prepare = $this->db->prepare($sql);
 
+        // test if the request works
         try {
             $prepare->execute([$idReported]);
+            // The return when there is one result
             if ($prepare->rowCount()) {
                 return $prepare->fetch(PDO::FETCH_ASSOC);
             } else {
@@ -37,10 +40,13 @@ class ReportedManager extends ManagerTableAbstract implements ManagerTableInterf
         }
     }
 
+    // Create a new message report
     public function newReported(Reported $datas): bool
     {
         $sql = "INSERT INTO reported (inquiry_reported, processed_reported, fkey_category_id, fkey_message_id) VALUES (?,?,?,?)";
         $prepare = $this->db->prepare($sql);
+
+        // test if the request works
         try {
             $prepare->execute([
                 $datas->getInquiryReported(),
@@ -55,6 +61,7 @@ class ReportedManager extends ManagerTableAbstract implements ManagerTableInterf
         }
     }
 
+    // Updates if the report has been processed
     public function updateReported(Reported $data): bool
     {
         $query = "UPDATE reported SET processed_reported = 2 WHERE fkey_message_id = ?";
