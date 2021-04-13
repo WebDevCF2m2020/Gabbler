@@ -39,7 +39,20 @@ class ReportedManager extends ManagerTableAbstract implements ManagerTableInterf
 
     public function newReported(Reported $datas): bool
     {
-
+        $sql = "INSERT INTO reported (inquiry_reported, processed_reported, fkey_category_id, fkey_message_id) VALUES (?,?,?,?)";
+        $prepare = $this->db->prepare($sql);
+        try {
+            $prepare->execute([
+                $datas->getInquiryReported(),
+                1,
+                $datas->getFkeyCategoryId(),
+                $datas->getFkeyMessageId()
+            ]);
+            return true;
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }
     }
 
     public function updateReported(Reported $data): bool
