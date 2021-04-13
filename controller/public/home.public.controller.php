@@ -59,7 +59,7 @@ if(isset($_POST['signup'])){
                             <br>
                             <h3 style="color : #4B5259;">To activate your account, please click on link below, you will be able to sign in.</h3>
                             <div style="margin-bottom: 45px;">
-                                <a href="https://glabberdev.webdev-cf2m.be/index.php/?action=registration&for=' . urlencode($userMail['nickname_user']) . '&key=' . urlencode($userMail['confirmation_key_user']) . '" style="text-decoration: none; color: #E41537; font-weight: 300;">https://glabberdev.webdev-cf2m.be/index.php/?action=registration&for=' . urlencode($userMail['nickname_user']) . '&key=' . urlencode($userMail['confirmation_key_user']) . '</a>
+                                <a href="https://glabberdev.webdev-cf2m.be/index.php/?registration&for=' . urlencode($userMail['nickname_user']) . '&key=' . urlencode($userMail['confirmation_key_user']) . '" style="text-decoration: none; color: #E41537; font-weight: 300;">https://glabberdev.webdev-cf2m.be/index.php/?registration&for=' . urlencode($userMail['nickname_user']) . '&key=' . urlencode($userMail['confirmation_key_user']) . '</a>
                             </div>
                             <hr style="border-bottom: 2px solid #4B5259;">
                             <div>
@@ -124,9 +124,23 @@ if(isset($_POST['signin'])){
 
 // confirm with mail
 if(isset($_GET['registration'])){
-    
-    // $userManager -> confirmation mail
+
+    // UPDATE OF THE REGISTRATION STATUS
+    $registration = $userManager->registrationUpdateUser($_GET['for'], $_GET['key']);
+
+    if ($registration){
+
+        // WARNING TO DISPLAY IN HOME_PAGE.HTML.TWIG
+        $warning = "Welcome ".$_GET['for']." ! You can now sign in !";
+
+    } else {
+
+        // WARNING TO DISPLAY IN HOME_PAGE.HTML.TWIG
+        $warning = "Hello ".$_GET['for'].", something went wrong, please retry";
+
+    }
 }
 var_dump($_POST);
+echo'<br>'.$warning;
 // test Twig with template_base.html.twig
 echo $twig->render("public/home_page.html.twig",["connect"=>"Public"]);
