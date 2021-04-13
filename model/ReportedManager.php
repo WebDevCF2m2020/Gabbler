@@ -57,7 +57,10 @@ class ReportedManager extends ManagerTableAbstract implements ManagerTableInterf
 
     public function updateReported(Reported $data): bool
     {
-
+        $query = "UPDATE reported SET processed_reported = 2 WHERE fkey_message_id = ?";
+        $prepare = $this->db->prepare($query);
+        $prepare->bindValue(1, $data->getFkeyMessageId(), PDO::PARAM_STR);
+        return $prepare->execute();
     }
 
     public function deleteReported(int $idReported): bool
