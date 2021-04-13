@@ -4,6 +4,14 @@
  * Private Controller
  */
 
+// Disconnect
+if(isset($_GET['disconnect'])){
+    UserManager::signOut();
+    header("Location: ./");
+    exit();
+}
+
+// check the Role
 if (isset($_SESSION['id_role'])) {
     switch ($_SESSION['id_role']):
         case "1":
