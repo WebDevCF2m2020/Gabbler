@@ -4,7 +4,7 @@
  * Description of MailStaticManager
  *
  */
-class MailStaticManager {
+class MailStaticBody {
     
     static public function bodySignUp(array $datas): string
     {

@@ -51,9 +51,9 @@ if(isset($_POST['signup'])){
                 $imageMain = $messageSignUp->embed(Swift_Image::fromPath('img/mail-component/gabbler-logo.png'));
                 $imageFooter = $messageSignUp->embed(Swift_Image::fromPath('img/mail-component/g-small-letter.png'));
 
-                // BODY from MailStaticManager::bodySignUp
+                // BODY from MailStaticBody::bodySignUp
                 $messageSignUp->setBody(
-                    MailStaticManager::bodySignUp(["user"=>$userMail,"img1"=>$imageMain,"img2"=>$imageFooter]),
+                    MailStaticBody::bodySignUp(["user"=>$userMail,"img1"=>$imageMain,"img2"=>$imageFooter]),
                         'text/html'
                 );
 
