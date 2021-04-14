@@ -3,13 +3,14 @@
 {% block header %}<h1>Help Form</h1><hr>{% endblock %}
 
 {% block content %}
-        <h1>Contact Us</h1>
-       <form method="post" action="">
+    <h1>Contact Us</h1>
+    {{ warning }}
+    <form method="post" action="">
         <div>
             <label for="yourEmail">Your email</label>
             <br>
             <input  type="email" name="mail_help"
-                   placeholder="Enter your email" required>
+                    placeholder="Enter your email" required>
         </div>
         <div>
             <label for="yourName">Your name</label>
@@ -31,4 +32,4 @@
         <br>
         <button type="submit" name="sendHelp" value="send">send</button>
     </form>
-    {% endblock %}
+{% endblock %}
