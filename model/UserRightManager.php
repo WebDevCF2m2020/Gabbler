@@ -48,7 +48,22 @@ class UserRightManager extends ManagerTableAbstract implements ManagerTableInter
 
     public function viewUserRight(int $idUser): array
     {
+        $sql = "SELECT * FROM user_right WHERE id_user_right = ?";
+        $prepare = $this->db->prepare($sql);
 
+        // test if the request works
+        try {
+            $prepare->execute([$idUser]);
+            // The return when there is one result
+            if ($prepare->rowCount()) {
+                return $prepare->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return [];
+            }
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return [];
+        }
     }
 
     public function mailUserRight(User $user, UserRight $right): bool
