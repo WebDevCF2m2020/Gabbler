@@ -38,7 +38,12 @@ class UserRightManager extends ManagerTableAbstract implements ManagerTableInter
 
     public function updateUserRight(UserRight $datas): bool
     {
-
+        $query = "UPDATE user_right SET date_authorized_user_right = ?, fkey_status_id = ?  WHERE fkey_user_id = ?";
+        $prepare = $this->db->prepare($query);
+        $prepare->bindValue(1, $datas->getDateAuthorizedUserRight(), PDO::PARAM_STR);
+        $prepare->bindValue(2, $datas->getFkeyStatusId(), PDO::PARAM_INT);
+        $prepare->bindValue(3, $datas->getFkeyUserId(), PDO::PARAM_INT);
+        return $prepare->execute();
     }
 
     public function viewUserRight(int $idUser): array
