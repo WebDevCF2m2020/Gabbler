@@ -17,4 +17,16 @@ class OnlineManager extends ManagerTableAbstract implements ManagerTableInterfac
         return [];
     }
 
+
+   public function checkUsersOnline(): array{
+    $sql = "SELECT * FROM online WHERE connected_online = 2;";
+    $query = $this->db->query($sql);
+    // The return when there is one or more result(s)
+    if($query->rowCount()){
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+    // The return when there is no result
+    return [];
+   }
 }
+
