@@ -4,6 +4,8 @@
  * home.public.controller
  */
 
+$warning = "";
+
 // signup
 if(isset($_POST['signup'])){
 
@@ -59,7 +61,7 @@ if(isset($_POST['signup'])){
                             <br>
                             <h3 style="color : #4B5259;">To activate your account, please click on link below, you will be able to sign in.</h3>
                             <div style="margin-bottom: 45px;">
-                                <a href="https://glabber.webdev-cf2m.be/?registration&for=' . urlencode($userMail['nickname_user']) . '&key=' . urlencode($userMail['confirmation_key_user']) . '" style="text-decoration: none; color: #E41537; font-weight: 300;">https://glabber.webdev-cf2m.be/?registration&for=' . urlencode($userMail['nickname_user']) . '&key=' . urlencode($userMail['confirmation_key_user']) . '</a>
+                                <a href="https://gabbler.webdev-cf2m.be/?registration&for=' . urlencode($userMail['nickname_user']) . '&key=' . urlencode($userMail['confirmation_key_user']) . '" style="text-decoration: none; color: #E41537; font-weight: 300;">https://gabbler.webdev-cf2m.be/?registration&for=' . urlencode($userMail['nickname_user']) . '&key=' . urlencode($userMail['confirmation_key_user']) . '</a>
                             </div>
                             <hr style="border-bottom: 2px solid #4B5259;">
                             <div>
@@ -87,8 +89,8 @@ if(isset($_POST['signup'])){
                                     </p>
                             </div>
                             <div style="text-align: center;margin: 55px auto 10px; width: 100%">
-                                <p style="color : #4B5259;"> Do you need help ? Send us a message to <a href="https://glabber.webdev-cf2m.be/" style="text-decoration: none; color: #E41537; font-weight: 300;">gabbler.com/help</a><br>
-                                <a href="https://glabber.webdev-cf2m.be/?help" target="_blank" style="position: relative; top: 10px;"><img alt="Gabbler" src="'.$imageFooter.'" style="transform: scale(0.5); margin: 25px;"></a>
+                                <p style="color : #4B5259;"> Do you need help ? Send us a message to <a href="https://gabbler.webdev-cf2m.be/" style="text-decoration: none; color: #E41537; font-weight: 300;">gabbler.com/help</a><br>
+                                <a href="https://gabbler.webdev-cf2m.be/?help" target="_blank" style="position: relative; top: 10px;"><img alt="Gabbler" src="'.$imageFooter.'" style="transform: scale(0.5); margin: 25px;"></a>
                             </div>
                         </div>
                         <p style="font-size: 0.6em; letter-spacing: 1px; text-align: center; position: relative; bottom: 40px;">This is an automatic email, please do not reply</p>
@@ -147,6 +149,6 @@ if(isset($_GET['registration'])){
 
     }
 }
-var_dump($_POST);
+
 // test Twig with template_base.html.twig
-echo $twig->render("public/home_page.html.twig",["connect"=>"Public"]);
+echo $twig->render("public/home_page.html.twig",["connect"=>"Public","warning"=>$warning]);
