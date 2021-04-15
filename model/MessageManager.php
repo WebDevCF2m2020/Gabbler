@@ -23,8 +23,8 @@ class MessageManager extends ManagerTableAbstract implements ManagerTableInterfa
         $prepare->bindValue(1, $newDate->format("Y-m-d H:i:s"), PDO::PARAM_STR);
         $prepare->bindValue(2, $datas->getContentMessage(), PDO::PARAM_STR);
         $prepare->bindValue(3, 1, PDO::PARAM_INT);
-        $prepare->bindValue(4, $idUser, PDO::PARAM_STR);
-        $prepare->bindValue(5, $idRoom, PDO::PARAM_STR);
+        $prepare->bindValue(4, $idUser, PDO::PARAM_INT);
+        $prepare->bindValue(5, $idRoom, PDO::PARAM_INT);
         // execute
         try {
             $prepare->execute();
@@ -57,7 +57,9 @@ class MessageManager extends ManagerTableAbstract implements ManagerTableInterfa
 
     // Message by user
     public function viewMessageByUser(int $idUser): array {
-        $sql = "SELECT * FROM `message` WHERE fkey_user_id = ?";
+        $sql = "SELECT * FROM `message` 
+                 LEFT JOIN room ON message.fkey_room_id = room.id_room
+                 WHERE fkey_user_id = ?";
         $prepare = $this->db->prepare($sql);
 
         // test if the request works
@@ -73,5 +75,13 @@ class MessageManager extends ManagerTableAbstract implements ManagerTableInterfa
             trigger_error($e->getMessage());
             return [];
         }
+    }
+
+    // Update a message status
+    public function archivedMessage(int $idMessage): bool  {
+        $query = "UPDATE message SET archived_message = 2 WHERE id_message = ?";
+        $prepare = $this->db->prepare($query);
+        $prepare->bindValue(1,$idMessage, PDO::PARAM_INT);
+        return $prepare->execute();
     }
 }
