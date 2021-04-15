@@ -175,4 +175,22 @@ class Help extends MappingTableAbstract {
         $user_id = (int) $user_id;
         $this->user_id = $user_id;
     }
+    
+    /**
+     * $date_help's setter
+     * @param string $date_help
+     */
+    public function setDateHelp(string $date_help): void {
+         $verifyDate = new DateTime($date_help);
+        if (empty($date_help)) {
+            trigger_error('The Help date cannot be empty', E_USER_NOTICE);
+        } else if (!is_object($verifyDate)) {
+            trigger_error('The Help date is not valid', E_USER_NOTICE);
+        } else {
+            $this->date_help = $date_help;
+        }
+    }
+
+
+    
 }
