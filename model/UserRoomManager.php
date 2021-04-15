@@ -39,7 +39,7 @@ class UserRoomManager extends ManagerTableAbstract implements ManagerTableInterf
         $query = "UPDATE user_room SET favorite_user_room = 2 WHERE fkey_room_id = ? AND fkey_user_id = ? ;";
         $prepare = $this->db->prepare($query);
         $prepare->bindValue(1, $datas->getFkeyRoomId(), PDO::PARAM_STR);
-        $prepare->bindValue(1, $datas->getFkeyUserId(), PDO::PARAM_STR);
+        $prepare->bindValue(2, $datas->getFkeyUserId(), PDO::PARAM_STR);
         return $prepare->execute();
     }
 
@@ -48,13 +48,13 @@ class UserRoomManager extends ManagerTableAbstract implements ManagerTableInterf
         $query = "UPDATE user_room SET favorite_user_room = 1 WHERE fkey_room_id = ? AND fkey_user_id = ? ;";
         $prepare = $this->db->prepare($query);
         $prepare->bindValue(1, $datas->getFkeyRoomId(), PDO::PARAM_STR);
-        $prepare->bindValue(1, $datas->getFkeyUserId(), PDO::PARAM_STR);
+        $prepare->bindValue(2, $datas->getFkeyUserId(), PDO::PARAM_STR);
         return $prepare->execute();
     }
 
     // Select of one user favorite rooms
     public function viewUserRoom(int $idUser): array {
-        $sql = "SELECT * FROM user_room WHERE favorite_room_user = 2 AND fkey_user_id = ?";
+        $sql = "SELECT * FROM user_room WHERE favorite_user_room = 2 AND fkey_user_id = ?";
         $prepare = $this->db->prepare($sql);
 
         // execute
