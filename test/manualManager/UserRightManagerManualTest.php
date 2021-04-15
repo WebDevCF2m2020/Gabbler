@@ -36,3 +36,18 @@ if(empty($fetchedData)){
     }
     
 }
+
+// TEST method :
+
+var_dump($userRight->newUserRight(1));
+var_dump($userRight->viewUserRight(1));
+var_dump($userRight->verifyDateAuthorizedStatus(1));
+
+$newDate = new DateTime();
+$data = new UserRight([
+    'date_authorized_user_right' => $newDate->format("Y-m-d H:i:s"),
+    'fkey_status_id' => 2,
+    'fkey_user_id' => 1
+]);
+
+var_dump($userRight->updateUserRight($data));
