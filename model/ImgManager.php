@@ -39,9 +39,12 @@ class ImgManager extends ManagerTableAbstract implements ManagerTableInterface
         }
     }
 
-    public function updateImg(Img $datas): bool
+    public function updateImg(int $idImg): bool
     {
-
+        $query = "UPDATE img SET active_img = 2 WHERE id_img = ?";
+        $prepare = $this->db->prepare($query);
+        $prepare->bindValue(1, $idImg, PDO::PARAM_INT);
+        return $prepare->execute();
     }
 
     public function deleteImg(int $idImg): bool
