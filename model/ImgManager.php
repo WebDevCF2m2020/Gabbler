@@ -21,7 +21,22 @@ class ImgManager extends ManagerTableAbstract implements ManagerTableInterface
 
     public function newImg(Img $datas): bool
     {
+        $sql = "INSERT INTO img (name_img, active_img, date_img) VALUES (?,?,?)";
+        $prepare = $this->db->prepare($sql);
 
+
+        // test if the request works
+        try {
+            $prepare->execute([
+                $datas->getNameImg(),
+                $datas->getActiveImg(),
+                $datas->getDateImg(),
+            ]);
+            return true;
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }
     }
 
     public function updateImg(Img $datas): bool
