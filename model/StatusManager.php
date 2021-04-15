@@ -38,7 +38,11 @@ class StatusManager extends ManagerTableAbstract implements ManagerTableInterfac
 
     public function updateStatus(Status $datas): bool
     {
-
+        $query = "UPDATE status SET name_status = ? WHERE id_status = ?";
+        $prepare = $this->db->prepare($query);
+        $prepare->bindValue(1, $datas->getNameStatus(), PDO::PARAM_STR);
+        $prepare->bindValue(1, $datas->getIdStatus(), PDO::PARAM_STR);
+        return $prepare->execute();
     }
 
     public function deleteStatus(int $idStatus): bool
