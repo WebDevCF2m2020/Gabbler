@@ -324,6 +324,99 @@ CREATE INDEX `fk_role_has_user_user1_idx` ON `gabbler`.`role_has_user` (`role_ha
 CREATE INDEX `fk_role_has_user_role1_idx` ON `gabbler`.`role_has_user` (`role_has_user_id_role` ASC);
 
 
+--
+-- DATAS
+--
+
+INSERT INTO `category` (`id_category`, `name_category`) VALUES
+(1, 'insult'),
+(3, 'other'),
+(2, 'rascism'),
+(4, 'sexual harassment');
+
+
+
+INSERT INTO `help` (`id_help`, `mail_help`, `nickname_help`, `subject_help`, `content_help`, `processed_help`, `user_id`) VALUES
+(1, 'test@test.be', 'Gabbler', 'Can you help me ?', 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.', 1, NULL),
+(2, 'help@help.com', 'Gamer3', 'I need help', 'On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L\\\'avantage du Lorem Ipsum sur un texte générique comme \\\'Du texte.', 2, NULL),
+(3, 'help@help.com', 'Gamer456', 'I need help', 'On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même.', 3, NULL);
+
+
+
+INSERT INTO `img` (`id_img`, `name_img`, `active_img`, `date_img`) VALUES
+(1, 'https://via.placeholder.com/150/FFFFFF', 2, '2021-03-18 14:29:32'),
+(2, 'https://via.placeholder.com/150/bcebcb', 2, '2021-03-23 08:38:51'),
+(3, 'https://via.placeholder.com/150/ffae03', 2, '2021-03-23 08:38:51'),
+(4, 'https://via.placeholder.com/150/af8d86', 2, '2021-03-23 08:40:59'),
+(5, 'https://via.placeholder.com/150/3da35d', 2, '2021-03-23 08:40:59'),
+(6, 'https://via.placeholder.com/150/a63a50', 2, '2021-03-23 08:42:19'),
+(7, 'https://via.placeholder.com/150/388697', 2, '2021-03-23 08:42:19'),
+(8, 'https://via.placeholder.com/150/38040e', 2, '2021-03-23 08:43:15'),
+(9, 'https://via.placeholder.com/150/f26419', 2, '2021-03-23 08:43:15'),
+(10, 'https://via.placeholder.com/150/ef798a', 2, '2021-03-23 08:44:40'),
+(11, 'https://via.placeholder.com/150/613f75', 2, '2021-03-23 08:44:40'),
+(12, 'https://via.placeholder.com/150/988b8e', 2, '2021-03-23 08:45:07');
+
+
+
+INSERT INTO `message` (`id_message`, `date_message`, `content_message`, `archived_message`, `fkey_user_id`, `fkey_room_id`) VALUES
+(1, '2021-03-23 14:14:08', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', 1, 5, 1),
+(2, '2021-03-23 14:14:08', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 6, 4),
+(3, '2021-03-23 14:15:12', 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born', 2, 5, 2),
+(4, '2021-03-23 14:15:12', 'No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know', 2, 6, 3);
+
+
+
+INSERT INTO `online` (`id_online`, `last_activity_online`, `connected_online`, `fkey_user_id`) VALUES
+(1, '2021-03-23 14:15:53', 2, 5),
+(2, '2021-03-23 14:15:53', 1, 6);
+
+
+
+
+INSERT INTO `reported` (`id_reported`, `inquiry_reported`, `processed_reported`, `fkey_category_id`, `fkey_message_id`) VALUES
+(1, 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire', 1, 1, 1),
+(2, 'that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will', 1, 2, 2),
+(3, 'which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish', 2, 3, 3),
+(4, 'In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best', 2, 4, 4);
+
+INSERT INTO `role` (`id_role`, `name_role`) VALUES
+(1, 'Admin'),
+(2, 'Moderator'),
+(3, 'User');
+
+INSERT INTO `role_has_user` (`role_has_user_id_role`, `role_has_user_id_user`) VALUES
+(1, 5),
+(3, 6);
+
+INSERT INTO `room` (`id_room`, `public_room`, `archived_room`, `name_room`, `last_activity_room`) VALUES
+(1, 1, 1, 'general', '2021-03-23 09:02:46'),
+(2, 1, 1, 'cinema', '2021-03-23 09:02:49'),
+(3, 1, 1, 'music', '2021-03-22 09:02:49'),
+(4, 1, 1, 'foodlovers', '2021-03-23 15:21:12');
+
+INSERT INTO `status` (`id_status`, `name_status`) VALUES
+(1, 'active'),
+(3, 'banned'),
+(2, 'suspended'),
+(4, 'waiting for validation');
+
+INSERT INTO `user` (`id_user`, `nickname_user`, `pwd_user`, `mail_user`, `signup_date_user`, `color_user`, `confirmation_key_user`, `validation_status_user`) VALUES
+(5, 'Johnny', '$2y$10$X6Lu7QpJSxki2.wXAaxSteav1fTVWr/uYqnq9cFMbAo1U/vSXGtjm', 'admin@test.com', '2020-09-17 10:17:51', '{\"background\":\"#2ec4b6\",\"color\":\"#fdfffc\"}', 'acd147d11882e3ea05e3229e7935768e', 1),
+(6, 'Marylin', '$2y$10$vCj/d6P6EfJxSRzX4iN7y.jprp.6K0M4KSvo75JcLg3OTNuf/gmni', 'user@test.com', '2020-09-17 10:17:51', '{\"background\":\"#f6f6f6\",\"color\":\"#505352\"}', 'b32eda8047fc109444d81adf9a28308d', 1);
+
+INSERT INTO `user_has_img` (`user_has_img_id_user`, `user_has_img_id_img`) VALUES
+(5, 8),
+(6, 2);
+
+INSERT INTO `user_right` (`id_user_right`, `date_authorized_user_right`, `fkey_status_id`, `fkey_user_id`) VALUES
+(1, '2021-03-23 14:19:39', 1, 5),
+(2, '2021-03-23 14:19:39', 4, 6);
+
+INSERT INTO `user_room` (`id_user_room`, `favorite_user_room`, `fkey_room_id`, `fkey_user_id`) VALUES
+(1, 1, 1, 6),
+(2, 2, 4, 5);
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
