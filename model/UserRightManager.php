@@ -22,10 +22,12 @@ class UserRightManager extends ManagerTableAbstract implements ManagerTableInter
         $sql = "INSERT INTO user_right (date_authorized_user_right, fkey_status_id, fkey_user_id) VALUES (?,?,?)";
         $prepare = $this->db->prepare($sql);
 
+        $newDate = new DateTime();
+
         // test if the request works
         try {
             $prepare->execute([
-                new DateTime(),
+                $newDate->format("Y-m-d H:i:s"),
                 1,
                 $idUser
             ]);
