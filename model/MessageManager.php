@@ -54,4 +54,24 @@ class MessageManager extends ManagerTableAbstract implements ManagerTableInterfa
             return [];
         }
     }
+
+    // Message by user
+    public function viewMessageByUser(int $idUser): array {
+        $sql = "SELECT * FROM `message` WHERE fkey_user_id = ?";
+        $prepare = $this->db->prepare($sql);
+
+        // test if the request works
+        try {
+            $prepare->execute([$idUser]);
+            // if there is something to show :
+            if ($prepare->rowCount()) {
+                return $prepare->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                return [];
+            }
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return [];
+        }
+    }
 }
