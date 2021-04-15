@@ -36,4 +36,13 @@ if (empty($result)) {
         echo "<p>{$object->getConnectedOnline()}</p>";
         echo "<p>{$object->getFkeyUserId()}</p>";
     }
+    // CRUD tests
+
+$online = new Online([
+    'connected_online' => 2,
+    'fkey_user_id' => 5
+]);
+
+var_dump($test->checkUsersOnline());
+
 }
