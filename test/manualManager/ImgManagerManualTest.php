@@ -35,3 +35,17 @@ if(empty($result)){
      
     }
 }
+
+// TEST method :
+$newDate = new DateTime();
+$data = new Img([
+    'name_img' => 'UneImage',
+    'active_img' => 1,
+    'date_img' => $newDate->format("Y-m-d H:i:s")
+]);
+
+var_dump($imgManager->newImg($data));
+
+var_dump($imgManager->updateImg(1));
+
+var_dump($imgManager->viewAllImg(5));
