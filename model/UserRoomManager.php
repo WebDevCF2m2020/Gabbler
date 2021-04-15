@@ -17,7 +17,7 @@ class UserRoomManager extends ManagerTableAbstract implements ManagerTableInterf
     }
 
     // Create a new link between a user and a room
-    public function newUserRoom(UserRoom $datas, int $idUser): bool{
+    public function newUserRoom(UserRoom $datas, int $idUser): bool {
         $sql = "INSERT INTO `user_room` (favorite_user_room, fkey_room_id, fkey_user_id) VALUES (?,?,?)";
         $prepare = $this->db->prepare($sql);
         // execute
@@ -50,5 +50,25 @@ class UserRoomManager extends ManagerTableAbstract implements ManagerTableInterf
         $prepare->bindValue(1, $datas->getFkeyRoomId(), PDO::PARAM_STR);
         $prepare->bindValue(1, $datas->getFkeyUserId(), PDO::PARAM_STR);
         return $prepare->execute();
+    }
+
+    // Select of one user favorite rooms
+    public function viewUserRoom(int $idUser): array {
+        $sql = "SELECT * FROM user_room WHERE favorite_room_user = 2 AND fkey_user_id = ?";
+        $prepare = $this->db->prepare($sql);
+
+        // execute
+        try {
+            $prepare->execute([$idUser]);
+            // if we have at least one result
+            if ($prepare->rowCount()) {
+                return $prepare->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                return [];
+            }
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return [];
+        }
     }
 }
