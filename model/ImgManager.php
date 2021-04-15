@@ -24,8 +24,6 @@ class ImgManager extends ManagerTableAbstract implements ManagerTableInterface
         $sql = "INSERT INTO img (name_img, active_img, date_img) VALUES (?,?,?)";
         $prepare = $this->db->prepare($sql);
 
-
-        // test if the request works
         try {
             $prepare->execute([
                 $datas->getNameImg(),
@@ -49,11 +47,39 @@ class ImgManager extends ManagerTableAbstract implements ManagerTableInterface
 
     public function deleteImg(int $idImg): bool
     {
+        $sql = "DELETE FROM img WHERE id_img = ?";
+        $prepare = $this->db->prepare($sql);
 
+        try {
+            $prepare->execute([$idImg]);
+            return true;
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }
     }
 
-    public function viewAllImg(int $idUser): bool
-    {
 
+    public function viewAllImg(int $idUser): array
+    {
+        $sql = "SELECT * FROM img 
+                JOIN user_has_img uhi on img.id_img = uhi.user_has_img_id_img
+                JOIN user u on u.id_user = uhi.user_has_img_id_user
+                WHERE u.id_user = ?";
+
+        $prepare = $this->db->prepare($sql);
+
+        try {
+            $prepare->execute([$idUser]);
+
+            if ($prepare->rowCount()) {
+                return $prepare->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return [];
+            }
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return [];
+        }
     }
 }
