@@ -32,3 +32,23 @@ if(empty($result)){
         echo "<p>{$statusObject->getNameStatus()}</p>";
     }
 }
+
+
+// TEST method :
+$data = new Status([
+    'name_status' => 'admin'
+]);
+
+//var_dump($statusManager->newStatus($data));
+
+$dataUpdate = new Status([
+    'name_status' => 'admin2',
+    'id_status' => 5
+]);
+
+//var_dump($statusManager->updateStatus($dataUpdate));
+
+//var_dump($statusManager->deleteStatus(5));
+
+var_dump($statusManager->viewStatusById(1));
+
