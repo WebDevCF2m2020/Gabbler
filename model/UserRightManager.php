@@ -48,7 +48,7 @@ class UserRightManager extends ManagerTableAbstract implements ManagerTableInter
 
     public function viewUserRight(int $idUser): array
     {
-        $sql = "SELECT * FROM user_right WHERE id_user_right = ?";
+        $sql = "SELECT * FROM user_right WHERE fkey_user_id = ?";
         $prepare = $this->db->prepare($sql);
 
         // test if the request works
@@ -71,9 +71,15 @@ class UserRightManager extends ManagerTableAbstract implements ManagerTableInter
         // TODO
     }
 
-    public function verifyDateAuthorizedStatus(): bool
+    public function verifyDateAuthorizedStatus(int $idUser): bool
     {
+        $dateVerify = $this->viewUserRight($idUser);
+        $dateActualy = new DateTime();
 
+        if ($dateVerify['date_authorized_user_right'] > $dateActualy->format("Y-m-d H:i:s")) {
+            return true;
+        }
+        return false;
     }
 
 }
