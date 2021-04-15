@@ -25,7 +25,7 @@ if(empty($result)){
 }else{
     foreach ($result as $item){
         // creation of a role type object
-        $userRoomObject = new userRoom($item);
+        $userRoomObject = new UserRoom($item);
         echo "<hr>";
         echo "<p>{$userRoomObject->getIdUserRoom()}</p>";
         echo "<p>{$userRoomObject->getFavoriteUserRoom()}</p>";
