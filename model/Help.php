@@ -12,6 +12,7 @@ class Help extends MappingTableAbstract {
     protected string $nickname_help;
     protected string $subject_help;
     protected string $content_help;
+    protected string $date_help;
     protected int $processed_help = 1;
     protected int $user_id;
 
@@ -72,7 +73,16 @@ class Help extends MappingTableAbstract {
     public function getUserId(): int {
         return $this->user_id;
     }
+    
+    /**
+     * $date_help's getter
+     * @return string
+     */
+    public function getDateHelp(): string {
+        return $this->date_help;
+    }
 
+    
     // SETTERS
 
     /**
