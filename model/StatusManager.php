@@ -21,7 +21,19 @@ class StatusManager extends ManagerTableAbstract implements ManagerTableInterfac
 
     public function newStatus(Status $datas): bool
     {
+        $sql = "INSERT INTO status (name_status) VALUES (?)";
+        $prepare = $this->db->prepare($sql);
 
+        // test if the request works
+        try {
+            $prepare->execute([
+                $datas->getNameStatus(),
+            ]);
+            return true;
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }
     }
 
     public function updateStatus(Status $datas): bool
