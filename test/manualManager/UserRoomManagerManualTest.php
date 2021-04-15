@@ -33,3 +33,19 @@ if(empty($result)){
         echo "<p>{$userRoomObject->getFkeyUserId()}</p>";
     }
 }
+
+// CRUD tests
+
+$userRoom = new UserRoom([
+    'favorite_room_user' => 1,
+    'fkey_room_id' => 2,
+    'fkey_user_id' => 5
+]);
+
+var_dump($userRoomManager->newUserRoom($userRoom, 25));
+echo '<br>';
+var_dump($userRoomManager->favoriteUserRoom($userRoom));
+echo '<br>';
+var_dump($userRoomManager->UnfavoriteUserRoom($userRoom));
+echo '<br>';
+var_dump($userRoomManager->viewUserRoom(5));
