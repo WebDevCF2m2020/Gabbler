@@ -10,9 +10,9 @@ class Reported extends MappingTableAbstract {
     protected int $id_reported;
     protected string $inquiry_reported;
     protected int $processed_reported = 1;
+    protected string $date_reported;
     protected int $fkey_category_id;
     protected int $fkey_message_id;
-
 
     // GETTERS
 
@@ -56,6 +56,14 @@ class Reported extends MappingTableAbstract {
         return $this->fkey_message_id;
     }
 
+    /**
+     * $date_reported's getter
+     * @return string
+     */
+    public function getDateReported(): string {
+        return $this->date_reported;
+    }
+
     // SETTERS
 
     /**
@@ -64,7 +72,7 @@ class Reported extends MappingTableAbstract {
      */
     public function setIdReported(int $id_reported): void {
         $id_reported = (int) $id_reported;
-        if (empty($id_reported)){
+        if (empty($id_reported)) {
             trigger_error("The reported ID can't be 0", E_USER_NOTICE);
         } else {
             $this->id_reported = $id_reported;
@@ -89,9 +97,9 @@ class Reported extends MappingTableAbstract {
      * @param int $processed_reported
      */
     public function setProcessedReported(int $processed_reported): void {
-        $processed_reported = (int)$processed_reported;
-        if($processed_reported < 1 && $processed_reported > 2){
-            trigger_error("The status has to be 1 (not processed) or 2(processed)",E_USER_NOTICE);
+        $processed_reported = (int) $processed_reported;
+        if ($processed_reported < 1 && $processed_reported > 2) {
+            trigger_error("The status has to be 1 (not processed) or 2(processed)", E_USER_NOTICE);
         } else {
             $this->processed_reported = $processed_reported;
         }
@@ -101,9 +109,8 @@ class Reported extends MappingTableAbstract {
      * $fkey_category_id's setter
      * @param int $fkey_category_id
      */
-    public function setFkeyCategoryId(int $fkey_category_id): void
-    {
-        $fkey_category_id = (int)$fkey_category_id;
+    public function setFkeyCategoryId(int $fkey_category_id): void {
+        $fkey_category_id = (int) $fkey_category_id;
         if (empty($fkey_category_id)) {
             trigger_error('The foreign key for the category can\'t be empty', E_USER_NOTICE);
         } else {
@@ -115,13 +122,28 @@ class Reported extends MappingTableAbstract {
      * $fkey_message_id's setter
      * @param int $fkey_message_id
      */
-    public function setFkeyMessageId(int $fkey_message_id): void
-    {
-        $fkey_message_id = (int)$fkey_message_id;
+    public function setFkeyMessageId(int $fkey_message_id): void {
+        $fkey_message_id = (int) $fkey_message_id;
         if (empty($fkey_message_id)) {
             trigger_error('The foreign key for the message can\'t be empty', E_USER_NOTICE);
         } else {
             $this->fkey_message_id = $fkey_message_id;
         }
     }
+
+    /**
+     * $date_reported's setter
+     * @param int $date_reported
+     */
+    public function setDateReported(string $date_reported): void {
+        $verifyDate = new DateTime($date_reported);
+        if (empty($date_reported)) {
+            trigger_error('The report date cannot be empty', E_USER_NOTICE);
+        } else if (!is_object($verifyDate)) {
+            trigger_error('The report date is not valid', E_USER_NOTICE);
+        } else {
+            $this->date_reported = $date_reported;
+        }
+    }
+
 }

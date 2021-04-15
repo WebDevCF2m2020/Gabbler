@@ -12,6 +12,7 @@ class Help extends MappingTableAbstract {
     protected string $nickname_help;
     protected string $subject_help;
     protected string $content_help;
+    protected string $date_help;
     protected int $processed_help = 1;
     protected int $user_id;
 
@@ -73,6 +74,14 @@ class Help extends MappingTableAbstract {
         return $this->user_id;
     }
 
+    /**
+     * $date_help's getter
+     * @return string
+     */
+    public function getDateHelp(): string {
+        return $this->date_help;
+    }
+
     // SETTERS
 
     /**
@@ -81,7 +90,7 @@ class Help extends MappingTableAbstract {
      */
     public function setIdHelp(int $id_help): void {
         $id_help = (int) $id_help;
-        if (empty($id_help)){
+        if (empty($id_help)) {
             trigger_error("The user ID can't be 0", E_USER_NOTICE);
         } else {
             $this->id_help = $id_help;
@@ -93,7 +102,7 @@ class Help extends MappingTableAbstract {
      * @param string $mail_help
      */
     public function setMailHelp(string $mail_help): void {
-        if (!(filter_var($mail_help, FILTER_VALIDATE_EMAIL))){
+        if (!(filter_var($mail_help, FILTER_VALIDATE_EMAIL))) {
             trigger_error("A valid e-mail address is needed", E_USER_NOTICE);
         } else if (strlen($mail_help) > 120) {
             trigger_error("The e-mail address can't be too long", E_USER_NOTICE);
@@ -150,8 +159,8 @@ class Help extends MappingTableAbstract {
      * @param int $processed_help
      */
     public function setProcessedHelp(int $processed_help): void {
-        if($processed_help < 1 || $processed_help > 3){
-            trigger_error("The status has to be between 1 and 3",E_USER_NOTICE);
+        if ($processed_help < 1 || $processed_help > 3) {
+            trigger_error("The status has to be between 1 and 3", E_USER_NOTICE);
         } else {
             $this->processed_help = $processed_help;
         }
@@ -165,4 +174,20 @@ class Help extends MappingTableAbstract {
         $user_id = (int) $user_id;
         $this->user_id = $user_id;
     }
+
+    /**
+     * $date_help's setter
+     * @param string $date_help
+     */
+    public function setDateHelp(string $date_help): void {
+        $verifyDate = new DateTime($date_help);
+        if (empty($date_help)) {
+            trigger_error('The Help date cannot be empty', E_USER_NOTICE);
+        } else if (!is_object($verifyDate)) {
+            trigger_error('The Help date is not valid', E_USER_NOTICE);
+        } else {
+            $this->date_help = $date_help;
+        }
+    }
+
 }
