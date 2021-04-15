@@ -34,5 +34,14 @@ class UserRoomManager extends ManagerTableAbstract implements ManagerTableInterf
         }
     }
 
+    // favorite room update to => favorite
+    public function favoriteUserRoom(UserRoom $datas): bool {
+        $query = "UPDATE user_room SET favorite_user_room = 2 WHERE fkey_room_id = ? AND fkey_user_id = ? ;";
+        $prepare = $this->db->prepare($query);
+        $prepare->bindValue(1, $datas->getFkeyRoomId(), PDO::PARAM_STR);
+        $prepare->bindValue(1, $datas->getFkeyUserId(), PDO::PARAM_STR);
+        return $prepare->execute();
+    }
+
     
 }
