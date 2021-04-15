@@ -13,4 +13,30 @@ class MessageManager extends ManagerTableAbstract implements ManagerTableInterfa
         // else an empty array
         return [];
     }
+
+
+    // new message
+    public function newMessage(Message $datas, int $idUser, int $idRoom): bool {
+        $newDate = new DateTime();
+        $sql = "INSERT INTO `message` (`date_message`, `content_message`, `archived_message`, `fkey_user_id`, `fkey_room_id`) VALUES (?, ?, ?, ?, ?);";
+        $prepare = $this->db->prepare($sql);
+        $prepare->bindValue(1, $newDate->format("Y-m-d H:i:s"), PDO::PARAM_STR);
+        $prepare->bindValue(2, $datas->getContentMessage(), PDO::PARAM_STR);
+        $prepare->bindValue(3, 1, PDO::PARAM_INT);
+        $prepare->bindValue(4, $idUser, PDO::PARAM_STR);
+        $prepare->bindValue(5, $idRoom, PDO::PARAM_STR);
+        // execute
+        try {
+            $prepare->execute();
+            return true;
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }
+    }
+
+    // Message by room
+    public function viewMessageByRoom(int $IdRoom): array {
+
+    }
 }
