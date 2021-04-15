@@ -36,7 +36,22 @@ class MessageManager extends ManagerTableAbstract implements ManagerTableInterfa
     }
 
     // Message by room
-    public function viewMessageByRoom(int $IdRoom): array {
+    public function viewMessageByRoom(int $idRoom): array {
+        $sql = "SELECT * FROM `message` WHERE fkey_room_id = ?";
+        $prepare = $this->db->prepare($sql);
 
+        // test if the request works
+        try {
+            $prepare->execute([$idRoom]);
+            // if there is something to show :
+            if ($prepare->rowCount()) {
+                return $prepare->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                return [];
+            }
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return [];
+        }
     }
 }
