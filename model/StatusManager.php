@@ -47,7 +47,16 @@ class StatusManager extends ManagerTableAbstract implements ManagerTableInterfac
 
     public function deleteStatus(int $idStatus): bool
     {
+        $sql = "DELETE FROM status WHERE id_status = ?";
+        $prepare = $this->db->prepare($sql);
 
+        try {
+            $prepare->execute([$idStatus]);
+            return true;
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }
     }
 
     public function viewStatusById(int $idStatus): array
