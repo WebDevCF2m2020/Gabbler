@@ -36,7 +36,21 @@ class CategoryManager extends ManagerTableAbstract implements ManagerTableInterf
         }
     }
 
-    public function newCategory($data): boolean {
+    public function newCategory($input): boolean {
+
+        $addCategory = "INSERT INTO category (id_category, name_category) VALUES (?,?)";
+        $goAddCategory = $this->db->prepare($addCategory);
+
+        try {
+            $goAddCategory->execute([
+                $input ->getIdCategory(),
+                $input ->getNameCategory(),
+            ]);
+            return true;
+        } catch (Exception $error) {
+            trigger_error($error->getMessage());
+            return false;
+        }
 
         
     }
