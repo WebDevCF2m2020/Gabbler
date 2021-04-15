@@ -68,6 +68,20 @@ class CategoryManager extends ManagerTableAbstract implements ManagerTableInterf
 
     }
 
+    public function deleteCategory(int $idRole): bool {
+
+        $deleteCategory = "DELETE FROM category WHERE id_category = ?";
+        $goDeleteCategory = $this->db->prepare($deleteCategory);
+
+        try {
+            $prepare->execute([$idRole]);
+            return true;
+        } catch (Exception $error) {
+            trigger_error($error->getMessage());
+            return false;
+        }
+    }
+
 
 
 
