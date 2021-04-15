@@ -36,7 +36,9 @@ class CategoryManager extends ManagerTableAbstract implements ManagerTableInterf
         }
     }
 
-    public function newCategory($input): boolean {
+    public function newCategory(Category $input): boolean {
+        //Category ==> to use Category Class:
+        //$input ==> will hold getters results:
 
         $addCategory = "INSERT INTO category (id_category, name_category) VALUES (?,?)";
         $goAddCategory = $this->db->prepare($addCategory);
@@ -50,9 +52,7 @@ class CategoryManager extends ManagerTableAbstract implements ManagerTableInterf
         } catch (Exception $error) {
             trigger_error($error->getMessage());
             return false;
-        }
-
-        
+        }  
     }
 
 
