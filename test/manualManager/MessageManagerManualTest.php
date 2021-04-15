@@ -38,3 +38,19 @@ if(empty($result)){
         echo "<p>{$object->getFkeyRoomId()}</p>";
     }
 }
+
+// CRUD tests
+
+$message = new Message([
+    'content_message' => "Lorem ipsum etc .... ",
+    'fkey_user_id' => 6,
+    'fkey_room_id' => 3
+]);
+
+var_dump($test->newMessage($message, 6,3));
+echo '<br>';
+var_dump($test->viewMessageByRoom(3));
+echo '<br>';
+var_dump($test->viewMessageByUser(5));
+echo '<br>';
+var_dump($test->archivedMessage(6));
