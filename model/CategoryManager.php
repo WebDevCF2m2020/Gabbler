@@ -55,6 +55,19 @@ class CategoryManager extends ManagerTableAbstract implements ManagerTableInterf
         }  
     }
 
+    public function updateCategory(Category $input): boolean {
+        //Category ==> same as above!!
+        //$input ==> same as above!!
+
+        $updateCategory = "UPDATE category SET name_category = ? WHERE id_category = ?";
+        $goUpdateCategory = $this->db->prepare($updateCategory);
+
+        $goUpdateCategory->bindValue($input->getNameCategory(),PDO::PARAM_STR);
+        $goUpdateCategory->bindValue($input->getIdCategory(),PDO::PARAM_INT);   
+        return $goUpdateCategory->execute();   
+
+    }
+
 
 
 
