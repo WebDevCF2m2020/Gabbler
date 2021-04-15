@@ -43,6 +43,6 @@ $online = new Online([
     'fkey_user_id' => 5
 ]);
 
-var_dump($test->checkUsersOnline(2));
+var_dump($test->checkUsersOnline());
 
 }
