@@ -19,6 +19,25 @@ class ImgManager extends ManagerTableAbstract implements ManagerTableInterface
         return [];
     }
 
+    public function selectImgById(int $idImg): array
+    {
+        $sql = "SELECT * FROM img WHERE id_img = ?";
+        $prepare = $this->db->prepare($sql);
+
+        try {
+            $prepare->execute([$idImg]);
+
+            if ($prepare->rowCount()) {
+                return $prepare->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return [];
+            }
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return [];
+        }
+    }
+
     public function newImg(Img $datas): bool
     {
         $sql = "INSERT INTO img (name_img, active_img, date_img) VALUES (?,?,?)";
@@ -47,22 +66,30 @@ class ImgManager extends ManagerTableAbstract implements ManagerTableInterface
 
     public function deleteImg(int $idImg): bool
     {
-        $sql = "DELETE FROM img WHERE id_img = ?";
-        $prepare = $this->db->prepare($sql);
+        $img = $this->selectImgById($idImg);
+        $dir = "public/img/" . $img['name_img']; // change folder later
 
-        try {
-            $prepare->execute([$idImg]);
-            return true;
-        } catch (Exception $e) {
-            trigger_error($e->getMessage());
+        if (file_exists($dir)) {
+            unlink($dir);
+
+            $sql = "DELETE FROM img WHERE id_img = ?";
+            $prepare = $this->db->prepare($sql);
+
+            try {
+                $prepare->execute([$idImg]);
+                return true;
+            } catch (Exception $e) {
+                trigger_error($e->getMessage());
+                return false;
+            }
+        } else {
             return false;
         }
     }
 
-
     public function viewAllImg(int $idUser): array
     {
-        $sql = "SELECT * FROM img 
+        $sql = "SELECT img.* FROM img 
                 JOIN user_has_img uhi on img.id_img = uhi.user_has_img_id_img
                 JOIN user u on u.id_user = uhi.user_has_img_id_user
                 WHERE u.id_user = ?";
