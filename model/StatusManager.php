@@ -61,6 +61,20 @@ class StatusManager extends ManagerTableAbstract implements ManagerTableInterfac
 
     public function viewStatusById(int $idStatus): array
     {
+        $sql = "SELECT * FROM status WHERE id_status = ?";
+        $prepare = $this->db->prepare($sql);
 
+        try {
+            $prepare->execute([$idStatus]);
+
+            if ($prepare->rowCount()) {
+                return $prepare->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return [];
+            }
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return [];
+        }
     }
 }
