@@ -129,6 +129,9 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
         // USER RIGHT
         $sqlRightUser ="INSERT INTO `user_right` (fkey_status_id, fkey_user_id) VALUES (? , ? )";
         $prepareRightUser = $this->db->prepare($sqlRightUser);
+        // ONLINE
+        $sqlOnline ="INSERT INTO `online` (fkey_user_id) VALUES (?)";
+        $prepareOnline = $this->db->prepare($sqlOnline);
         try {
             $this->db->beginTransaction();
 
@@ -147,6 +150,8 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface
             $prepareImgUser->execute([$idUser, $imgRandom]);
 
             $prepareRightUser->execute([4, $idUser]);
+            
+            $prepareOnline->execute([$idUser]);
 
             $this->db->commit();
             return true;
