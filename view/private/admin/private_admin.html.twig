@@ -1,15 +1,24 @@
 {% extends "template_gabbler.html.twig" %}
 
-{% block header %}<h1>Connected {{ connect.nickname_user }} -> {{ connect.name_role }}</h1><hr>{% endblock %}
+{% block header %}<h1>Connected {{ connect.nickname_user }} -> {{ connect.name_role }}</h1>
+    <hr>{% endblock %}
 
 {% block content %}
 
-    <pre>{{ dump(connect) }}</pre>
-    <pre>{{ dump(img) }}</pre>
-    <pre>{{ dump(messageHelp) }}</pre>
-
     <div>
+        <img src="{{ img.name_img }}" alt="">
+        <h1>{{ connect.nickname_user }}</h1>
+        <p>{{ connect.mail_user }}</p>
+    </div>
 
+    <h1>MESSAGES</h1>
+    <div>
+        {% for message in messageHelp %}
+            <em>{{ message.date_help }}</em>
+            <h2>{{ message.nickname_help }}</h2>
+            <h3>{{ message.subject_help }}</h3>
+            <p>{{ message.content_help }}</p>
+        {% endfor %}
     </div>
 
     <a href="?disconnect">Disconnect</a>
