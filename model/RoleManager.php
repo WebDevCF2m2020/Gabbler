@@ -47,7 +47,7 @@ class RoleManager extends ManagerTableAbstract implements ManagerTableInterface
         $query = "UPDATE role SET name_role = ? WHERE id_role = ?";
         $prepare = $this->db->prepare($query);
         $prepare->bindValue(1, $data->getNameRole(), PDO::PARAM_STR);
-        $prepare->bindValue(1, $data->getIdRole(), PDO::PARAM_INT);
+        $prepare->bindValue(2, $data->getIdRole(), PDO::PARAM_INT);
         return $prepare->execute();
     }
 

@@ -31,3 +31,18 @@ if(empty($result)){
         echo "<p>{$roleObject->getNameRole()}</p>";
     }
 }
+
+// TEST method :
+
+
+$data = new Role([
+    'name_role' => 'supervisor'
+]);
+var_dump($roleManager->newRole($data));
+
+$datas = new Role([
+    'id_role' => 1,
+    'name_role' => 'Admin(e)'
+]);
+
+var_dump($roleManager->updateRole($datas));
