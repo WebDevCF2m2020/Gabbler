@@ -1,0 +1,9 @@
+{% extends "template_gabbler.html.twig" %}
+
+{% block header %}<h1>Connected Admin</h1><hr>{% endblock %}
+
+{% block content %}
+
+    <pre>{{ dump(connect) }}</pre>
+    <a href="?disconnect">Disconnect</a>
+{% endblock %}
