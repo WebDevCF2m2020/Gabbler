@@ -1,9 +1,16 @@
 {% extends "template_gabbler.html.twig" %}
 
-{% block header %}<h1>Connected </h1><hr>{% endblock %}
+{% block header %}<h1>Connected {{ connect.nickname_user }} -> {{ connect.name_role }}</h1><hr>{% endblock %}
 
 {% block content %}
 
     <pre>{{ dump(connect) }}</pre>
+    <pre>{{ dump(img) }}</pre>
+    <pre>{{ dump(messageHelp) }}</pre>
+
+    <div>
+
+    </div>
+
     <a href="?disconnect">Disconnect</a>
 {% endblock %}

@@ -109,4 +109,22 @@ class ImgManager extends ManagerTableAbstract implements ManagerTableInterface
             return [];
         }
     }
+
+    public function selectByUser(int $idUser): array {
+        $sql = "SELECT img.* FROM img JOIN user_has_img uhi on img.id_img = uhi.user_has_img_id_img JOIN user u on u.id_user = uhi.user_has_img_id_user WHERE u.id_user = ?";
+        $prepare = $this->db->prepare($sql);
+
+        try {
+            $prepare->execute([$idUser]);
+
+            if ($prepare->rowCount()) {
+                return $prepare->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return [];
+            }
+        } catch (Exception $e) {
+            trigger_error($e->getMessage());
+            return [];
+        }
+    }
 }
