@@ -2,7 +2,7 @@
 
 {% block header %}
 
-    <h1>Hello {{ user.nickname_user }} ! This is your profile page</h1>
+    <h1 class="text-center">Hello {{ user.nickname_user }} ! This is your profile page</h1>
     <hr>
 
 {% endblock %}
@@ -21,7 +21,7 @@
     </div>
 
     <!-- MAIN CONTENT -->
-    <div class="container row align-items-center border rounded-3 m-auto mb-3 grey">
+    <div class="container row align-items-center border rounded-3 m-auto mb-3 grey extra-padding-50">
 
         <!-- USER INFOS -->
         <div class="col row align-items-center p-4">
@@ -46,8 +46,9 @@
                     <input class="form-control mb-2" type="password" placeholder="New password">
                     <input class="form-control" type="password" placeholder="Confirm the new password">
                 </div>
-                <div class="row">
-                    <button class="form-control red" type="submit" name="updateProfil" id="button">SAVE</button>
+                <div class="row position-relative top-0 start-50">
+                    <button class="text-uppercase m-auto red rounded-3 pull-right more-left text-uppercase" type="submit" name="updateProfil" id="button">Save
+                    </button>
                 </div>
             </form>
         </div>

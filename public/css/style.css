@@ -29,6 +29,9 @@ textarea {
     height: 150px;
     max-height: 350px;
 }
+.extra-padding-50 {
+    padding: 50px;
+}
 .LogoGabbler{
     margin-left: 30px;
 }
@@ -53,6 +56,10 @@ textarea {
 .bit-left {
     position: relative;
     right: 10%;
+}
+.more-left {
+    position: relative;
+    right: 20%;
 }
 
 /*PAGE HELP_PAGE.HTML.TWIG*/
