@@ -92,3 +92,15 @@ h2{
     font-weight: lighter;
     font-size: 18px;
 }
+/*PAGE ADMIN*/
+#Disconnect{
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+    width: 50%;
+    height: 35px;
+    color: black;
+    border:2px solid #E51537;
+    border-radius: 5%;
+    background: #E9ECEF;
+}
