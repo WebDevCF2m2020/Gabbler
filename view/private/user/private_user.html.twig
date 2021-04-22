@@ -13,7 +13,7 @@
     <div class="container d-flex justify-content-between">
 
         <!-- LOGO -->
-        <img class="m-4" src="../data/charte/Logos/G - Gabbler/Rouge - WhiteMode.png" alt="LogoGabbler">
+        <img class="m-4" src="img/RougeWhiteMode.png" alt="LogoGabbler">
 
         <!-- LINK -->
         <a class="btn btn-outline-secondary btn-sm h-50 m-4" href="?disconnect"> < Disconnect</a>
@@ -21,7 +21,7 @@
     </div>
 
     <!-- MAIN CONTENT -->
-    <div class="container row align-items-center border rounded-3 m-auto mb-3">
+    <div class="container row align-items-center border rounded-3 m-auto mb-3 grey">
 
         <!-- USER INFOS -->
         <div class="col row align-items-center p-4">
@@ -29,8 +29,8 @@
             <!-- USER IMG AND LAYOUT FOR IMG UPDATE -->
             <div class="col m-4">
                 <img class="w-100 rounded-3 mb-4" src="{{ img.name_img }}" alt="">
-                <button type="button" class="btn btn-light">Upload new image</button>
-                <button type="button" class="btn btn-light float-end">OK</button>
+                <button type="button" class="btn btn-light red">Upload new image</button>
+                <button type="button" class="btn btn-light float-end red">OK</button>
             </div>
 
             <!-- USER PERSONAL INFOS UPDATE FORM -->
@@ -47,7 +47,7 @@
                     <input class="form-control" type="password" placeholder="Confirm the new password">
                 </div>
                 <div class="row">
-                    <button class="form-control" type="submit" name="updateProfil" id="button">SAVE</button>
+                    <button class="form-control red" type="submit" name="updateProfil" id="button">SAVE</button>
                 </div>
             </form>
         </div>
