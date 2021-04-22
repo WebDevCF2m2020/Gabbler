@@ -29,7 +29,7 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface 
     }
 
     // Checks the admins for sending email for help
-    public function recupAdminMailForHelp(): array {
+    public function recupAdminMailForHelp(): ?array {
         $sql = "SELECT user.nickname_user, user.mail_user
 	      FROM user
 	      INNER JOIN user_right 
@@ -42,10 +42,10 @@ class UserManager extends ManagerTableAbstract implements ManagerTableInterface 
                 $userInfo = $req->fetchAll(PDO::FETCH_ASSOC);
                 return $userInfo;
             } else {
-                return ["Something went wrong, please retry"];
+                return "Something went wrong, please retry";
             }
         } catch (PDOException $e) {
-            return [$e->getMessage()];
+            return $e->getMessage();
         }
     }
 

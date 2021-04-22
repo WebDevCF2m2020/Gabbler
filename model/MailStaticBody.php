@@ -105,11 +105,11 @@ class MailStaticBody {
                 '<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel=\"stylesheet"> ' .
                 '<div style="background-color: #F7F7F7; width: 100%; height: 100%;padding: 50px 0 150px 0;font-family: \'Lato\', sans-serif; color : #4B5259;">
                         <div style="background-color: #CED4DA; width: 80%; height: auto; padding:5%; border-radius: 15px; margin:50px auto; ">
-                            <h1> Welcome to <img alt="gabbler" src="' . $datas['img1'] . '" style="position:relative; top :3px;"> ' . $datas['user']['nickname_user'] . ' !</h1>
+                            <h1> An help message is send by <img alt="gabbler" src="' . $datas['img1'] . '" style="position:relative; top :3px;"> ' . $datas['user']['nickname_user'] . ' !</h1>
                             <br>
-                            <h3 style="color : #4B5259;">To activate your account, please click on link below, you will be able to sign in.</h3>
+                            
                             <div style="margin-bottom: 45px;">
-                                <a href="https://gabbler.webdev-cf2m.be/?registration&for=' . urlencode($datas['user']['nickname_user']) . '&key=' . urlencode($datas['user']['confirmation_key_user']) . '" style="text-decoration: none; color: #E41537; font-weight: 300;">https://gabbler.webdev-cf2m.be/?registration&for=' . urlencode($datas['user']['nickname_user']) . '&key=' . urlencode($datas['user']['confirmation_key_user']) . '</a>
+                                <p> '.urlencode($datas['user']['nickname_user']) . ' send an help message</p>
                             </div>
                             <hr style="border-bottom: 2px solid #4B5259;">
                             

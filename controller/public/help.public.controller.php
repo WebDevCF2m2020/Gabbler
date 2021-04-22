@@ -34,11 +34,26 @@ if (isset($_POST['sendHelp'])) {
 
                 // WARNING TO DISPLAY IN HOME_PAGE.HTML.TWIG
                 $warning = "Your request for help has been sent";
-                
+
                 // MAIL FOR ADMIN
-                
-                
-                
+                $mailAdmin = $userManager->recupAdminMailForHelp();
+                if (is_array($mailAdmin) && !empty($mailAdmin)) {
+                    foreach ($mailAdmin as $item) {
+                        $mailSignUp = new Swift_Mailer($transport);
+                        $messageSignUp = (new Swift_Message('Help message to Gabbler'))
+                                ->setFrom([MAIL_ADDRESS => 'GABBLER'])
+                                ->setTo([$item['mail_user'] => $item['nickname_user']]);
+
+                        $imageMain = $messageSignUp->embed(Swift_Image::fromPath('img/mail-component/gabbler-logo.png'));
+                        $imageFooter = $messageSignUp->embed(Swift_Image::fromPath('img/mail-component/g-small-letter.png'));
+
+                        // BODY from MailStaticBody::bodyAdminHelp
+                        $messageSignUp->setBody(
+                                MailStaticBody::bodyAdminHelp(["user" => $_POST, "img1" => $imageMain, "img2" => $imageFooter]),
+                                'text/html'
+                        );
+                    }
+                }
             } else {
 
                 // WARNING TO DISPLAY IN HOME_PAGE.HTML.TWIG
