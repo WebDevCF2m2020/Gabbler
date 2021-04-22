@@ -38,6 +38,7 @@ textarea {
 .divPublic {
     background-color: #CED4DA;
     border-radius: 15px;
+    padding-bottom: 15px;
 }
 .formHome{
     text-align: center;
