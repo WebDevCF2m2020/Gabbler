@@ -74,7 +74,7 @@ textarea {
 
 .go-back:hover{
     color: #495057;
-
+}
 /*PAGE ADMIN*/
 #Disconnect{
     text-decoration: none;
@@ -86,4 +86,4 @@ textarea {
     border:2px solid #E51537;
     border-radius: 5%;
     background: #E9ECEF;
-  }
+}
