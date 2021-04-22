@@ -5,19 +5,22 @@
 
 {% block content %}
 
-    <div>
-        <img src="{{ img.name_img }}" alt="">
-        <h1>{{ connect.nickname_user }}</h1>
-        <p>{{ connect.mail_user }}</p>
+    <div class="container-sm border rounded-3 text-center grey">
+        <img class="m-4" src="{{ img.name_img }}" alt="">
+        <h4 class="text-center red">{{ connect.nickname_user }}</h4>
+        <p class="text-center">{{ connect.mail_user }}</p>
     </div>
 
-    <h1>MESSAGES</h1>
-    <div>
+    <h1 class="text-center m-5">MESSAGES</h1>
+    <div class="container-md border rounded-3 grey">
         {% for message in messageHelp %}
-            <em>{{ message.date_help }}</em>
-            <h2>{{ message.nickname_help }}</h2>
-            <h3>{{ message.subject_help }}</h3>
-            <p>{{ message.content_help }}</p>
+            <div class="rounded-3 border w-75 mt-2 mb-2 m-auto container-fluid bg-white">
+                <em class="small float-end">{{ message.date_help }}</em>
+                <h2 class="red d-inline-block">{{ message.nickname_help }} </h2>
+                <h3 class="d-inline-block">=> {{ message.subject_help }}</h3>
+                <p>{{ message.content_help }}</p>
+            </div>
+
         {% endfor %}
     </div>
 
