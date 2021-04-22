@@ -4,5 +4,13 @@
  * Private User Controller
  */
 
-// test Twig with connected_temp_page.html.twig
-echo $twig->render("private/connect_temp_page.html.twig",["connect"=>$_SESSION]);
+// IMG MANAGER
+$imgManager = new ImgManager($DB);
+
+// DISPLAY PRIVATE USER PAGE
+echo $twig->render("private/user/private_user.html.twig",
+    [
+        "user" => $_SESSION,
+        "img" => $imgManager->selectByUser($_SESSION['id_user'])
+    ]
+);
