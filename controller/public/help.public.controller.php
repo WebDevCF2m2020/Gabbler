@@ -34,6 +34,11 @@ if (isset($_POST['sendHelp'])) {
 
                 // WARNING TO DISPLAY IN HOME_PAGE.HTML.TWIG
                 $warning = "Your request for help has been sent";
+                
+                // MAIL FOR ADMIN
+                
+                
+                
             } else {
 
                 // WARNING TO DISPLAY IN HOME_PAGE.HTML.TWIG
