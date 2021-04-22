@@ -37,6 +37,7 @@ if (isset($_POST['sendHelp'])) {
 
                 // MAIL FOR ADMIN
                 $mailAdmin = $userManager->recupAdminMailForHelp();
+                //var_dump($mailAdmin);
                 if (is_array($mailAdmin) && !empty($mailAdmin)) {
                     foreach ($mailAdmin as $item) {
                         $mailSignUp = new Swift_Mailer($transport);
@@ -53,6 +54,7 @@ if (isset($_POST['sendHelp'])) {
                                 'text/html'
                         );
                     }
+                    $mailSignUp->send($messageSignUp);
                 }
             } else {
 
