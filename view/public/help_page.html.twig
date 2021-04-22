@@ -1,35 +1,42 @@
 {% extends "template_gabbler.html.twig" %}
 
-{% block header %}<h1>Help Form</h1><hr>{% endblock %}
+{% block header %}
+<img class="LogoGabbler" src="../public/img/RougeWhiteMode.png">
+<h2>Help Form</h2><br>{% endblock %}
 
 {% block content %}
-    <h1>Contact Us</h1>
+<div class="formHelp">
+    <h2 class="ContactUs">Contact Us</h2>
     {{ warning }}
-    <form method="post" action="">
-        <div>
-            <label for="yourEmail">Your email</label>
+    <form class="container1" method="post" action="">
+        <div class="row mb-3">
+            <label class="label" for="yourEmail">Your email</label>
             <br>
             <input  type="email" name="mail_help"
                     placeholder="Enter your email" required>
         </div>
-        <div>
-            <label for="yourName">Your name</label>
+        <div class="row mb-3">
+            <label class="label" for="yourName">Your name</label>
             <br>
             <input type="text" name="nickname_help" placeholder="Nickname"
                    required>
         </div>
-        <div>
-            <label for="subject">Subject</label>
+        <div class="row mb-3">
+            <label class="label" for="subject">Subject</label>
             <br>
             <input type="text" name="subject_help" placeholder="Subject"
                    required>
         </div>
-        <div>
-            <label for="votreMessage">Votre message</label>
+        <div class="row mb-3">
+            <label class="label" for="votreMessage">Votre message</label>
             <br>
             <textarea name="content_help" placeholder="Content" required></textarea>
         </div>
         <br>
-        <button type="submit" name="sendHelp" value="send">send</button>
+        <div class="row mb-3">
+        <button" type="submit" name="sendHelp" id="button" value="send">send</button>
+        </div>
     </form>
+    </div>
+    
 {% endblock %}
