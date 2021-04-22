@@ -1,46 +1,55 @@
 {% extends "template_gabbler.html.twig" %}
 
 {% block header %}
-
-<a href="./">
-	<img class="LogoGabbler" src="img/RougeWhiteMode.png">
-</a>
-
-<h2>Help Form</h2><br>{% endblock %}
+    <div class="container mt-5 mb-5">
+        <img class="LogoGabbler" src="img/RougeWhiteMode.png">
+        <a class="go-back float-end" href="?home" title="Go back to the home page"> < </a>
+    </div>
+{% endblock %}
 
 {% block content %}
-<div class="formHelp">
-    <h2 class="ContactUs">Contact Us</h2>
-    {{ warning }}
-    <form class="container1" method="post" action="">
-        <div class="row mb-3">
-            <label class="label" for="yourEmail">Your email</label>
-            <br>
-            <input  type="email" name="mail_help"
-                    placeholder="Enter your email" required>
+    <div class="container divPublic">
+        <div class="row align-items-center h-100">
+            <div class="formHome col h-100 justify-content-center">
+                <h2 class="text-uppercase">Rules</h2>
+                <div class="text-lg-start w-75">
+                    <ol>
+                        <li>1. Be positive & helpful to other users.</li>
+                        <li>2. Be respectful to <span class="d-inline red text-uppercase">everyone</span></li>
+                        <li>3. Don't create drama between other users.</li>
+                        <li>4. Jokes about Mental Disorders will result in a <span class="d-inline red">ban</span>.</li>
+                        <li>5. Racism or discrimination will result in a <span class="d-inline red">ban</span>.</li>
+                        <li>6. Spamming in any room is <span class="d-inline red">not allowed</span>.</li>
+                        <li>7. <span class="d-inline red">Have fun !</span></li>
+                    </ol>
+                </div>
+
+            </div>
+
+            <div class="formHome col h-100 justify-content-center">
+                <h2 class="text-uppercase">Contact</h2>
+                {{ warning }}
+                <form class="container w-75" method="post" action="">
+                    <div class="row mb-3">
+                        <input class="form-control" type="email" name="mail_help"
+                               placeholder="Enter your email" required>
+                    </div>
+                    <div class="row mb-3">
+                        <input class="form-control" type="text" name="nickname_help" placeholder="Nickname"
+                               required>
+                    </div>
+                    <div class="row mb-3">
+                        <input class="form-control" type="text" name="subject_help" placeholder="Subject" required>
+                    </div>
+                    <div class="row mb-3">
+                        <textarea class="form-control" name="content_help" placeholder="Content" required></textarea>
+                    </div>
+                    <div class="row position-relative top-0 start-50">
+                        <button class="text-uppercase m-auto red rounded-3 pull-right bit-left" type="submit" name="sendHelp" id="button" value="send">Send
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="row mb-3">
-            <label class="label" for="yourName">Your name</label>
-            <br>
-            <input type="text" name="nickname_help" placeholder="Nickname"
-                   required>
-        </div>
-        <div class="row mb-3">
-            <label class="label" for="subject">Subject</label>
-            <br>
-            <input type="text" name="subject_help" placeholder="Subject"
-                   required>
-        </div>
-        <div class="row mb-3">
-            <label class="label" for="votreMessage">Votre message</label>
-            <br>
-            <textarea name="content_help" placeholder="Content" required></textarea>
-        </div>
-        <br>
-        <div class="row mb-3">
-        <button class="m-auto" type="submit" name="sendHelp" id="button" value="send">send</button>
-        </div>
-    </form>
     </div>
-    
 {% endblock %}

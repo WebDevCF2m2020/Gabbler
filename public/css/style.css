@@ -22,10 +22,17 @@ h2{
     font-size: 50px;
     font-weight: 700;
 }
+li {
+    padding: 5px;
+}
+textarea {
+    height: 150px;
+    max-height: 350px;
+}
 .LogoGabbler{
     margin-left: 30px;
 }
-.divHome {
+.divPublic {
     background-color: #CED4DA;
     border-radius: 15px;
 }
@@ -49,21 +56,13 @@ h2{
 }
 
 /*PAGE HELP_PAGE.HTML.TWIG*/
-.ContactUs{
-    text-align: center;
+.go-back{
+    text-decoration: none;
+    font-size: 4em;
+    color: #495057;
+    position: relative;
+    bottom: 50px;
 }
-.formHelp{
-    text-align: center;
-    width: 50%;
-    height: 100%;
-    padding-top: 75px;
-    padding-bottom: 75px;
-    background-color: #CED4DA;
-    border-radius: 15px;
-    margin-bottom: 50px;
-}
-.label{
-    text-align: center;
-    font-weight: lighter;
-    font-size: 18px;
+.go-back:hover{
+    color: #495057;
 }
