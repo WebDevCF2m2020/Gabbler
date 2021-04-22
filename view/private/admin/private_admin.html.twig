@@ -1,12 +1,18 @@
 {% extends "template_gabbler.html.twig" %}
 
-{% block header %}<h1>Connected {{ connect.nickname_user }} -> {{ connect.name_role }}</h1>
-    <hr>{% endblock %}
+{% block header %}
+    <h1 class="text-center">Connected {{ connect.nickname_user }} -> {{ connect.name_role }}</h1>
+    <hr>
+    <div class="container mt-5 mb-5">
+        <img class="LogoGabbler" src="img/RougeWhiteMode.png">
+        <a class="go-back float-end" href="?disconnect" title="disconnection"> < </a>
+    </div>
+{% endblock %}
 
 {% block content %}
 
     <div class="container-sm border rounded-3 text-center grey">
-        <img class="m-4" src="{{ img.name_img }}" alt="">
+        <img class="m-auto mt-5 mb-2" src="{{ img.name_img }}" alt="">
         <h4 class="text-center red">{{ connect.nickname_user }}</h4>
         <p class="text-center">{{ connect.mail_user }}</p>
     </div>
@@ -23,5 +29,7 @@
 
         {% endfor %}
     </div>
-<button id="disconnect"><a href="?disconnect">Disconnect</a></button> 
+
+<button id="disconnect><a href="?disconnect">Disconnect</a></button> 
+
 {% endblock %}

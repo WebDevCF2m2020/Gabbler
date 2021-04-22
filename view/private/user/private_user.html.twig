@@ -2,63 +2,61 @@
 
 {% block header %}
 
-    <h1>Hello {{ user.nickname_user }} ! This is your profile page</h1>
+    <h1 class="text-center">Hello {{ user.nickname_user }} ! This is your profile page</h1>
     <hr>
-
+    <div class="container mt-5 mb-5">
+        <img class="LogoGabbler" src="img/RougeWhiteMode.png">
+        <a class="go-back float-end" href="?home" title="Go back to the home page"> < </a>
+    </div>
 {% endblock %}
 
 {% block content %}
 
-    <!-- GABBLER LOGO AND DISCONNECTION LINK -->
-    <div class="container d-flex justify-content-between">
+    <div class="container divPublic">
 
-        <!-- LOGO -->
-        <img class="m-4" src="img/RougeWhiteMode.png" alt="LogoGabbler">
+        <!-- MAIN CONTENT -->
+        <div class="container row align-items-center rounded-3 m-auto mb-3 extra-padding-50">
 
-        <!-- LINK -->
-        <a class="btn btn-outline-secondary btn-sm h-50 m-4" href="?disconnect"> < Disconnect</a>
+            <!-- USER INFOS -->
+            <div class="col row align-items-center p-4">
+
+                <!-- USER IMG AND LAYOUT FOR IMG UPDATE -->
+                <div class="col m-4">
+                    <img class="w-100 rounded-3 mb-4" src="{{ img.name_img }}" alt="">
+                    <button type="button" class="btn btn-light red">Upload new image</button>
+                    <button type="button" class="btn btn-light float-end red">OK</button>
+                </div>
+
+                <!-- USER PERSONAL INFOS UPDATE FORM -->
+                <form class="col m-4" method="post">
+                    <div class="row mb-3">
+                        <input class="form-control" type="text" value="{{ user.nickname_user }}">
+                    </div>
+                    <div class="row mb-3">
+                        <input class="form-control" type="text" value="{{ user.mail_user }}">
+                    </div>
+                    <div class="row mb-3">
+                        <label for="">New password :</label>
+                        <input class="form-control mb-2" type="password" placeholder="New password">
+                        <input class="form-control" type="password" placeholder="Confirm the new password">
+                    </div>
+                    <div class="row position-relative top-0 start-50">
+                        <button class="text-uppercase m-auto red rounded-3 pull-right more-left text-uppercase" type="submit" name="updateProfil" id="button">Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- PREVIEW (NOT WORKING AT THE MOMENT) -->
+            <div class="col">
+                <h3 class="text-center">Preview</h3>
+                <div>
+                    <p class="text-center">Here you'll have a live preview of the changes</p>
+                </div>
+            </div>
+        </div>
 
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div class="container row align-items-center border rounded-3 m-auto mb-3 grey">
-
-        <!-- USER INFOS -->
-        <div class="col row align-items-center p-4">
-
-            <!-- USER IMG AND LAYOUT FOR IMG UPDATE -->
-            <div class="col m-4">
-                <img class="w-100 rounded-3 mb-4" src="{{ img.name_img }}" alt="">
-                <button type="button" class="btn btn-light red">Upload new image</button>
-                <button type="button" class="btn btn-light float-end red">OK</button>
-            </div>
-
-            <!-- USER PERSONAL INFOS UPDATE FORM -->
-            <form class="col m-4" method="post">
-                <div class="row mb-3">
-                    <input class="form-control" type="text" value="{{ user.nickname_user }}">
-                </div>
-                <div class="row mb-3">
-                    <input class="form-control" type="text" value="{{ user.mail_user }}">
-                </div>
-                <div class="row mb-3">
-                    <label for="">New password :</label>
-                    <input class="form-control mb-2" type="password" placeholder="New password">
-                    <input class="form-control" type="password" placeholder="Confirm the new password">
-                </div>
-                <div class="row">
-                    <button class="form-control red" type="submit" name="updateProfil" id="button">SAVE</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- PREVIEW (NOT WORKING AT THE MOMENT) -->
-        <div class="col">
-            <h3 class="text-center">Preview</h3>
-            <div>
-                <p class="text-center">Here you'll have a live preview of the changes</p>
-            </div>
-        </div>
-    </div>
 
 {% endblock %}
