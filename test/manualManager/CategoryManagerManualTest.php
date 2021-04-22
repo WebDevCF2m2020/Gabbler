@@ -34,3 +34,18 @@ if(empty($result)){
         echo "<p>{$helpObject->getNameCategory()}</p>";
     }
 }
+
+// CRUD tests
+
+$category = new Category([
+    'id_category' => 6,
+    'name_category' => "Catégorie de test"
+]);
+
+var_dump($categoryManager->viewCategoryById(3));
+echo '<br>';
+var_dump($categoryManager->newCategory($category));
+echo '<br>';
+var_dump($categoryManager->updateCategory($category));
+echo '<br>';
+var_dump($categoryManager->deleteCategory(4));
