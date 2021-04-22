@@ -1,0 +1,94 @@
+/*FOR THE ALL SITE*/
+*{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*CLASS COULEURS*/
+.grey{
+    background-color:#CED4DA;
+}
+.red{
+    color: #E51537;
+}
+/*PAGE HOME_PAGE.HTML.TWIG*/
+h2{
+    text-align: center;
+    padding-bottom: 30px;
+    font-family: 'Nanum Myeongjo', serif;    
+    font-size: 50px;
+}
+.LogoGabbler{
+    margin-left: 30px;
+    margin-top: -85px;
+}
+.signIn{
+    text-align: center;
+    font-family: 'Arapey', serif;
+    font-size: 25px;
+    margin-top:-45px;
+    color: #E51537;
+}
+.container1{
+    border-radius: 2px;
+    width: 50%;
+}
+.container2{
+    border-radius: 2px;
+    width: 50%;  
+}
+.formHome{
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    padding-top: 75px;
+    padding-bottom: 75px;
+    background-color: #CED4DA;
+    border-radius: 15px;
+}
+#button{
+    text-align: center;
+    font-size: 20px;
+    width: 50%;
+    height: 35px;
+    color: black;
+    border:2px solid #E51537;
+    border-radius: 5%;
+    background: #E9ECEF;
+}
+.help{
+    width: 25%;
+    background: #E9ECEF;
+    text-align: center;
+    color:#E51537;
+    font-size: 25px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    border:2px solid #E9ECEF;
+    border-radius: 5%;
+    text-decoration: none;
+}
+.help:hover{
+    color:black; 
+}
+/*PAGE HELP_PAGE.HTML.TWIG*/
+.ContactUs{
+    text-align: center;
+    font-family: 'Nanum Myeongjo', serif;
+}
+.formHelp{
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    padding-top: 75px;
+    padding-bottom: 75px;
+    background-color: #CED4DA;
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+.label{
+    text-align: center;
+    font-family: 'Nanum Myeongjo', serif;    font-size: 50px;
+    font-weight: lighter;
+    font-size: 18px;
+}
