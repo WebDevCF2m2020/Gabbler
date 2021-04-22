@@ -3,7 +3,7 @@
 class CategoryManager extends ManagerTableAbstract implements ManagerTableInterface {
 //A bit convoluted as I see it so I started with a selection of all entries based on my category mapping:
 //I do not know if $sql, $query and $prepare are the conventional agreed upon!!
-    public function getAllCategory(): array {
+    public function selectAll(): array {
     
         $categoryFetch = "SELECT * FROM category;";
         $categoryGoFetch = $this->db->query($categoryFetch);
@@ -36,17 +36,16 @@ class CategoryManager extends ManagerTableAbstract implements ManagerTableInterf
         }
     }
 
-    public function newCategory(Category $input): boolean {
+    public function newCategory(Category $input): bool {
         //Category ==> to use Category Class:
         //$input ==> will hold getters results:
 
-        $addCategory = "INSERT INTO category (id_category, name_category) VALUES (?,?)";
+        $addCategory = "INSERT INTO category (name_category) VALUES (?)";
         $goAddCategory = $this->db->prepare($addCategory);
 
         try {
             $goAddCategory->execute([
-                $input ->getIdCategory(),
-                $input ->getNameCategory(),
+                $input->getNameCategory()
             ]);
             return true;
         } catch (Exception $error) {
@@ -55,54 +54,31 @@ class CategoryManager extends ManagerTableAbstract implements ManagerTableInterf
         }  
     }
 
-    public function updateCategory(Category $input): boolean {
+    public function updateCategory(Category $input): bool {
         //Category ==> same as above!!
         //$input ==> same as above!!
 
         $updateCategory = "UPDATE category SET name_category = ? WHERE id_category = ?";
         $goUpdateCategory = $this->db->prepare($updateCategory);
 
-        $goUpdateCategory->bindValue($input->getNameCategory(),PDO::PARAM_STR);
-        $goUpdateCategory->bindValue($input->getIdCategory(),PDO::PARAM_INT);   
+        $goUpdateCategory->bindValue(1,$input->getNameCategory(),PDO::PARAM_STR);
+        $goUpdateCategory->bindValue(2,$input->getIdCategory(),PDO::PARAM_INT);
         return $goUpdateCategory->execute();   
 
     }
 
-    public function deleteCategory(int $idRole): bool {
+    public function deleteCategory(int $idCategory): bool {
 
         $deleteCategory = "DELETE FROM category WHERE id_category = ?";
-        $goDeleteCategory = $this->db->prepare($deleteCategory);
+        $prepare = $this->db->prepare($deleteCategory);
 
         try {
-            $prepare->execute([$idRole]);
+            $prepare->execute([$idCategory]);
             return true;
         } catch (Exception $error) {
             trigger_error($error->getMessage());
             return false;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
