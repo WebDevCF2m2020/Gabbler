@@ -3,7 +3,7 @@
 class CategoryManager extends ManagerTableAbstract implements ManagerTableInterface {
 //A bit convoluted as I see it so I started with a selection of all entries based on my category mapping:
 //I do not know if $sql, $query and $prepare are the conventional agreed upon!!
-    public function getAllCategory(): array {
+    public function selectAll(): array {
     
         $categoryFetch = "SELECT * FROM category;";
         $categoryGoFetch = $this->db->query($categoryFetch);
@@ -71,7 +71,7 @@ class CategoryManager extends ManagerTableAbstract implements ManagerTableInterf
     public function deleteCategory(int $idRole): bool {
 
         $deleteCategory = "DELETE FROM category WHERE id_category = ?";
-        $goDeleteCategory = $this->db->prepare($deleteCategory);
+        $prepare = $this->db->prepare($deleteCategory);
 
         try {
             $prepare->execute([$idRole]);
@@ -81,28 +81,5 @@ class CategoryManager extends ManagerTableAbstract implements ManagerTableInterf
             return false;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
