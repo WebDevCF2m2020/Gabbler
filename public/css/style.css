@@ -71,6 +71,19 @@ textarea {
     position: relative;
     bottom: 50px;
 }
+
 .go-back:hover{
     color: #495057;
-}
+
+/*PAGE ADMIN*/
+#Disconnect{
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+    width: 50%;
+    height: 35px;
+    color: black;
+    border:2px solid #E51537;
+    border-radius: 5%;
+    background: #E9ECEF;
+  }
