@@ -4,7 +4,6 @@
 {#Importing macro/macros: #}
 {% import "formMacro.twig" as formComponent %}
 
-
 {#The first block to override is the header: #}
 {% block header %}
 <img class="LogoGabbler" src="../public/img/RougeWhiteMode.png">
@@ -19,7 +18,7 @@
         <div class="formHome">
             <h2>Sign In</h2>
 
-        <form class = "container1" method = "POST">
+        <form class="container1" method = "POST">
         
             <div class="row mb-3">
                 {{formComponent.input("text","nickname_user","Full name","name")}}
@@ -27,9 +26,8 @@
             <div class="row mb-3">
                 {{formComponent.input("password","pwd_user","Password","password")}}
             </div>
-
-            <div class="row mb-3">
-                <button" type="submit" name="signin" id="button">Login</button> 
+            <div class="row">
+                <button class="m-auto" type="submit" name="signin" id="button">Login</button> 
             </div> 
         </form>
         </div>
@@ -56,14 +54,13 @@
             </div>
         
             <div class="row mb-3">
-                <button" type="submit" name="signup" id="button">Sign up</button> 
+                <button class="m-auto" type="submit" name="signup" id="button">Sign up</button> 
             </div>
-
         </form>
     </div>
         <div>
             <a class="help" href="?help" name="help">Need help?</a> 
         </div> 
-
-
 {% endblock %}
+
+
